@@ -7,7 +7,7 @@
     "build": "ng build --prod=true --aot=true --extractCss=true --optimization=true --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration=production --base-href=/"
+    "deploy": "ng build --configuration=production --base-href=/gonzalo-droid.github.io/"
 
   },
   "private": true,
