@@ -1,5 +1,6 @@
 <!-- Img obtenida: https://simpleicons.org/?q=Postman -->
 <!-- Referencia : https://dev.to/gedgonz/haciendo-deploy-de-una-app-en-angular-a-githubpages-4bll -->
+<!-- https://medium.com/notasdeangular/despliegue-de-tu-aplicaci%C3%B3n-en-angular-usando-github-actions-c0b5bc67ddb0 -->
 
 
 ## Deploy GitHub Pages
