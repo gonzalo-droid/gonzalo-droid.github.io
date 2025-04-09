@@ -1177,3 +1177,18 @@
     font-size: 14px;
   }
   
+  .privacy-header {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .privacy-header a {
+    text-decoration: none;
+    color: #efefef;
+    font-size: 14px;
+  }
+
+  .privacy-header a:hover {
+    text-decoration: underline;
+  }
