@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Portafolio - Mobile Developer</title>
+<title>Portafolio - Mobile Developer [Android & iOS]</title>
 <meta
     content="Soy un apasionado desarrollador Android/iOS con experiencia en la creación de aplicaciones móviles innovadoras. Mi enfoque se centra en el desarrollo de soluciones robustas, eficientes y atractivas. Explora mi portafolio para descubrir proyectos emocionantes y ejemplos de mi habilidad para crear experiencias móviles excepcionales."
     name="description">
@@ -66,9 +66,11 @@
                     <a href="https://www.instagram.com/gonzalo.lozg/" target="_blank" class="instagram"><i
                             class="bi bi-instagram"></i></a>
 
-                    <a href="https://www.behance.net/somegreentree" target="_blank" class="behance"><i
-                            class="bi bi-behance"></i></a>
+                    <a href="https://www.tiktok.com/@gonzalodroid" target="_blank" class="tiktok"><i
+                                class="bi bi-tiktok"></i></a>
 
+                    <a href="https://www.youtube.com/@GonzaloDroid2050" target="_blank" class="youtube"><i
+                                    class="bi bi-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -79,7 +81,7 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>¡Hola, mundo! 👋</h2>
+                <h2>Siguiendo el camino del desarrollo de apps</h2>        
             </div>
 
             <div class="row">
@@ -141,14 +143,60 @@
     <section id="portfolio" class="portfolio section-bg">
         <div class="container">
             <div class="section-title">
-                <h2>Proyectos</h2>
+                <h2>Cada proyecto es una oportunidad para seguir aprendiendo</h2>
+                <q>Comenzar fue difícil, pero una vez encaminado, ya no puedes detener el desarrollo hasta alcanzar tus objetivos.</q>
             </div>
 
             <div class="portfolio-details">
                 <div class="row gy-4">
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>U-Learning: iOS</h3>
+                            <h3>Note.AI</h3>
+                            <p>
+                                <small> Es un proyecto personal que he estado compartiendo mis avances en mis redes sociales, he seguido el desarrollo moderno en android.</small>
+                            </p>
+                            <p> 
+                                <small><strong>Notas :</strong></small> Listado y creación de notas, guardadas en base de datos local. <br>
+                                <small><strong>Grabación de voz :</strong></small> Notas de voz asociadas a las notas creadas.<br>
+                                <small><strong>Open.AI :</strong></small> Transcripción de audio a texto usando el modelo Whisper..<br>
+                                <small><strong>Interfaz Moderna :</strong></small> Construida con Kotlin Compose para una experiencia visual atractiva y responsiva.
+                            </p>                            
+                            <p>
+                                <strong><a href="https://github.com/gonzalo-droid/NoteAI" target="_blank" class="google-plus"><i
+                                    class="bi bi-github"></i> Github</a></strong>
+                            </p>
+
+                            <p>
+                                <strong>Tech</strong>: Android, Kotlin, Compose, Testing, ROOM, Coroutines, Flow, Firebase, Git&Github.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <div class="lightbox" id="lightbox" (click)="closeLightbox()">
+                                        <img id="zoomedImg" alt="Zoomed Image" (click)="toggleZoom()">
+
+                                    </div>
+
+                                    <img class="thumbnail" src="assets/img/portfolio/app_noteai.png"
+                                        alt="Thumbnail Image"
+                                        (click)="openLightbox('assets/img/portfolio/app_noteai.png')">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="portfolio-details">
+                <div class="row gy-4">
+                    <div class="col-lg-3">
+                        <div class="portfolio-info">
+                            <h3>U-Learning | iOS</h3>
                             <p>
                                 <small> Aplicación para el uso del estudiante. </small>
                             </p>
@@ -159,7 +207,7 @@
                             </p>
 
                             <p>
-                                <strong>Tech</strong>: Swift, MVVM, Testflight, Apple Connect, UiKit, Firebase, Git |
+                                <strong>Tech</strong>: iOS, Swift, MVVM, Testflight, Apple Connect, UiKit, Firebase, Git |
                                 Github.
                             </p>
                         </div>
@@ -176,10 +224,6 @@
                                     <img class="thumbnail" src="assets/img/portfolio/app_ulearning_ios.png"
                                         alt="Thumbnail Image"
                                         (click)="openLightbox('assets/img/portfolio/app_ulearning_ios.png')">
-
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -189,18 +233,9 @@
 
             <div class="portfolio-details">
                 <div class="row gy-4">
-                    <div class="col-lg-9">
-                        <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="swiper-slide">
-                                    <img src="assets/img/portfolio/app_ulearning.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>U-Learning: Android</h3>
+                            <h3>U-Learning | Android</h3>
                             <p>
                                 <small> Aplicación para el uso del estudiante. </small>
                             </p>
@@ -209,21 +244,29 @@
                                 proyectos. Aplique MVI, StateFlow/SharedFlow y testing con Mockito.
                             </p>
                             <p>
-                                <strong>Tech</strong>: Kotlin, MVI, Retrofit, StateFlow, Firebase,
+                                <strong>Tech</strong>: Android, Kotlin, MVI, Retrofit, StateFlow, Firebase,
                                 Proto DataStore, Hilt, Coroutines, Play Store, Material.3,
                                 DataBinding, Git | Github.
                             </p>
                         </div>
                     </div>
+                    <div class="col-lg-9">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <img src="assets/img/portfolio/app_ulearning.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
             </div>
 
             <div class="portfolio-details">
                 <div class="row gy-4">
-
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>U-Learning: Web</h3>
+                            <h3>U-Learning | Web</h3>
                             <p>
                                 <small>
                                     Ecommerce U-Learning. Plataforma del estudiante. Plataforma administrativa.
@@ -254,19 +297,9 @@
 
             <div class="portfolio-details">
                 <div class="row gy-4">
-
-                    <div class="col-lg-9">
-                        <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="swiper-slide">
-                                    <img src="assets/img/portfolio/app_erp.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>Adminitración de lotes y viviendas: Android</h3>
+                            <h3>Adminitración de lotes y viviendas | Android</h3>
                             <p>
                                 <small>
                                     Diseñado para que los asesores de venta realicen un seguimiento eficaz de los lotes
@@ -284,6 +317,15 @@
                             </p>
                         </div>
                     </div>
+                    <div class="col-lg-9">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <img src="assets/img/portfolio/app_erp.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
                 </div>
             </div>
 
@@ -291,7 +333,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>Adminitración de lotes y viviendas: Web</h3>
+                            <h3>Adminitración de lotes y viviendas | Web</h3>
                             <p>
                                 <small>
                                     Gestión de proyectos inmobiliarios multiempresa. Contratos, facturación electrónica
@@ -323,19 +365,9 @@
 
             <div class="portfolio-details">
                 <div class="row gy-4">
-
-                    <div class="col-lg-9">
-                        <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="swiper-slide">
-                                    <img src="assets/img/portfolio/app_crm.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>Solti-CRM: Android</h3>
+                            <h3>Solti-CRM | Android</h3>
                             <p>
                                 <small>Enfocado para el uso de los asesores de venta facilitando el registro de
                                     clientes, llamadas, correos y registro de ubicación.</small>
@@ -351,6 +383,16 @@
                             </p>
                         </div>
                     </div>
+                    <div class="col-lg-9">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <img src="assets/img/portfolio/app_crm.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
             </div>
 
@@ -358,7 +400,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-3">
                         <div class="portfolio-info">
-                            <h3>Solti-CRM: Web</h3>
+                            <h3>Solti-CRM | Web</h3>
                             <p>
                                 <small>
                                     Sistema comercial de gestión de clientes, brindando seguimiento
@@ -428,36 +470,6 @@
                     </div>
 
                 </div>
-
-                <!-- <div class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="row">
-                  <div class="form-group col-md-6">
-                    <label for="name">Your Name</label>
-                    <input type="text" name="name" class="form-control" id="name" required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="name">Your Email</label>
-                    <input type="email" class="form-control" name="email" id="email" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="name">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject" required>
-                </div>
-                <div class="form-group">
-                  <label for="name">Message</label>
-                  <textarea class="form-control" name="message" rows="10" required></textarea>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-              </form>
-            </div> -->
-
             </div>
 
         </div>
@@ -465,10 +477,13 @@
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
-        <div class="container">
+        <div class="container footer-content">
             <div class="copyright">
-                &copy; 2024 <strong><span>My Portafolio 🖤 - Mobile Developer 🌎</span></strong>
+                &copy; <span id="year"></span> <strong><span>Mi Portafolio 🖤 - Mobile Developer 🌎</span></strong>
             </div>
+            <div class="privacy">
+                <a href="privacy-policy/index.html" target="_blank">Política de Privacidad</a>
+              </div>
         </div>
     </footer><!-- End  Footer -->
 

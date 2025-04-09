@@ -1148,3 +1148,32 @@
     text-decoration: brown;
     position: relative;
   }
+
+  .footer-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  
+  .privacy {
+    position: absolute;
+    right: 10px;
+  }
+
+  .privacy a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .privacy a:hover {
+    text-decoration: underline;
+  }
+
+  .copyright {
+    text-align: center;
+    font-size: 14px;
+  }
+  

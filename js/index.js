@@ -10,3 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(drivePdfUrl, '_blank');
     });
 });
+
+document.getElementById("year").textContent = new Date().getFullYear();
