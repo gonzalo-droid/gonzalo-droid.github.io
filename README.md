@@ -12,5 +12,6 @@ npm install
 ##### Init serve 
 
 ```
-npx serve .
+npx live-server .
 ```
+
