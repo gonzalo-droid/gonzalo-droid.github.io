@@ -147,9 +147,53 @@
         <div class="container">
             <div class="section-title">
                 <h2>Cada proyecto es una oportunidad para seguir aprendiendo</h2>
-                <q>Comenzar fue difícil, pero una vez encaminado, ya no puedes detener el desarrollo hasta alcanzar tus
-                    objetivos.</q>
             </div>
+
+            <div class="portfolio-details">
+                <div class="row gy-4">
+                    <div class="col-lg-3">
+                        <div class="portfolio-info">
+                            <h3>CixCash App</h3>
+                            <p>
+                                <small> CixCash es una aplicación de conversión de criptomonedas y divisas. Desarrollada en Kotlin Multiplatform para Android/iOS. Permite registrar transacciones, visualizar balances convertidos a pesos argentinos (ARS), y realizar conversiones entre monedas como USD, BTC y ETH.</small>
+                            </p>
+                            <p>
+                                <small><strong>Balance :</strong></small> Visualización de balances por moneda. <br>
+                                <small><strong>Transacciones :</strong></small> Listado de transacciones (persistencia local con base de datos).<br>
+                                <small><strong>Conversión :</strong></small> Conversión entre ARS, USD, BTC, ETH.<br>
+                                <small><strong>Interfaz Moderna :</strong></small> Material3, Modo oscuro 🌙 y Compose
+                            </p>
+                            <p>
+                                <strong><a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank"
+                                        class="google-plus"><i class="bi bi-github"></i> Github</a></strong>
+                            </p>
+
+                            <p>
+                                <strong>Tech</strong>: KMM, iOS, Android, Kotlin, Compose, Koin, Ktor, Clean Architecrure, Testing, ROOM, Coroutines, Flow, Git&Github, MVVM.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <div class="lightbox" id="lightbox" (click)="closeLightbox()">
+                                        <img id="zoomedImg" alt="Zoomed Image" (click)="toggleZoom()">
+
+                                    </div>
+
+                                    <img class="thumbnail" src="assets/img/portfolio/app_noteai.png"
+                                        alt="Thumbnail Image"
+                                        (click)="openLightbox('assets/img/portfolio/app_noteai.png')">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div class="portfolio-details">
                 <div class="row gy-4">
@@ -166,7 +210,7 @@
                                 <small><strong>Grabación de voz :</strong></small> Notas de voz asociadas a las notas
                                 creadas.<br>
                                 <small><strong>Open.AI :</strong></small> Transcripción de audio a texto usando el
-                                modelo Whisper..<br>
+                                modelo Whisper.<br>
                                 <small><strong>Interfaz Moderna :</strong></small> Construida con Kotlin Compose para
                                 una experiencia visual atractiva y responsiva.
                             </p>
