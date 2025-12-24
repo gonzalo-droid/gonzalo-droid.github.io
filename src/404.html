@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>404 - Página no encontrada</h1>
+        <p>Lo sentimos, la página que buscas no existe.</p>
+        <a href="/" class="btn btn-primary">Volver al inicio</a>
+    </div>
+
+    <script>
+        // Mapeo de rutas limpias a archivos HTML
+        const routes = {
+            '/articles': '/src/articles.html',
+            '/article': '/src/article.html',
+            '/privacy-policy': '/src/privacy-policy.html'
+        };
+
+        // Función para manejar las redirecciones
+        function handleRedirect() {
+            const path = window.location.pathname;
+            
+            // Si es una ruta de artículo específica
+            if (path.startsWith('/article/')) {
+                const slug = path.split('/article/')[1];
+                window.location.href = `/src/article.html?slug=${slug}`;
+                return;
+            }
+
+            // Si es una ruta conocida
+            if (routes[path]) {
+                window.location.href = routes[path];
+                return;
+            }
+
+            // Si no es una ruta conocida, mostrar la página 404
+            document.body.style.display = 'block';
+        }
+
+        // Ejecutar al cargar la página
+        handleRedirect();
+    </script>
+</body>
+</html> 

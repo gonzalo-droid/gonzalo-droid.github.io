@@ -1,0 +1,199 @@
+/* Articles page styles */
+.articles-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.article-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.article-header {
+    margin-bottom: 2rem;
+}
+
+.article-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.article-meta {
+    color: #666;
+    font-size: 1rem;
+}
+
+.article-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    margin: 2rem 0 1rem 0;
+    color: #333;
+}
+
+.article-content h1 {
+    font-size: 2rem;
+}
+
+.article-content h2 {
+    font-size: 1.75rem;
+}
+
+.article-content h3 {
+    font-size: 1.5rem;
+}
+
+.article-content h4 {
+    font-size: 1.25rem;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content code {
+    background-color: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.article-content pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+.article-content pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+.article-content blockquote {
+    border-left: 4px solid #149ddd;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    color: #555;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+}
+
+/* Article Cards */
+.article-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.article-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.article-card .card-text {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.article-tags {
+    margin-top: 1rem;
+}
+
+.article-tags .badge {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    margin-right: 0.5rem;
+    background-color: #149ddd;
+}
+
+/* Back button */
+.btn-outline-primary {
+    color: #149ddd;
+    border-color: #149ddd;
+}
+
+.btn-outline-primary:hover {
+    background-color: #149ddd;
+    color: white;
+}
+
+/* Article Modal */
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body h1,
+.modal-body h2,
+.modal-body h3,
+.modal-body h4 {
+    margin: 1.5rem 0 1rem 0;
+    color: #333;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.modal-body pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+.modal-body code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+} 

@@ -233,7 +233,9 @@
   #hero {
     width: 100%;
     height: 50vh;
-    background: url("../img/background.svg") top center;
+    background:     
+      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+      url("../img/evangelion-wallpaper.jpg") top center;
     background-size: cover;
   }
 
@@ -1192,3 +1194,19 @@
   .privacy-header a:hover {
     text-decoration: underline;
   }
+
+
+.tech { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.tag{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: #f4fbff;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}

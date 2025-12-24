@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Introducción a Jetpack Compose",
+        "date": "2024-03-20",
+        "file": "jetpack-compose.md",
+        "description": "Una guía completa para comenzar con Jetpack Compose, el nuevo toolkit de UI para Android.",
+        "image": "assets/img/portfolio/app_noteai.png",
+        "tags": ["Android", "Jetpack Compose", "UI", "Kotlin"]
+    },
+    {
+        "title": "Clean Architecture en Android",
+        "date": "2024-03-19",
+        "file": "clean-architecture.md",
+        "description": "Cómo implementar Clean Architecture en tus aplicaciones Android para mantener un código limpio y mantenible.",
+        "image": "assets/img/portfolio/app_noteai.png",
+        "tags": ["Android", "Clean Architecture", "Arquitectura", "Kotlin"]
+    },
+    {
+        "title": "Coroutines y Flow en Android",
+        "date": "2024-03-18",
+        "file": "coroutines-flow.md",
+        "description": "Aprende a manejar operaciones asíncronas y flujos de datos con Coroutines y Flow en Android.",
+        "image": "assets/img/portfolio/app_noteai.png",
+        "tags": ["Android", "Coroutines", "Flow", "Kotlin", "Asíncrono"]
+    },
+    {
+        "title": "Testing en Android",
+        "date": "2024-03-17",
+        "file": "android-testing.md",
+        "description": "Guía práctica sobre cómo implementar diferentes tipos de pruebas en aplicaciones Android.",
+        "image": "assets/img/portfolio/app_noteai.png",
+        "tags": ["Android", "Testing", "JUnit", "Espresso", "Mockito"]
+    },
+    {
+        "title": "Desarrollo de Apps con Kotlin Multiplatform",
+        "date": "2024-03-20",
+        "file": "kotlin-multiplatform.md",
+        "description": "Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.",
+        "image": "assets/img/portfolio/app_cixcash.png",
+        "tags": ["Kotlin", "KMM", "Android", "iOS", "Multiplataforma"]
+    },
+    {
+        "title": "Integración de IA en Apps Android",
+        "date": "2024-03-19",
+        "file": "android-ai.md",
+        "description": "Cómo integrar inteligencia artificial en tus aplicaciones Android usando servicios como OpenAI y modelos de ML.",
+        "image": "assets/img/portfolio/app_noteai.png",
+        "tags": ["Android", "IA", "OpenAI", "ML", "Kotlin"]
+    },
+    {
+        "title": "Arquitectura MVVM en Android",
+        "date": "2024-03-18",
+        "file": "android-mvvm.md",
+        "description": "Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.",
+        "image": "assets/img/portfolio/app_ulearning.png",
+        "tags": ["Android", "MVVM", "Arquitectura", "Kotlin", "ViewModel"]
+    },
+    {
+        "title": "Persistencia de Datos en Android",
+        "date": "2024-03-17",
+        "file": "android-persistence.md",
+        "description": "Técnicas y mejores prácticas para el manejo de datos locales en aplicaciones Android.",
+        "image": "assets/img/portfolio/app_erp.png",
+        "tags": ["Android", "Room", "SQLite", "DataStore", "Kotlin"]
+    },
+    {
+        "title": "Desarrollo de Apps Empresariales",
+        "date": "2024-03-16",
+        "file": "android-enterprise.md",
+        "description": "Estrategias y patrones para desarrollar aplicaciones Android robustas para el entorno empresarial.",
+        "image": "assets/img/portfolio/app_crm.png",
+        "tags": ["Android", "Enterprise", "Clean Architecture", "Kotlin", "Testing"]
+    }
+] 

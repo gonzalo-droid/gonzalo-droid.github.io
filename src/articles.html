@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículos - Mobile Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Add marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Add highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- HERO -->
+    <section id="hero" class="d-flex flex-column justify-content-end align-items-start p-5">
+        <div class="hero-container">
+            <h1>Gonzalo López</h1>
+            <p><strong>Mobile Developer</strong></p>
+            <div class="download-cv">
+                <a class="instagram" id="downloadLink"
+                    href="https://drive.google.com/drive/folders/1_jF9ljevjeBtkrfiAQmkjxyfxu0BOV6p?usp=sharing"
+                    target="_blank">
+                    Descargar CV <i class="bi bi-download"></i> </a>
+                <a class="instagram ms-3" href="/articles">
+                    Ver Artículos <i class="bi bi-journal-text"></i> </a>
+            </div>
+            <div class="profile d-flex justify-content">
+                <div class="social-links mt-3 text-center">
+                    <a href="https://www.linkedin.com/in/gonzalo-lozg/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/gonzalo-droid" target="_blank" class="google-plus"><i class="bi bi-github"></i></a>
+                    <a href="https://www.instagram.com/gonzalo.lozg/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@gonzalodroid" target="_blank" class="tiktok"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@GonzaloDroid2050" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main">
+        <section class="articles">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Artículos</h2>
+                </div>
+                <div class="row" id="articlesContainer">
+                    <!-- Los artículos se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Article Modal -->
+    <div class="modal fade" id="articleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="articleContent">
+                    <!-- Article content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container footer-content">
+            <div class="copyright">
+                &copy; <span id="year"></span> <strong><span>Mobile Developer 🌎</span></strong>
+            </div>
+            <div class="privacy">
+                <a href="/privacy-policy" target="_blank">Política de Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/articles.js"></script>
+</body>
+</html> 

@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Redirigir /articles a /src/articles.html
+RewriteRule ^articles/?$ src/articles.html [L]
+
+# Redirigir /article/[slug] a /src/article.html?slug=[slug]
+RewriteRule ^article/([^/]+)/?$ src/article.html?slug=$1 [L,QSA]
+
+# Redirigir /privacy-policy a /src/privacy-policy.html
+RewriteRule ^privacy-policy/?$ src/privacy-policy.html [L]
+
+# Si el archivo o directorio no existe, redirigir a 404.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ src/404.html [L] 
