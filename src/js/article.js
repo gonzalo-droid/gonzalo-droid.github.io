@@ -28,6 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Actualizar el año del copyright
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Back to Top Button functionality
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
 
 async function loadArticle(slug) {

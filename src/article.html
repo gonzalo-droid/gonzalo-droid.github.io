@@ -10,11 +10,21 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Add marked.js for Markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- Add highlight.js for code syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <!-- Add highlight.js for code syntax highlighting (both themes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Theme management -->
+    <script src="js/theme.js"></script>
 </head>
 <body>
+    <!-- Fixed Navbar -->
+    <nav class="navbar-fixed">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </button>
+    </nav>
+
     <!-- HERO -->
     <section id="hero" class="d-flex flex-column justify-content-end align-items-start p-5">
         <div class="hero-container">
@@ -63,6 +73,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
 
     <script src="js/article.js"></script>
 </body>

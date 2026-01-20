@@ -18,11 +18,11 @@
 .article-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-heading-dark);
 }
 
 .article-meta {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 1rem;
 }
 
@@ -36,7 +36,7 @@
 .article-content h3,
 .article-content h4 {
     margin: 2rem 0 1rem 0;
-    color: #333;
+    color: var(--text-heading-dark);
 }
 
 .article-content h1 {
@@ -70,15 +70,16 @@
 }
 
 .article-content code {
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary);
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
     font-family: monospace;
     font-size: 0.9em;
+    color: var(--text-primary);
 }
 
 .article-content pre {
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary);
     padding: 1rem;
     border-radius: 5px;
     overflow-x: auto;
@@ -92,11 +93,11 @@
 }
 
 .article-content blockquote {
-    border-left: 4px solid #149ddd;
+    border-left: 4px solid var(--accent-primary);
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
-    background-color: #f8f9fa;
-    color: #555;
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
 }
 
 .article-content img {
@@ -111,25 +112,30 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--bg-card);
 }
 
 .article-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .article-card .card-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-heading-dark);
 }
 
 .article-card .card-text {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 1rem;
     margin-bottom: 1rem;
+}
+
+.article-card .card-body {
+    background-color: var(--bg-card);
 }
 
 .article-tags {
@@ -140,37 +146,42 @@
     font-size: 0.9rem;
     padding: 0.5em 1em;
     margin-right: 0.5rem;
-    background-color: #149ddd;
+    background-color: var(--accent-primary);
 }
 
 /* Back button */
 .btn-outline-primary {
-    color: #149ddd;
-    border-color: #149ddd;
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
 }
 
 .btn-outline-primary:hover {
-    background-color: #149ddd;
-    color: white;
+    background-color: var(--accent-primary);
+    color: var(--text-light);
 }
 
 /* Article Modal */
 .modal-content {
     border-radius: 8px;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
 }
 
 .modal-header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     padding: 1.5rem;
+    background-color: var(--bg-card);
 }
 
 .modal-title {
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--text-heading-dark);
 }
 
 .modal-body {
     padding: 1.5rem;
+    background-color: var(--bg-card);
 }
 
 .modal-body h1,
@@ -178,7 +189,7 @@
 .modal-body h3,
 .modal-body h4 {
     margin: 1.5rem 0 1rem 0;
-    color: #333;
+    color: var(--text-heading-dark);
 }
 
 .modal-body p {
@@ -187,7 +198,7 @@
 }
 
 .modal-body pre {
-    background-color: #f8f9fa;
+    background-color: var(--bg-secondary);
     padding: 1rem;
     border-radius: 4px;
     margin: 1rem 0;
@@ -196,4 +207,10 @@
 .modal-body code {
     font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+/* Articles section background */
+.articles {
+    background-color: var(--bg-primary);
 } 
