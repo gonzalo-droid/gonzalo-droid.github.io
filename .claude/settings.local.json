@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(file:*)",
-      "Bash(du:*)"
+      "Bash(du:*)",
+      "Bash(git status:*)",
+      "Bash(ls:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git ls-files:*)",
+      "Bash(curl:*)",
+      "Bash(node -e:*)",
+      "Bash(lsof:*)",
+      "Bash(pgrep:*)"
     ]
   }
 }

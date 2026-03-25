@@ -42,12 +42,8 @@
 </head>
 
 <body>
-    <!-- Fixed Navbar -->
-    <nav class="navbar-fixed">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-            <i class="bi bi-moon-fill" id="themeIcon"></i>
-        </button>
-    </nav>
+    <!-- Navbar Container - rendered by component -->
+    <div id="navbar-container" data-transparent="true"></div>
 
     <!-- HERO -->
     <section id="hero" class="d-flex flex-column justify-content-end align-items-start p-5">
@@ -84,8 +80,9 @@
 
         </div>
     </section>
+
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about" data-animate>
         <div class="container">
 
             <div class="section-title">
@@ -101,7 +98,7 @@
                 </div>
                 <div class="col-lg-9 pt-4 pt-lg-0 content">
                     <p>
-                        Android/Mobile Developer con +4 años construyendo apps en producción con Kotlin. Me especializo
+                        Android/Mobile Developer con +5 años construyendo apps en producción con Kotlin. Me especializo
                         en refactorización de legacy, arquitectura limpia (MVVM/MVP/MVI) y modularización para entregar
                         features mantenibles, testeables y escalables. Actualmente trabajo en Banco Falabella y busco
                         seguir creciendo en equipos multiculturales creando productos de alto impacto.
@@ -115,20 +112,17 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="tags">
-                                <span class="tag">KMM | Multiplataforma</span>
-                                <span class="tag">Trabajo en equipo</span>
-                                <span class="tag">Aprendizaje constante 👨🏾‍💻</span>
-                                <span class="tag">Clean Architecture</span>
                                 <span class="tag">Kotlin</span>
                                 <span class="tag">Java</span>
                                 <span class="tag">Swift</span>
                                 <span class="tag">Python</span>
-                                <span class="tag">Testing 🐛</span>
-                                <span class="tag">Jetpack Compose 💄</span>
-                                <span class="tag">Firebase | CI/CD ♻️</span>
-                                <span class="tag">MVVM | MVP | MVI 🏛️</span> <span class="tag">Control de versiones
-                                        Git | Github 🌳</span>
-                                <span class="tag">Clean architecture ⛩️</span>
+                                <span class="tag">Jetpack Compose</span>
+                                <span class="tag">KMM | Multiplataforma</span>
+                                <span class="tag">Clean Architecture</span>
+                                <span class="tag">MVVM | MVP | MVI</span>
+                                <span class="tag">Testing</span>
+                                <span class="tag">Firebase | CI/CD</span>
+                                <span class="tag">Git | GitHub</span>
                             </div>
                         </div>
                     </div>
@@ -139,16 +133,137 @@
     </section>
     <!-- End About Section -->
 
+    <!-- ======= Experience Section ======= -->
+    <section id="experience" class="experience section-bg" data-animate>
+        <div class="container">
+            <div class="section-title">
+                <h2>Experiencia Laboral</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Banco Falabella -->
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-year">
+                        <span>2025</span>
+                        <small>Presente</small>
+                    </div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Android Developer</h3>
+                            <span class="timeline-company">Banco Falabella - Chile</span>
+                        </div>
+                        <span class="timeline-period"><i class="bi bi-calendar3"></i> Ago 2025 - Presente</span>
+                        <p>Mantenimiento y evolución de ecosistema multi-módulo para múltiples países. Implementé el nuevo flujo de Tarjeta Digital con Jetpack Compose. Refactorización bajo arquitectura modular (MVP/MVVM + Clean Architecture). Gestión de releases y CI/CD en Bitrise.</p>
+                        <div class="timeline-tech">
+                            <span>Kotlin</span>
+                            <span>Jetpack Compose</span>
+                            <span>Clean Architecture</span>
+                            <span>Multi-module</span>
+                            <span>Bitrise</span>
+                            <span>Dagger</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Talana -->
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-year">
+                        <span>2022</span>
+                        <small>2025</small>
+                    </div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Android Developer</h3>
+                            <span class="timeline-company">Talana - Chile</span>
+                        </div>
+                        <span class="timeline-period"><i class="bi bi-calendar3"></i> Oct 2022 - Ago 2025</span>
+                        <p>Implementé Módulo de Beneficios y Login Biométrico. Desarrollé componentes UI personalizados para rebranding. Instrumentación de producto con Analytics, Firebase Performance y mapas de calor. Migración de funcionalidades hacia Kotlin y Jetpack Compose.</p>
+                        <div class="timeline-tech">
+                            <span>Kotlin</span>
+                            <span>Compose</span>
+                            <span>MVP/MVVM</span>
+                            <span>Firebase</span>
+                            <span>Dagger</span>
+                            <span>Coroutines</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TiSmart -->
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-year">
+                        <span>2021</span>
+                        <small>2022</small>
+                    </div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Android Developer</h3>
+                            <span class="timeline-company">TiSmart - Perú</span>
+                        </div>
+                        <span class="timeline-period"><i class="bi bi-calendar3"></i> Sep 2021 - Jun 2022</span>
+                        <p>Implementé validación de QR de vacunación en Ripley Pago. Adaptación multi-pantalla con View Binding y layouts optimizados. Desarrollo con Coroutines, MVVM y Clean Architecture en proyecto Tawa.</p>
+                        <div class="timeline-tech">
+                            <span>Kotlin</span>
+                            <span>MVVM</span>
+                            <span>RxJava</span>
+                            <span>Coroutines</span>
+                            <span>Dagger2</span>
+                            <span>Room</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freelance -->
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-year">
+                        <span>2019</span>
+                        <small>Presente</small>
+                    </div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Android Developer Freelance</h3>
+                            <span class="timeline-company">Proyectos Independientes - Perú</span>
+                        </div>
+                        <span class="timeline-period"><i class="bi bi-calendar3"></i> Oct 2019 - Presente</span>
+                        <p>Desarrollo de aplicaciones comerciales: U-Learning (Android/iOS para estudiantes), Gestión de Proyectos Inmobiliarios (consulta de lotes y pagos), y Gestión de Clientes (monitoreo de ventas con GPS). Despliegues en AWS, Cpanel y Play Store.</p>
+                        <div class="timeline-tech">
+                            <span>Kotlin</span>
+                            <span>Swift</span>
+                            <span>Firebase</span>
+                            <span>Clean Architecture</span>
+                            <span>Hilt</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Experience Section -->
+
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <section id="portfolio" class="portfolio section-bg" data-animate>
         <div class="container">
             <div class="section-title">
                 <h2>Proyectos Dev</h2>
             </div>
 
+            <!-- Portfolio Filters -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="android">Android</button>
+                <button class="filter-btn" data-filter="ios">iOS</button>
+                <button class="filter-btn" data-filter="kmm">KMM</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
+
             <div class="projects-grid">
                 <!-- AutoTest Licencia -->
-                <div class="project-card">
+                <div class="project-card" data-category="android">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_autotest.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_autotest.webp" type="image/webp">
@@ -176,7 +291,7 @@
                 </div>
 
                 <!-- CixCash App -->
-                <div class="project-card">
+                <div class="project-card" data-category="kmm">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_cixcash.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_cixcash.webp" type="image/webp">
@@ -207,7 +322,7 @@
                 </div>
 
                 <!-- Note.AI -->
-                <div class="project-card">
+                <div class="project-card" data-category="android">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_noteai.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_noteai.webp" type="image/webp">
@@ -238,7 +353,7 @@
                 </div>
 
                 <!-- U-Learning iOS -->
-                <div class="project-card">
+                <div class="project-card" data-category="ios">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_ulearning_ios.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_ulearning_ios.webp" type="image/webp">
@@ -261,7 +376,7 @@
                 </div>
 
                 <!-- U-Learning Android -->
-                <div class="project-card">
+                <div class="project-card" data-category="android">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_ulearning.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_ulearning.webp" type="image/webp">
@@ -284,7 +399,7 @@
                 </div>
 
                 <!-- U-Learning Web -->
-                <div class="project-card">
+                <div class="project-card" data-category="web">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_ulearning.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_ulearning.webp" type="image/webp">
@@ -305,7 +420,7 @@
                 </div>
 
                 <!-- Admin Lotes Android -->
-                <div class="project-card">
+                <div class="project-card" data-category="android">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_erp.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_erp.webp" type="image/webp">
@@ -327,7 +442,7 @@
                 </div>
 
                 <!-- Admin Lotes Web -->
-                <div class="project-card">
+                <div class="project-card" data-category="web">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_erp.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_erp.webp" type="image/webp">
@@ -348,7 +463,7 @@
                 </div>
 
                 <!-- Solti-CRM Android -->
-                <div class="project-card">
+                <div class="project-card" data-category="android">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_crm.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_crm.webp" type="image/webp">
@@ -370,7 +485,7 @@
                 </div>
 
                 <!-- Solti-CRM Web -->
-                <div class="project-card">
+                <div class="project-card" data-category="web">
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_crm.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_crm.webp" type="image/webp">
@@ -400,8 +515,29 @@
     </div>
 
 
+    <!-- ======= Articles Section ======= -->
+    <section id="articles" class="articles section-bg" data-animate>
+        <div class="container">
+            <div class="section-title">
+                <h2>Últimos Artículos</h2>
+                <p>Comparto conocimiento sobre desarrollo móvil y buenas prácticas</p>
+            </div>
+
+            <div class="articles-grid" id="latestArticles">
+                <!-- Articles will be loaded dynamically -->
+            </div>
+
+            <div class="articles-cta">
+                <a href="/articles" class="btn-articles">
+                    Ver todos los artículos <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Articles Section -->
+
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" data-animate>
         <div class="container">
 
             <div class="section-title">
@@ -478,6 +614,7 @@
         <i class="bi bi-arrow-up"></i>
     </a>
 
+    <script src="src/components/navbar.js"></script>
     <script src="src/js/index.js"></script>
 
 </body>

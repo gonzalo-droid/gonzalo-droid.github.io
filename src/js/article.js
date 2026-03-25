@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
         breaks: true
     });
 
-    // Obtener el slug del artículo de los parámetros de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('slug');
+    // Obtener el slug del artículo del path URL (/article/slug-del-articulo)
+    const pathParts = window.location.pathname.split('/');
+    const slug = pathParts[pathParts.length - 1];
 
-    if (!slug) {
+    if (!slug || slug === 'article') {
         document.getElementById('articleContent').innerHTML = `
             <div class="alert alert-danger">
                 No se encontró el artículo solicitado.
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadArticle(slug) {
     try {
         // Cargar la lista de artículos
-        const response = await fetch('/articles/articles.json');
+        const response = await fetch('/src/articles/articles.json');
         const articles = await response.json();
 
         // Encontrar el artículo que coincide con el slug
@@ -78,7 +78,7 @@ async function loadArticle(slug) {
         });
 
         // Cargar el contenido del artículo
-        const contentResponse = await fetch(`/articles/${article.file}`);
+        const contentResponse = await fetch(`/src/articles/${article.file}`);
         const content = await contentResponse.text();
 
         // Convertir el contenido Markdown a HTML

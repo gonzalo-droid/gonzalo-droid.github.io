@@ -1,11 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Actualizar el año del copyright
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Update copyright year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Cargar los artículos
+    // Initialize
     loadArticles();
+    initMobileNav();
+    initBackToTop();
+});
 
-    // Back to Top Button functionality
+// Mobile Navigation
+function initMobileNav() {
+    const mobileToggle = document.getElementById('navbarMobileToggle');
+    const mobileMenu = document.getElementById('navbarMobile');
+
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('bi-list');
+            icon.classList.toggle('bi-x');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.add('bi-list');
+                icon.classList.remove('bi-x');
+            });
+        });
+    }
+}
+
+// Back to Top
+function initBackToTop() {
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -18,98 +47,133 @@ document.addEventListener('DOMContentLoaded', function() {
 
         backToTop.addEventListener('click', (e) => {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-});
+}
 
+// Load Articles
 async function loadArticles() {
+    const container = document.getElementById('articlesContainer');
+    const filtersContainer = document.getElementById('articleFilters');
+
     try {
-        const response = await fetch('/articles/articles.json');
+        const response = await fetch('/src/articles/articles.json');
         const articles = await response.json();
 
-        // Ordenar artículos por fecha (más recientes primero)
+        // Sort by date (newest first)
         articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        const container = document.getElementById('articlesContainer');
-        container.innerHTML = ''; // Limpiar el contenedor
-
+        // Generate unique tags for filters
+        const allTags = new Set();
         articles.forEach(article => {
-            // Crear slug a partir del título
-            const slug = article.title.toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
-
-            const articleCard = document.createElement('div');
-            articleCard.className = 'col-12 mb-4';
-            articleCard.innerHTML = `
-                <div class="card article-card">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${article.image}" class="img-fluid rounded-start" alt="${article.title}">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${article.title}</h5>
-                                <p class="card-text">${article.description}</p>
-                                <div class="article-meta">
-                                    <small class="text-muted">${new Date(article.date).toLocaleDateString('es-ES', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric'
-                                    })}</small>
-                                </div>
-                                <div class="article-tags mt-2">
-                                    ${article.tags.map(tag => `<span class="badge bg-primary me-1">${tag}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Agregar evento de clic para redirigir al artículo
-            articleCard.addEventListener('click', () => {
-                window.location.href = `/article/${slug}`;
-            });
-
-            container.appendChild(articleCard);
+            article.tags.forEach(tag => allTags.add(tag));
         });
+
+        // Create filter buttons
+        generateFilters(Array.from(allTags), filtersContainer);
+
+        // Render articles
+        renderArticles(articles, container);
+
+        // Initialize filter functionality
+        initFilters(articles, container);
+
     } catch (error) {
-        console.error('Error al cargar los artículos:', error);
-        document.getElementById('articlesContainer').innerHTML = `
-            <div class="col-12 text-center">
-                <p class="text-danger">Error al cargar los artículos. Por favor, intenta de nuevo más tarde.</p>
+        console.error('Error loading articles:', error);
+        container.innerHTML = `
+            <div class="no-articles">
+                <i class="bi bi-exclamation-circle" style="font-size: 48px; margin-bottom: 16px;"></i>
+                <p>Error al cargar los artículos. Por favor, intenta de nuevo más tarde.</p>
             </div>
         `;
     }
 }
 
-async function openArticleModal(article) {
-    const modal = new bootstrap.Modal(document.getElementById('articleModal'));
-    const modalTitle = document.getElementById('articleTitle');
-    const modalContent = document.getElementById('articleContent');
-    
-    try {
-        // Load and render the markdown content
-        const response = await fetch(`articles/${article.file}`);
-        const markdownContent = await response.text();
-        const htmlContent = marked.parse(markdownContent);
-        
-        modalTitle.textContent = article.title;
-        modalContent.innerHTML = htmlContent;
-        
-        // Highlight code blocks
-        modalContent.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
+// Generate filter buttons
+function generateFilters(tags, container) {
+    // Keep "Todos" button, add tag buttons
+    const sortedTags = tags.sort();
+    sortedTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.dataset.filter = tag.toLowerCase();
+        btn.textContent = tag;
+        container.appendChild(btn);
+    });
+}
+
+// Render articles
+function renderArticles(articles, container) {
+    container.innerHTML = articles.map(article => {
+        const slug = generateSlug(article.title);
+        const imagePath = article.image.replace('.png', '.webp');
+        const formattedDate = formatDate(article.date);
+
+        return `
+            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}" onclick="window.location.href='/article/${slug}'">
+                <div class="article-item-image">
+                    <img src="/${imagePath}" alt="${article.title}" loading="lazy">
+                </div>
+                <div class="article-item-content">
+                    <h3>${article.title}</h3>
+                    <div class="article-item-date">
+                        <i class="bi bi-calendar3"></i>
+                        ${formattedDate}
+                    </div>
+                    <p class="article-item-description">${article.description}</p>
+                    <div class="article-item-tags">
+                        ${article.tags.slice(0, 4).map(tag => `<span>${tag}</span>`).join('')}
+                    </div>
+                    <div class="article-item-arrow">
+                        Leer artículo <i class="bi bi-arrow-right"></i>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join('');
+}
+
+// Initialize filters
+function initFilters(articles, container) {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            const articleItems = container.querySelectorAll('.article-item');
+
+            articleItems.forEach(item => {
+                const tags = item.dataset.tags.split(',');
+
+                if (filter === 'all' || tags.includes(filter)) {
+                    item.style.display = '';
+                    item.style.animation = 'fadeIn 0.4s ease';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
-        
-        modal.show();
-    } catch (error) {
-        console.error('Error loading article:', error);
-        modalContent.innerHTML = '<p>Error al cargar el artículo. Por favor, inténtalo de nuevo más tarde.</p>';
-    }
-} 
+    });
+}
+
+// Generate slug from title
+function generateSlug(title) {
+    return title.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+}
+
+// Format date
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
