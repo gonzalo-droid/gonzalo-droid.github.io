@@ -396,9 +396,9 @@
   #hero {
     width: 100%;
     height: 50vh;
-    background:     
+    background:
       linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-      url("../img/evangelion-wallpaper.jpg") top center;
+      url("../img/evangelion-wallpaper.webp") top center;
     background-size: cover;
   }
 
