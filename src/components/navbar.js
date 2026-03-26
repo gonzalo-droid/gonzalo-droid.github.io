@@ -38,7 +38,6 @@ const NavbarComponent = {
         return `
     <nav class="navbar-fixed ${transparentClass}" id="mainNavbar">
         <div class="navbar-container">
-            <a href="/" class="navbar-brand">GL</a>
             <div class="navbar-right">
                 <div class="navbar-links">
                     ${navLinks}
