@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Portfolio website for a Mobile Developer with an integrated blog system. Static-first architecture with client-side article rendering using Markdown.
+Portfolio website for a Mobile Developer with an integrated blog system. Static-first architecture optimized for GitHub Pages with client-side article rendering using Markdown.
 
 ## Commands
 
@@ -16,41 +16,79 @@ npx live-server .    # Alternative: static dev server
 
 Deployment is automatic via GitHub Actions on push to `master` branch.
 
-## Architecture
+## Project Structure
 
-**Routing (Express.js `server.js`):**
+```
+/
+├── assets/
+│   ├── css/
+│   │   └── style.css          # Main styles with CSS variables
+│   ├── img/
+│   │   ├── articles/          # Article images
+│   │   └── portfolio/         # Project screenshots
+│   └── js/
+│       ├── components/
+│       │   └── navbar.js      # Reusable navbar component
+│       ├── article.js         # Single article renderer
+│       ├── articles.js        # Articles list page
+│       ├── home.js            # Homepage interactivity
+│       └── theme.js           # Dark/light mode management
+├── content/
+│   ├── articles/              # Markdown article files
+│   │   └── *.md
+│   └── articles.json          # Article metadata
+├── articles/
+│   └── index.html             # Articles list page
+├── article/
+│   └── index.html             # Single article page
+├── privacy-policy/
+│   └── index.html             # Privacy policy
+├── 404.html                   # GitHub Pages 404 redirect
+├── index.html                 # Homepage
+└── server.js                  # Local dev server
+```
+
+## Routing
+
+**GitHub Pages (production):**
 - `/` → `index.html`
-- `/articles` → `src/articles.html`
-- `/article/:slug` → `src/article.html` (slug extracted client-side)
-- `/privacy-policy` → `src/privacy-policy.html`
-- `404` → `src/404.html`
+- `/articles` → `articles/index.html`
+- `/article/slug` → `404.html` redirects to `article/index.html` (slug via sessionStorage)
+- `/privacy-policy` → `privacy-policy/index.html`
 
-**Article System:**
-- Metadata in `src/articles/articles.json`
-- Content as Markdown files in `src/articles/*.md`
+**Express.js (local development):**
+- Same routes but with dynamic `:slug` parameter support
+
+## Article System
+
+- Metadata in `content/articles.json`
+- Content as Markdown files in `content/articles/*.md`
 - Client-side rendering with marked.js + highlight.js
 - Slug generation: `title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')`
 
-**Theme System:**
+## Theme System
+
 - CSS variables in `assets/css/style.css` (`:root` and `[data-theme="dark"]`)
-- ThemeManager in `src/js/theme.js` handles toggle and localStorage persistence
+- ThemeManager in `assets/js/theme.js` handles toggle and localStorage persistence
 - `theme.js` loads synchronously before DOM to prevent flash
+- Navbar component calls `ThemeManager.bindToggle()` after rendering
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `src/js/theme.js` | Dark/light mode management |
-| `src/js/index.js` | Homepage interactivity (navbar, filters, animations, stats counter) |
-| `src/js/articles.js` | Articles list page loader |
-| `src/js/article.js` | Single article renderer |
-| `assets/css/style.css` | Main styles with CSS variables (~1500 lines) |
+| `assets/js/theme.js` | Dark/light mode management |
+| `assets/js/home.js` | Homepage interactivity (filters, animations, stats) |
+| `assets/js/articles.js` | Articles list page loader |
+| `assets/js/article.js` | Single article renderer |
+| `assets/js/components/navbar.js` | Reusable navbar with mobile menu |
+| `assets/css/style.css` | Main styles with CSS variables |
 
 ## Conventions
 
 - **Language:** Spanish (es-ES locale for dates)
 - **CSS classes:** kebab-case (`navbar-fixed`, `article-card`)
-- **JS functions:** camelCase (`initMobileNav()`, `loadLatestArticles()`)
+- **JS functions:** camelCase (`initScrollAnimations()`, `loadLatestArticles()`)
 - **Data attributes:** `data-animate`, `data-filter`, `data-category`
 - **Images:** WebP format with JPG fallback using `<picture>` element
 
@@ -59,10 +97,12 @@ Deployment is automatic via GitHub Actions on push to `master` branch.
 1. **Scroll animations:** Elements with `data-animate` attribute are observed via Intersection Observer
 2. **Portfolio filters:** Cards have `data-category` attribute (android, ios, kmm, web)
 3. **Stats counter:** Numbers animate using requestAnimationFrame when visible
-4. **Mobile menu:** Toggle with hamburger icon, closes on link click
+4. **Mobile menu:** Toggle handled by navbar.js component
+5. **GitHub Pages routing:** 404.html catches `/article/slug` and redirects with sessionStorage
 
 ## Gotchas
 
-- Article fetch paths use `/src/articles/` from root
-- Theme script must stay synchronous (before `</head>`) to avoid flash
-- Slug logic is duplicated in `index.js`, `articles.js`, and `article.js` - keep in sync
+- Article fetch paths use `/content/articles/` from root
+- Theme script must stay synchronous (in `<head>`) to avoid flash
+- Slug logic is duplicated in `home.js`, `articles.js`, and `article.js` - keep in sync
+- Navbar component must call `ThemeManager.bindToggle()` after rendering

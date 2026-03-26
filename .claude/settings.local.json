@@ -10,7 +10,8 @@
       "Bash(curl:*)",
       "Bash(node -e:*)",
       "Bash(lsof:*)",
-      "Bash(pgrep:*)"
+      "Bash(pgrep:*)",
+      "Bash(tree:*)"
     ]
   }
 }
