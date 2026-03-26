@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículos - Gonzalo López | Mobile Developer</title>
+    <meta name="description" content="Artículos sobre desarrollo móvil, Android, iOS, Kotlin, arquitectura de software y buenas prácticas.">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Theme -->
+    <script src="/assets/js/theme.js"></script>
+</head>
+<body>
+    <!-- Navbar Container - rendered by component -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Blog</h1>
+            <p>Working progress</p>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles-page">
+        <div class="container">
+            <!-- Filter Tags -->
+            <div class="articles-filter" id="articleFilters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="articles-list" id="articlesContainer">
+                <!-- Articles loaded dynamically -->
+                <div class="loading-spinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/components/navbar.js"></script>
+    <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/articles.js"></script>
+</body>
+</html>
