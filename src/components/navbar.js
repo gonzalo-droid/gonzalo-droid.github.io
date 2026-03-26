@@ -38,6 +38,7 @@ const NavbarComponent = {
         return `
     <nav class="navbar-fixed ${transparentClass}" id="mainNavbar">
         <div class="navbar-container">
+            <a href="/" class="navbar-brand">GL</a>
             <div class="navbar-right">
                 <div class="navbar-links">
                     ${navLinks}
@@ -120,6 +121,11 @@ const NavbarComponent = {
         if (container) {
             container.innerHTML = this.getHTML(options);
             this.init();
+
+            // Re-bind theme toggle after navbar is rendered
+            if (typeof ThemeManager !== 'undefined') {
+                ThemeManager.bindToggle();
+            }
         }
     }
 };

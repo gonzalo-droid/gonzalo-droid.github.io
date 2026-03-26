@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all features
-    initMobileNav();
+    // Note: Mobile nav and navbar scroll are handled by navbar.js component
     initScrollAnimations();
     initPortfolioFilters();
     initStatsCounter();
     loadLatestArticles();
-    initNavbarScroll();
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
@@ -61,50 +60,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Mobile Navigation Toggle
-function initMobileNav() {
-    const mobileToggle = document.getElementById('navbarMobileToggle');
-    const mobileMenu = document.getElementById('navbarMobile');
-
-    if (mobileToggle && mobileMenu) {
-        mobileToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            icon.classList.toggle('bi-list');
-            icon.classList.toggle('bi-x');
-        });
-
-        // Close mobile menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                const icon = mobileToggle.querySelector('i');
-                icon.classList.add('bi-list');
-                icon.classList.remove('bi-x');
-            });
-        });
-    }
-}
-
-// Navbar scroll effect - changes background after passing hero section
-function initNavbarScroll() {
-    const navbar = document.querySelector('.navbar-fixed');
-    const hero = document.getElementById('hero');
-
-    if (!navbar || !hero) return;
-
-    const updateNavbar = () => {
-        const heroHeight = hero.offsetHeight;
-        if (window.scrollY > heroHeight - 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    };
-
-    window.addEventListener('scroll', updateNavbar);
-    updateNavbar(); // Check initial state
-}
 
 // Scroll Animations with Intersection Observer
 function initScrollAnimations() {
