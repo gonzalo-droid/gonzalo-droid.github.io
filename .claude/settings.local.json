@@ -11,7 +11,8 @@
       "Bash(node -e:*)",
       "Bash(lsof:*)",
       "Bash(pgrep:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "mcp__playwright"
     ]
   }
 }

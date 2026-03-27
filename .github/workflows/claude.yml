@@ -19,9 +19,9 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
+      contents: write
+      pull-requests: write
+      issues: write
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
@@ -29,6 +29,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      
+      - name: Proyect Setup
+        run: |
+          npm run setup
+          npm run dev:daemon
 
       - name: Run Claude Code
         id: claude
@@ -36,9 +41,30 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
+
+          custom_instructions: |
+            The project is already set up with all dependencies installed. The server is already running at localhost:8080. Logs from it are being written to log.txt. If needed, use the mcp_playwright set of tools to launch a browser and interact with the app.
+
+          mcp_config: |
+            {
+              "mcpServers": {
+                "playwright": {
+                  "command": "npx",
+                  "args": [
+                    "@playwright/mcp@latest",
+                    "--allowed-origins",
+                    "localhost:8080"
+                  ]
+                }
+              }
+            }
+
           # This is an optional setting that allows Claude to read CI results on PRs
           additional_permissions: |
             actions: read
+
+          allowed_tools: |
+            Bash(file:*), Bash(du:*), Bash(ls:*), Bash(curl:*), Bash(node -e:*), Bash(lsof:*), Bash(pgrep:*), Bash(tree:*), Bash(npm:*), Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git check-ignore:*), Bash(git ls-files:*), mcp__playwright
 
           # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
           # prompt: 'Update the pull request description to include a summary of changes.'
