@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -93,7 +94,8 @@
                 <div class="col-lg-3">
                     <picture>
                         <source srcset="assets/img/profile.webp" type="image/webp">
-                        <img src="assets/img/profile.jpeg" class="img-fluid" alt="Gonzalo López - Mobile Developer" loading="lazy">
+                        <img src="assets/img/profile.jpeg" class="img-fluid" alt="Gonzalo López - Mobile Developer"
+                            loading="lazy">
                     </picture>
                 </div>
                 <div class="col-lg-9 pt-4 pt-lg-0 content">
@@ -154,7 +156,9 @@
                             <span class="timeline-company">Banco Falabella - Chile</span>
                         </div>
                         <span class="timeline-period"><i class="bi bi-calendar3"></i> Ago 2025 - Presente</span>
-                        <p>Mantenimiento y evolución de ecosistema multi-módulo para múltiples países. Implementé el nuevo flujo de Tarjeta Digital con Jetpack Compose. Refactorización bajo arquitectura modular (MVP/MVVM + Clean Architecture). Gestión de releases y CI/CD en Bitrise.</p>
+                        <p>Mantenimiento y evolución de ecosistema multi-módulo para múltiples países. Implementé el
+                            nuevo flujo de Tarjeta Digital con Jetpack Compose. Refactorización bajo arquitectura
+                            modular (MVP/MVVM + Clean Architecture). Gestión de releases y CI/CD en Bitrise.</p>
                         <div class="timeline-tech">
                             <span>Kotlin</span>
                             <span>Jetpack Compose</span>
@@ -179,7 +183,9 @@
                             <span class="timeline-company">Talana - Chile</span>
                         </div>
                         <span class="timeline-period"><i class="bi bi-calendar3"></i> Oct 2022 - Ago 2025</span>
-                        <p>Implementé Módulo de Beneficios y Login Biométrico. Desarrollé componentes UI personalizados para rebranding. Instrumentación de producto con Analytics, Firebase Performance y mapas de calor. Migración de funcionalidades hacia Kotlin y Jetpack Compose.</p>
+                        <p>Implementé Módulo de Beneficios y Login Biométrico. Desarrollé componentes UI personalizados
+                            para rebranding. Instrumentación de producto con Analytics, Firebase Performance y mapas de
+                            calor. Migración de funcionalidades hacia Kotlin y Jetpack Compose.</p>
                         <div class="timeline-tech">
                             <span>Kotlin</span>
                             <span>Compose</span>
@@ -204,7 +210,9 @@
                             <span class="timeline-company">TiSmart - Perú</span>
                         </div>
                         <span class="timeline-period"><i class="bi bi-calendar3"></i> Sep 2021 - Jun 2022</span>
-                        <p>Implementé validación de QR de vacunación en Ripley Pago. Adaptación multi-pantalla con View Binding y layouts optimizados. Desarrollo con Coroutines, MVVM y Clean Architecture en proyecto Tawa.</p>
+                        <p>Implementé validación de QR de vacunación en Ripley Pago. Adaptación multi-pantalla con View
+                            Binding y layouts optimizados. Desarrollo con Coroutines, MVVM y Clean Architecture en
+                            proyecto Tawa.</p>
                         <div class="timeline-tech">
                             <span>Kotlin</span>
                             <span>MVVM</span>
@@ -229,7 +237,9 @@
                             <span class="timeline-company">Proyectos Independientes - Perú</span>
                         </div>
                         <span class="timeline-period"><i class="bi bi-calendar3"></i> Oct 2019 - Presente</span>
-                        <p>Desarrollo de aplicaciones comerciales: U-Learning (Android/iOS para estudiantes), Gestión de Proyectos Inmobiliarios (consulta de lotes y pagos), y Gestión de Clientes (monitoreo de ventas con GPS). Despliegues en AWS, Cpanel y Play Store.</p>
+                        <p>Desarrollo de aplicaciones comerciales: U-Learning (Android/iOS para estudiantes), Gestión de
+                            Proyectos Inmobiliarios (consulta de lotes y pagos), y Gestión de Clientes (monitoreo de
+                            ventas con GPS). Despliegues en AWS, Cpanel y Play Store.</p>
                         <div class="timeline-tech">
                             <span>Kotlin</span>
                             <span>Swift</span>
@@ -262,24 +272,72 @@
             </div>
 
             <div class="projects-grid">
+                <!-- Quote Anime -->
+                <div class="project-card" data-category="android">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/app_quote_anime.png')">
+                        <picture>
+                            <source srcset="assets/img/portfolio/app_quote_anime.png" type="image/png">
+                            <img src="assets/img/portfolio/app_quote_anime.png"
+                                alt="Quote Anime | Frases Anime - Frases de anime que te acompañan cada día"
+                                loading="lazy">
+                        </picture>
+                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Quote Anime | Frases Anime</h3>
+                        <p class="project-description">Descubre y comparte frases inspiradoras de tus animes favoritos. Explora por categorías,guarda tus frases preferidas y recíbelas cada día como notificación o directamente en tu pantalla de inicio con el widget integrado. Mi proyecto más reciente, disponible en      
+                            <a href="https://quote-anime-web.vercel.app/"
+                                target="_blank"><strong> Frases Anime | Web </strong></a>
+                        </p>
+                        <div class="project-features">
+                            <strong>Frases:</strong> Catálogo organizado por categorías de anime<br>
+                            <strong>Favoritos:</strong> Guarda y accede a tus frases favoritas offline<br>
+                            <strong>Widget:</strong> Frase aleatoria en tu pantalla de inicio<br>
+                            <strong>Notificaciones:</strong> Recibe frases diarias a la hora que elijas<br>
+                            <strong>Compartir:</strong> Comparte frases como imagen con diseño personalizado
+                        </div>
+                        <div class="project-tech">
+                            <span>Android</span>
+                            <span>Kotlin</span>
+                            <span>Compose</span>
+                            <span>Clean Architecture</span>
+                            <span>Room</span>
+                            <span>Firebase</span>
+                            <span>Glance Widget</span>
+                            <span>WorkManager</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.quoteanime"
+                                target="_blank"><i class=" bi-google-play"></i> Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- AutoTest Licencia -->
                 <div class="project-card" data-category="android">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_autotest.webp')">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/app_autotest.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_autotest.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_autotest.jpg" alt="AutoTest Licencia - App de práctica para examen de licencia" loading="lazy">
+                            <img src="assets/img/portfolio/app_autotest.jpg"
+                                alt="AutoTest Licencia - App de práctica para examen de licencia" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>AutoTest Licencia</h3>
-                        <p class="project-description">App de práctica para prepararte para el examen de licencia de conducir con simulacros realistas, preguntas categorizadas y seguimiento de progreso.</p>
+                        <p class="project-description">Práctica para tu examen de licencia conducir, repasa con un balotario actualizado y categorizado, realiza el simulacro de evalución y mide tus resultados
+                            
+                        </p>
                         <div class="project-features">
                             <strong>Cuestionario:</strong> Simulacros realistas<br>
-                            <strong>Categorías:</strong> Estudio por temas<br>
-                            <strong>Estadísticas:</strong> Métricas de progreso
+                            <strong>Pdf:</strong> Descarga y comparte los balotarios según la categoría<br>
+                            <strong>Categorías:</strong> Accede a las diferentes categorías del examen<br>
+                            <strong>Estadísticas:</strong> Mide tu progreso
                         </div>
                         <div class="project-tech">
+                            <span>Firebase</span>
                             <span>Android</span>
                             <span>Kotlin</span>
                             <span>Compose</span>
@@ -287,21 +345,28 @@
                             <span>ROOM</span>
                             <span>MVVM</span>
                         </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz"
+                                target="_blank"><i class="bi bi-google-play"></i> Play Store</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- CixCash App -->
                 <div class="project-card" data-category="kmm">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_cixcash.webp')">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/app_cixcash.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_cixcash.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_cixcash.jpg" alt="CixCash App - Conversión de criptomonedas KMM" loading="lazy">
+                            <img src="assets/img/portfolio/app_cixcash.jpg"
+                                alt="CixCash App - Conversión de criptomonedas KMM" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3><a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank">CixCash App</a></h3>
-                        <p class="project-description">Aplicación de conversión de criptomonedas y divisas en Kotlin Multiplatform para Android/iOS. Registra transacciones y visualiza balances.</p>
+                        <p class="project-description">Aplicación de conversión de criptomonedas y divisas en Kotlin
+                            Multiplatform para Android/iOS. Registra transacciones y visualiza balances.</p>
                         <div class="project-features">
                             <strong>Balance:</strong> Visualización por moneda<br>
                             <strong>Transacciones:</strong> Persistencia en BD<br>
@@ -316,7 +381,8 @@
                             <span>Ktor</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank"><i class="bi bi-github"></i> Ver código</a>
+                            <a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank"><i
+                                    class="bi bi-github"></i> Ver código</a>
                         </div>
                     </div>
                 </div>
@@ -326,13 +392,15 @@
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_noteai.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_noteai.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_noteai.jpg" alt="Note.AI - Notas con transcripción OpenAI Whisper" loading="lazy">
+                            <img src="assets/img/portfolio/app_noteai.jpg"
+                                alt="Note.AI - Notas con transcripción OpenAI Whisper" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3><a href="https://github.com/gonzalo-droid/NoteAI" target="_blank">Note.AI</a></h3>
-                        <p class="project-description">Proyecto personal con desarrollo moderno en Android. Notas de voz con transcripción usando OpenAI Whisper.</p>
+                        <p class="project-description">Proyecto personal con desarrollo moderno en Android. Notas de voz
+                            con transcripción usando OpenAI Whisper.</p>
                         <div class="project-features">
                             <strong>Notas:</strong> Listado y creación local<br>
                             <strong>Voz:</strong> Grabación asociada<br>
@@ -347,23 +415,27 @@
                             <span>MVVM</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/gonzalo-droid/NoteAI" target="_blank"><i class="bi bi-github"></i> Ver código</a>
+                            <a href="https://github.com/gonzalo-droid/NoteAI" target="_blank"><i
+                                    class="bi bi-github"></i> Ver código</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- U-Learning iOS -->
                 <div class="project-card" data-category="ios">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_ulearning_ios.webp')">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/app_ulearning_ios.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_ulearning_ios.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_ulearning_ios.jpg" alt="U-Learning iOS - App educativa Swift" loading="lazy">
+                            <img src="assets/img/portfolio/app_ulearning_ios.jpg"
+                                alt="U-Learning iOS - App educativa Swift" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>U-Learning | iOS</h3>
-                        <p class="project-description">Aplicación para estudiantes. Curva de aprendizaje en iOS, comprendiendo ventajas y desventajas entre Android e iOS.</p>
+                        <p class="project-description">Aplicación para estudiantes. Curva de aprendizaje en iOS,
+                            comprendiendo ventajas y desventajas entre Android e iOS.</p>
                         <div class="project-tech">
                             <span>iOS</span>
                             <span>Swift</span>
@@ -377,16 +449,19 @@
 
                 <!-- U-Learning Android -->
                 <div class="project-card" data-category="android">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_ulearning.webp')">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/app_ulearning.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_ulearning.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_ulearning.jpg" alt="U-Learning Android - App educativa Kotlin MVI" loading="lazy">
+                            <img src="assets/img/portfolio/app_ulearning.jpg"
+                                alt="U-Learning Android - App educativa Kotlin MVI" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>U-Learning | Android</h3>
-                        <p class="project-description">App para estudiantes con enfoque en organización y legibilidad. Implementación de MVI, StateFlow/SharedFlow y testing con Mockito.</p>
+                        <p class="project-description">App para estudiantes con enfoque en organización y legibilidad.
+                            Implementación de MVI, StateFlow/SharedFlow y testing con Mockito.</p>
                         <div class="project-tech">
                             <span>Android</span>
                             <span>Kotlin</span>
@@ -400,16 +475,19 @@
 
                 <!-- U-Learning Web -->
                 <div class="project-card" data-category="web">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_ulearning.webp')">
+                    <div class="project-card-image"
+                        onclick="openImageLightbox('assets/img/portfolio/web_ulearning.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_ulearning.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_ulearning.jpg" alt="U-Learning Web - Plataforma Laravel Angular AWS" loading="lazy">
+                            <img src="assets/img/portfolio/web_ulearning.jpg"
+                                alt="U-Learning Web - Plataforma Laravel Angular AWS" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>U-Learning | Web</h3>
-                        <p class="project-description">Ecommerce y plataformas administrativas. Configuración de AWS con EC2 e implementación de despliegue continuo.</p>
+                        <p class="project-description">Ecommerce y plataformas administrativas. Configuración de AWS con
+                            EC2 e implementación de despliegue continuo.</p>
                         <div class="project-tech">
                             <span>Laravel 8</span>
                             <span>Angular 12</span>
@@ -424,13 +502,15 @@
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_erp.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_erp.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_erp.jpg" alt="Admin Lotes Android - Gestión inmobiliaria Kotlin" loading="lazy">
+                            <img src="assets/img/portfolio/app_erp.jpg"
+                                alt="Admin Lotes Android - Gestión inmobiliaria Kotlin" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>Admin Lotes | Android</h3>
-                        <p class="project-description">App para asesores de venta con seguimiento eficaz de lotes. Buenas prácticas con SOLID, arquitectura por capas e inyección de dependencias.</p>
+                        <p class="project-description">App para asesores de venta con seguimiento eficaz de lotes.
+                            Buenas prácticas con SOLID, arquitectura por capas e inyección de dependencias.</p>
                         <div class="project-tech">
                             <span>Kotlin</span>
                             <span>MVP</span>
@@ -446,13 +526,15 @@
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_erp.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_erp.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_erp.jpg" alt="Admin Lotes Web - Sistema Laravel Vue" loading="lazy">
+                            <img src="assets/img/portfolio/web_erp.jpg" alt="Admin Lotes Web - Sistema Laravel Vue"
+                                loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>Admin Lotes | Web</h3>
-                        <p class="project-description">Gestión de proyectos inmobiliarios multiempresa. Contratos, facturación electrónica y ventas. Desarrollo, despliegue y capacitación.</p>
+                        <p class="project-description">Gestión de proyectos inmobiliarios multiempresa. Contratos,
+                            facturación electrónica y ventas. Desarrollo, despliegue y capacitación.</p>
                         <div class="project-tech">
                             <span>Laravel 6</span>
                             <span>Vue</span>
@@ -467,13 +549,15 @@
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_crm.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/app_crm.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_crm.jpg" alt="Solti-CRM Android - Gestión de clientes Java" loading="lazy">
+                            <img src="assets/img/portfolio/app_crm.jpg"
+                                alt="Solti-CRM Android - Gestión de clientes Java" loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>Solti-CRM | Android</h3>
-                        <p class="project-description">App para asesores de venta con registro de clientes, llamadas, correos y ubicación usando servicios de Google.</p>
+                        <p class="project-description">App para asesores de venta con registro de clientes, llamadas,
+                            correos y ubicación usando servicios de Google.</p>
                         <div class="project-tech">
                             <span>Java</span>
                             <span>MVC</span>
@@ -489,13 +573,15 @@
                     <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_crm.webp')">
                         <picture>
                             <source srcset="assets/img/portfolio/web_crm.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_crm.jpg" alt="Solti-CRM Web - Sistema comercial Laravel" loading="lazy">
+                            <img src="assets/img/portfolio/web_crm.jpg" alt="Solti-CRM Web - Sistema comercial Laravel"
+                                loading="lazy">
                         </picture>
                         <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
                     </div>
                     <div class="project-card-content">
                         <h3>Solti-CRM | Web</h3>
-                        <p class="project-description">Sistema comercial de gestión de clientes con seguimiento en pre-venta y post-venta. Primer proyecto comercial completo.</p>
+                        <p class="project-description">Sistema comercial de gestión de clientes con seguimiento en
+                            pre-venta y post-venta. Primer proyecto comercial completo.</p>
                         <div class="project-tech">
                             <span>Laravel 6</span>
                             <span>JavaScript</span>

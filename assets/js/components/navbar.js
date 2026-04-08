@@ -21,11 +21,11 @@ const NavbarComponent = {
         const transparentClass = transparent ? '' : 'scrolled';
 
         const links = [
-            { href: '/#about', text: 'Yo' },
-            { href: '/#experience', text: 'Trabajo' },
+            { href: '/#about', text: 'Hola' },
+            { href: '/#experience', text: 'Empresas' },
             { href: '/#portfolio', text: 'Proyectos' },
             { href: '/articles', text: 'Blog' },
-            { href: '/#contact', text: 'Hola' }
+            { href: '/#contact', text: 'Contacto' }
         ];
 
         const navLinks = links.map(link => {
