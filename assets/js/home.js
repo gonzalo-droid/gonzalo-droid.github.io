@@ -70,7 +70,7 @@ function initPortfolioFilters() {
             projectCards.forEach(card => {
                 const category = card.dataset.category;
 
-                if (filter === 'all' || category === filter) {
+                if (filter === 'all' || category.split(',').map(c => c.trim()).includes(filter)) {
                     card.classList.remove('hidden', 'fade-out');
                     card.classList.add('fade-in');
                 } else {
