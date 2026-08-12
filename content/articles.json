@@ -56,19 +56,35 @@
         "tags": ["Android", "MVVM", "Arquitectura", "Kotlin", "ViewModel"]
     },
     {
-        "title": "Persistencia de Datos en Android",
-        "date": "2024-03-17",
-        "file": "android-persistence.md",
-        "description": "Técnicas y mejores prácticas para el manejo de datos locales en aplicaciones Android.",
-        "image": "assets/img/portfolio/app_erp.webp",
-        "tags": ["Android", "Room", "SQLite", "DataStore", "Kotlin"]
+        "title": "Bienvenido a mi blog",
+        "date": "2026-03-26",
+        "file": "welcome.md",
+        "description": "¡Hola! Bienvenido a mi blog personal. Aquí compartiré artículos sobre tecnología, programación y otros temas que me interesan.",
+        "image": "assets/img/portfolio/app_noteai.webp",
+        "tags": ["Blog", "Bienvenida"]
     },
     {
-        "title": "Desarrollo de Apps Empresariales",
-        "date": "2024-03-16",
-        "file": "android-enterprise.md",
-        "description": "Estrategias y patrones para desarrollar aplicaciones Android robustas para el entorno empresarial.",
+        "title": "Coroutines en Android: Programación asíncrona moderna",
+        "date": "2026-03-26",
+        "file": "android-coroutines.md",
+        "description": "Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus aplicaciones.",
+        "image": "assets/img/portfolio/app_noteai.webp",
+        "tags": ["Android", "Coroutines", "Kotlin", "Asíncrono"]
+    },
+    {
+        "title": "Inyección de Dependencias en Android con Hilt",
+        "date": "2026-03-26",
+        "file": "android-dependency-injection.md",
+        "description": "La inyección de dependencias es una técnica fundamental en el desarrollo de aplicaciones Android modernas. Aprende a implementar DI usando Hilt, la solución oficial de Google.",
         "image": "assets/img/portfolio/app_crm.webp",
-        "tags": ["Android", "Enterprise", "Clean Architecture", "Kotlin", "Testing"]
+        "tags": ["Android", "Hilt", "Arquitectura", "Kotlin", "Testing"]
+    },
+    {
+        "title": "Jetpack Compose: El futuro de la UI en Android",
+        "date": "2026-03-26",
+        "file": "android-jetpack-compose.md",
+        "description": "Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características principales.",
+        "image": "assets/img/portfolio/app_erp.webp",
+        "tags": ["Android", "Jetpack Compose", "UI", "Kotlin"]
     }
 ] 

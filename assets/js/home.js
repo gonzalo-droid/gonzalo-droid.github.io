@@ -130,8 +130,7 @@ async function loadLatestArticles() {
     if (!container) return;
 
     try {
-        const response = await fetch('/content/articles.json');
-        const articles = await response.json();
+        const articles = await fetchArticles();
 
         // Sort by date and take latest 3
         const latestArticles = articles
@@ -139,10 +138,7 @@ async function loadLatestArticles() {
             .slice(0, 3);
 
         container.innerHTML = latestArticles.map(article => {
-            const slug = article.title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
+            const slug = generateSlug(article.title);
 
             // Ensure absolute path for image
             const imagePath = article.image.startsWith('/') ? article.image : '/' + article.image;
@@ -153,7 +149,7 @@ async function loadLatestArticles() {
                         <img src="${imagePath}" alt="${article.title}" loading="lazy">
                     </div>
                     <div class="article-card-content">
-                        <h3><a href="/article#${slug}">${article.title}</a></h3>
+                        <h3><a href="/article/${slug}">${article.title}</a></h3>
                         <div class="article-card-date">${formatDate(article.date)}</div>
                         <div class="article-card-tags">
                             ${article.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}
@@ -170,14 +166,4 @@ async function loadLatestArticles() {
         console.error('Error loading articles:', error);
         container.innerHTML = '<p>No se pudieron cargar los artículos.</p>';
     }
-}
-
-// Format date helper
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
 }

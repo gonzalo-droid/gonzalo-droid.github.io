@@ -10,21 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
         breaks: true
     });
 
-    // Get article slug from hash
-    const slug = getSlugFromHash();
+    // Get article slug (path-based routing via sessionStorage, set by 404.html,
+    // falling back to legacy hash-based links during the transition)
+    const slug = getSlug();
 
     if (!slug) {
         showError('No se encontró el artículo solicitado.');
         return;
     }
 
+    // Reflect the real path in the address bar (in case we arrived via
+    // the 404 redirect or a legacy hash link)
+    history.replaceState(null, '', `/article/${slug}`);
+
     // Load the article
     loadArticle(slug);
 
-    // Listen for hash changes (back/forward navigation)
+    // Listen for hash changes (back/forward navigation on legacy links)
     window.addEventListener('hashchange', () => {
         const newSlug = getSlugFromHash();
         if (newSlug) {
+            history.replaceState(null, '', `/article/${newSlug}`);
             loadArticle(newSlug);
         }
     });
@@ -33,7 +39,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Get article slug from URL hash
+ * Resolve the article slug for this page load.
+ * Priority:
+ *   1. sessionStorage 'articleSlug' - set by 404.html when a crawler/user
+ *      hits /article/<slug> directly (GitHub Pages has no server-side routing)
+ *   2. URL path segment - /article/<slug>
+ *   3. URL hash - /article#<slug> (legacy, kept for inbound links)
+ */
+function getSlug() {
+    // 1. sessionStorage, set by the 404.html redirect. Consume it so a
+    // later reload of /article/ directly doesn't reuse a stale slug.
+    const storedSlug = sessionStorage.getItem('articleSlug');
+    if (storedSlug) {
+        sessionStorage.removeItem('articleSlug');
+        return storedSlug;
+    }
+
+    // 2. Path-based routing: /article/<slug>
+    const pathMatch = window.location.pathname.match(/^\/article\/([^/]+)\/?$/);
+    if (pathMatch && pathMatch[1]) {
+        return decodeURIComponent(pathMatch[1]);
+    }
+
+    // 3. Legacy hash-based routing: /article#<slug>
+    return getSlugFromHash();
+}
+
+/**
+ * Get article slug from URL hash (legacy)
  * URL format: /article#my-article-slug
  */
 function getSlugFromHash() {
@@ -60,10 +93,7 @@ async function loadArticle(slug) {
 
     try {
         // Load articles list
-        const response = await fetch('/content/articles.json');
-        if (!response.ok) throw new Error('Error loading articles list');
-
-        const articles = await response.json();
+        const articles = await fetchArticles();
 
         // Find article matching the slug
         const article = articles.find(a => {
@@ -76,10 +106,10 @@ async function loadArticle(slug) {
             return;
         }
 
-        // Update page title and metadata
-        document.title = `${article.title} - Mobile Developer`;
+        // Update page title, metadata and SEO tags
         document.getElementById('articleTitle').textContent = article.title;
         document.getElementById('articleDate').textContent = formatDate(article.date);
+        updateSEOTags(article, slug);
 
         // Load article content (markdown)
         const contentResponse = await fetch(`/content/articles/${article.file}`);
@@ -108,24 +138,68 @@ async function loadArticle(slug) {
     }
 }
 
-/**
- * Generate URL-safe slug from title
- */
-function generateSlug(title) {
-    return title.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-}
+// Production domain (see CNAME)
+const SITE_ORIGIN = 'https://gonzalo-lozg.me';
 
 /**
- * Format date in Spanish
+ * Update document title, meta description, Open Graph / Twitter Card tags,
+ * canonical link and JSON-LD structured data for the loaded article.
  */
-function formatDate(dateStr) {
-    return new Date(dateStr).toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+function updateSEOTags(article, slug) {
+    const pageTitle = `${article.title} - Gonzalo López | Mobile Developer`;
+    const articleUrl = `${SITE_ORIGIN}/article/${slug}`;
+    const imageUrl = article.image.startsWith('http')
+        ? article.image
+        : `${SITE_ORIGIN}/${article.image.replace(/^\//, '')}`;
+
+    document.title = pageTitle;
+    setMetaContent('metaDescription', article.description);
+
+    setMetaContent('ogType', 'article');
+    setMetaContent('ogTitle', pageTitle);
+    setMetaContent('ogDescription', article.description);
+    setMetaContent('ogImage', imageUrl);
+    setMetaContent('ogUrl', articleUrl);
+
+    setMetaContent('twitterTitle', pageTitle);
+    setMetaContent('twitterDescription', article.description);
+    setMetaContent('twitterImage', imageUrl);
+
+    const canonicalLink = document.getElementById('canonicalLink');
+    if (canonicalLink) canonicalLink.setAttribute('href', articleUrl);
+
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: article.title,
+        description: article.description,
+        image: imageUrl,
+        datePublished: article.date,
+        dateModified: article.date,
+        url: articleUrl,
+        keywords: (article.tags || []).join(', '),
+        author: {
+            '@type': 'Person',
+            name: 'Gonzalo López'
+        },
+        publisher: {
+            '@type': 'Person',
+            name: 'Gonzalo López'
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': articleUrl
+        }
+    };
+
+    const jsonLdScript = document.getElementById('articleJsonLd');
+    if (jsonLdScript) jsonLdScript.textContent = JSON.stringify(jsonLd);
+}
+
+// Set the content attribute of a <meta> tag by element id, if it exists
+function setMetaContent(id, content) {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('content', content);
 }
 
 /**

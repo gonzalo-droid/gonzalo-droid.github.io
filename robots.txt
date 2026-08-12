@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gonzalo-lozg.me/sitemap.xml
