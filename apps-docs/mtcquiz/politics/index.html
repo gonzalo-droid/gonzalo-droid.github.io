@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Política de Privacidad - MTCQuiz</title>
+    <meta name="description"
+        content="Política de Privacidad de MTCQuiz, la app de preparación para el examen de manejo del MTC en Perú: qué datos recopilamos (Firebase, AdMob, resultados locales), para qué los usamos y tus derechos conforme a la Ley N° 29733.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gonzalo-lozg.me/apps-docs/mtcquiz/politics/">
+
+    <meta property="og:image" content="https://gonzalo-lozg.me/assets/img/background.svg">
+    <meta property="og:url" content="https://gonzalo-lozg.me/apps-docs/mtcquiz/politics/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Política de Privacidad - MTCQuiz">
+    <meta property="og:description"
+        content="Qué datos recopila MTCQuiz, para qué se usan y cómo ejercer tus derechos de privacidad conforme a la Ley N° 29733 de Perú.">
+
+    <!-- Preconnect for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicons -->
+    <link href="../../../assets/img/favicon.png" rel="icon">
+    <link href="../../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+        integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+
+    <!-- Theme (must stay synchronous to avoid flash) -->
+    <script src="../../../assets/js/theme.js"></script>
+
+    <style>
+        .legal-section {
+            padding: 60px 0 100px;
+        }
+
+        .legal-header-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 18px;
+            margin-top: 18px;
+        }
+
+        .legal-header-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legal-header-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .legal-header-links span.divider {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .legal-updated {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+        }
+
+        .legal-app-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 8px 0 36px;
+            box-shadow: 0 4px 20px var(--shadow-card);
+        }
+
+        .legal-app-info-item span:first-child {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 3px;
+        }
+
+        .legal-app-info-item span:last-child {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .legal-content {
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--text-primary);
+        }
+
+        .legal-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 44px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-heading);
+        }
+
+        .legal-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 26px;
+            margin-bottom: 10px;
+            color: var(--text-heading);
+        }
+
+        .legal-content p {
+            margin-bottom: 16px;
+        }
+
+        .legal-content ul {
+            margin: 0 0 16px 22px;
+        }
+
+        .legal-content li {
+            margin-bottom: 8px;
+        }
+
+        .legal-content a {
+            color: var(--accent-primary);
+        }
+
+        .legal-content strong {
+            color: var(--text-heading);
+        }
+
+        .legal-callout {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-primary);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .legal-table-wrapper {
+            overflow-x: auto;
+            margin: 16px 0 24px;
+        }
+
+        table.legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 560px;
+        }
+
+        table.legal-table th {
+            background: var(--bg-tertiary);
+            color: var(--text-heading);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        table.legal-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: top;
+        }
+
+        table.legal-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .legal-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .legal-badge-local {
+            background: rgba(20, 157, 221, 0.12);
+            color: var(--accent-primary);
+            border: 1px solid rgba(20, 157, 221, 0.35);
+        }
+
+        .legal-badge-remote {
+            background: rgba(237, 60, 13, 0.1);
+            color: var(--error-color);
+            border: 1px solid rgba(237, 60, 13, 0.3);
+        }
+
+        @media (max-width: 500px) {
+            .legal-app-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Container - rendered by component -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Política de Privacidad</h1>
+            <p>MTCQuiz — preparación para el examen de manejo del MTC</p>
+            <div class="legal-header-links">
+                <a href="../../../index.html"><i class="bi bi-arrow-left"></i> Volver al portafolio</a>
+                <span class="divider">·</span>
+                <a href="../term/index.html">Ver Términos y Condiciones <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <span class="legal-updated"><i class="bi bi-clock-history"></i> Última actualización: 11 de agosto de 2026</span>
+        </div>
+    </section>
+
+    <!-- Legal Content Section -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+
+                    <div class="legal-app-info">
+                        <div class="legal-app-info-item">
+                            <span>Nombre de la app</span>
+                            <span>MTCQuiz</span>
+                        </div>
+                        <div class="legal-app-info-item">
+                            <span>Responsable</span>
+                            <span>NekoDojo</span>
+                        </div>
+                        <div class="legal-app-info-item">
+                            <span>Paquete Android</span>
+                            <span>com.gondroid.mtcquiz</span>
+                        </div>
+                        <div class="legal-app-info-item">
+                            <span>Bundle ID iOS</span>
+                            <span>com.gonzadev.mtcquiz</span>
+                        </div>
+                        <div class="legal-app-info-item">
+                            <span>Contacto</span>
+                            <span><a href="mailto:gonzalo.lozg@gmail.com">gonzalo.lozg@gmail.com</a></span>
+                        </div>
+                        <div class="legal-app-info-item">
+                            <span>Jurisdicción</span>
+                            <span>Perú</span>
+                        </div>
+                    </div>
+
+                    <article class="legal-content">
+
+                        <h2>1. Introducción</h2>
+                        <p>
+                            Esta Política de Privacidad describe cómo <strong>NekoDojo</strong> ("nosotros",
+                            "nuestro") recopila, utiliza y protege la información relacionada con el uso de
+                            <strong>MTCQuiz</strong>, una aplicación móvil de carácter educativo diseñada para
+                            ayudar a postulantes a la licencia de conducir en Perú a prepararse para el examen
+                            de manejo del Ministerio de Transportes y Comunicaciones (MTC).
+                        </p>
+                        <p>
+                            Al descargar, instalar o utilizar MTCQuiz, aceptas las prácticas descritas en este
+                            documento. Si no estás de acuerdo con alguna parte de esta política, te recomendamos
+                            no utilizar la aplicación.
+                        </p>
+
+                        <h2>2. Responsable del tratamiento</h2>
+                        <p>
+                            El responsable del tratamiento de los datos descritos en esta política es
+                            <strong>NekoDojo</strong>, desarrollador de MTCQuiz. Para cualquier consulta relacionada
+                            con privacidad, protección de datos o el ejercicio de tus derechos, puedes escribir a
+                            <a href="mailto:gonzalo.lozg@gmail.com">gonzalo.lozg@gmail.com</a>.
+                        </p>
+
+                        <h2>3. Datos que recopilamos</h2>
+                        <p>
+                            MTCQuiz recopila distintos tipos de información según la fuente y el servicio
+                            involucrado. A continuación se detalla cada uno de forma precisa:
+                        </p>
+
+                        <h3>3.1 Inicio de sesión con Google (actualmente no en uso)</h3>
+                        <div class="legal-callout">
+                            <i class="bi bi-info-circle"></i>
+                            El inicio de sesión con Google está <strong>actualmente deshabilitado en la interfaz</strong>
+                            de la aplicación: MTCQuiz funciona en modo de acceso libre y no requiere crear una cuenta
+                            para usar sus funciones principales. Sin embargo, el componente de autenticación
+                            (Firebase Auth con Google Sign-In vía Credential Manager) <strong>permanece incluido en el
+                            paquete de la app</strong> para uso futuro, por lo que lo documentamos aquí de forma
+                            transparente.
+                        </div>
+                        <p>
+                            Si en el futuro esta función se habilita y decides iniciar sesión con tu cuenta de
+                            Google, la app almacenaría localmente en tu dispositivo (DataStore en Android /
+                            UserDefaults en iOS) tu <strong>nombre</strong> (displayName) y tu <strong>foto de
+                            perfil</strong> (photoUrl). Esta información no se envía a servidores propios de
+                            NekoDojo.
+                        </p>
+
+                        <h3>3.2 Datos de uso y analítica (Firebase Analytics)</h3>
+                        <p>
+                            Utilizamos Firebase Analytics para comprender cómo se usa la aplicación. Esto incluye
+                            eventos como las pantallas visitadas y el embudo de compra de la suscripción (por
+                            ejemplo, visualización de la pantalla de suscripción y clic en el botón de suscribirse).
+                            Estos eventos se envían a los servidores de Google/Firebase.
+                        </p>
+
+                        <h3>3.3 Reportes de errores (Firebase Crashlytics)</h3>
+                        <p>
+                            Utilizamos Firebase Crashlytics para detectar y diagnosticar errores técnicos. Este
+                            servicio recopila reportes de fallos (crashes) e información técnica del dispositivo
+                            (modelo, sistema operativo, estado de la app en el momento del error), enviados a los
+                            servidores de Google/Firebase, con el único fin de mejorar la estabilidad de la app.
+                        </p>
+
+                        <h3>3.4 Contenido remoto (Firebase Realtime Database)</h3>
+                        <p>
+                            MTCQuiz utiliza Firebase Realtime Database exclusivamente para <strong>descargar</strong>
+                            el contenido del examen (preguntas, categorías y respuestas del balotario oficial). Este
+                            servicio funciona en modo de solo lectura: <strong>no se sube ningún dato del usuario</strong>
+                            a esta base de datos.
+                        </p>
+
+                        <h3>3.5 Publicidad (Google AdMob)</h3>
+                        <p>
+                            La versión gratuita de MTCQuiz muestra anuncios (banner e intersticiales) a través de
+                            Google AdMob. Para ello, AdMob puede recopilar el <strong>identificador de publicidad</strong>
+                            de tu dispositivo (Advertising ID / IDFA) y otros datos técnicos necesarios para mostrar
+                            anuncios. Consulta la sección 6 para más detalles sobre publicidad.
+                        </p>
+
+                        <h3>3.6 Compras y suscripciones</h3>
+                        <p>
+                            Si adquieres la suscripción Premium, la compra es procesada directamente por
+                            <strong>Google Play Billing</strong> (Android) o <strong>App Store</strong> (iOS), según
+                            corresponda a tu dispositivo. MTCQuiz <strong>no accede ni almacena datos de pago</strong>
+                            (números de tarjeta, cuentas bancarias, etc.); esa información es gestionada
+                            íntegramente por la tienda de aplicaciones correspondiente conforme a su propia
+                            política de privacidad.
+                        </p>
+
+                        <h3>3.7 Resultados de tus evaluaciones (solo local)</h3>
+                        <p>
+                            Cuando completas un simulacro de examen, MTCQuiz guarda tu <strong>puntaje, las
+                            respuestas dadas por pregunta y la fecha</strong> de la evaluación. Estos datos se
+                            almacenan <strong>únicamente en tu dispositivo</strong> (Room en Android / SwiftData en
+                            iOS) y <strong>nunca se suben a un servidor</strong>.
+                        </p>
+
+                        <h3>3.8 Racha de estudio</h3>
+                        <p>
+                            La app lleva un contador local de tu racha de días de estudio y la fecha del último
+                            día que estudiaste, almacenado localmente (DataStore en Android / UserDefaults en
+                            iOS), sin sincronización con ningún servidor.
+                        </p>
+
+                        <div class="legal-table-wrapper">
+                            <table class="legal-table">
+                                <thead>
+                                    <tr>
+                                        <th>Dato</th>
+                                        <th>Origen</th>
+                                        <th>Dónde se almacena</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre y foto de perfil (Google)</td>
+                                        <td>Firebase Auth / Google Sign-In <em>(no en uso actualmente)</em></td>
+                                        <td><span class="legal-badge legal-badge-local">Local</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eventos de uso y funnel de compra</td>
+                                        <td>Firebase Analytics</td>
+                                        <td><span class="legal-badge legal-badge-remote">Google/Firebase</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reportes de errores e info del dispositivo</td>
+                                        <td>Firebase Crashlytics</td>
+                                        <td><span class="legal-badge legal-badge-remote">Google/Firebase</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Preguntas y categorías del examen</td>
+                                        <td>Firebase Realtime Database</td>
+                                        <td><span class="legal-badge legal-badge-local">Solo lectura, sin subir datos</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Advertising ID</td>
+                                        <td>Google AdMob</td>
+                                        <td><span class="legal-badge legal-badge-remote">Google AdMob</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recibos de compra</td>
+                                        <td>Google Play Billing / App Store</td>
+                                        <td><span class="legal-badge legal-badge-remote">Google / Apple</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Puntaje, respuestas y fecha del simulacro</td>
+                                        <td>Uso de la app</td>
+                                        <td><span class="legal-badge legal-badge-local">Local (Room / SwiftData)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Racha y fecha de último estudio</td>
+                                        <td>Uso de la app</td>
+                                        <td><span class="legal-badge legal-badge-local">Local (DataStore / UserDefaults)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2>4. Finalidad del tratamiento</h2>
+                        <p>Utilizamos los datos descritos anteriormente para los siguientes fines:</p>
+                        <ul>
+                            <li>Ofrecer el contenido de preguntas y categorías del examen de manejo del MTC.</li>
+                            <li>Guardar tu progreso, puntajes y racha de estudio directamente en tu dispositivo.</li>
+                            <li>Diagnosticar y corregir errores técnicos para mejorar la estabilidad de la app.</li>
+                            <li>Entender el uso general de la aplicación y el rendimiento del embudo de suscripción,
+                                de forma agregada y no identificable individualmente por nosotros.</li>
+                            <li>Mostrar publicidad dentro de la versión gratuita a través de Google AdMob.</li>
+                            <li>Procesar suscripciones Premium a través de la tienda de aplicaciones correspondiente.</li>
+                        </ul>
+
+                        <h2>5. Base legal</h2>
+                        <p>
+                            El tratamiento de datos personales se realiza conforme a lo previsto en la
+                            <strong>Ley N.° 29733, Ley de Protección de Datos Personales del Perú</strong>, y su
+                            reglamento. La base legal para el tratamiento es, según el caso, la ejecución del
+                            servicio solicitado (mostrar contenido del examen, procesar suscripciones), el interés
+                            legítimo de mantener y mejorar la aplicación (analítica y reportes de errores), y el
+                            consentimiento cuando corresponda (por ejemplo, permisos del dispositivo). MTCQuiz no
+                            declara cumplimiento con normativas de otras jurisdicciones como el GDPR europeo o la
+                            CCPA de California.
+                        </p>
+
+                        <h2>6. Servicios de terceros</h2>
+                        <p>MTCQuiz utiliza los siguientes servicios de terceros, cada uno con su propia política de privacidad:</p>
+                        <ul>
+                            <li>
+                                <strong>Firebase Auth / Google Sign-In</strong> (Google LLC) — autenticación opcional,
+                                actualmente no habilitada en la interfaz.
+                                <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Ver política</a>
+                            </li>
+                            <li>
+                                <strong>Firebase Analytics</strong> (Google LLC) — analítica de uso de la app.
+                                <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Ver política</a>
+                            </li>
+                            <li>
+                                <strong>Firebase Crashlytics</strong> (Google LLC) — reportes de errores y estabilidad.
+                                <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Ver política</a>
+                            </li>
+                            <li>
+                                <strong>Firebase Realtime Database</strong> (Google LLC) — entrega del contenido del examen.
+                                <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Ver política</a>
+                            </li>
+                            <li>
+                                <strong>Google AdMob</strong> (Google LLC) — publicidad dentro de la app.
+                                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Ver política</a>
+                            </li>
+                            <li>
+                                <strong>Google Play Billing</strong> (Android) / <strong>App Store</strong> (iOS) — procesamiento de
+                                suscripciones y pagos, gestionado por Google o Apple según tu plataforma.
+                            </li>
+                        </ul>
+
+                        <h2>7. Publicidad y Advertising ID</h2>
+                        <p>
+                            En la versión gratuita, MTCQuiz muestra anuncios banner e intersticiales a través de
+                            Google AdMob. Para seleccionar y medir anuncios, AdMob puede utilizar el
+                            <strong>identificador de publicidad</strong> de tu dispositivo (Advertising ID en
+                            Android / IDFA en iOS). Puedes restablecer o limitar este identificador desde los
+                            ajustes de privacidad de tu dispositivo (<em>Ajustes → Google → Anuncios</em> en Android,
+                            o <em>Ajustes → Privacidad y seguridad → Publicidad de Apple</em> en iOS). No tenemos
+                            acceso directo a los datos que AdMob recopila para personalizar anuncios.
+                        </p>
+
+                        <h2>8. Permisos del dispositivo</h2>
+                        <p>En Android, MTCQuiz solicita los siguientes permisos:</p>
+                        <ul>
+                            <li><strong>INTERNET</strong>: necesario para descargar el contenido del examen, mostrar
+                                anuncios y sincronizar analítica/reportes de errores.</li>
+                            <li><strong>WRITE_EXTERNAL_STORAGE</strong>: se utiliza únicamente para exportar o guardar
+                                en tu dispositivo el PDF del balotario de preguntas cuando lo solicitas.</li>
+                        </ul>
+
+                        <h2>9. Almacenamiento y seguridad de datos locales</h2>
+                        <p>
+                            Tus resultados de evaluación, racha de estudio y (si en el futuro se habilita) tu
+                            información de perfil de Google se almacenan exclusivamente en tu dispositivo mediante
+                            mecanismos estándar de la plataforma (Room y DataStore en Android; SwiftData y
+                            UserDefaults en iOS). Estos datos están protegidos por las medidas de seguridad propias
+                            del sistema operativo y <strong>se eliminan automáticamente si desinstalas la
+                            aplicación</strong>. Las comunicaciones con Firebase se realizan mediante conexiones
+                            cifradas (HTTPS/TLS).
+                        </p>
+
+                        <h2>10. Derechos del usuario (Ley N.° 29733)</h2>
+                        <p>
+                            Conforme a la Ley N.° 29733 de Protección de Datos Personales del Perú, tienes derecho a:
+                        </p>
+                        <ul>
+                            <li><strong>Acceso:</strong> solicitar información sobre los datos que tratamos relacionados contigo.</li>
+                            <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos o incompletos.</li>
+                            <li><strong>Cancelación:</strong> solicitar la eliminación de tus datos cuando corresponda.</li>
+                            <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos en determinadas circunstancias.</li>
+                        </ul>
+                        <p>
+                            Puedes ejercer cualquiera de estos derechos escribiendo a
+                            <a href="mailto:gonzalo.lozg@gmail.com">gonzalo.lozg@gmail.com</a>. Responderemos tu
+                            solicitud en un plazo razonable conforme a la normativa aplicable. Ten en cuenta que la
+                            mayoría de tus datos (resultados, racha, preferencias) ya están bajo tu control directo:
+                            puedes eliminarlos en cualquier momento borrando los datos de la app o desinstalándola.
+                        </p>
+
+                        <h2>11. Menores de edad</h2>
+                        <p>
+                            MTCQuiz es una aplicación de contenido educativo general dirigida a postulantes a la
+                            licencia de conducir en Perú. No declaramos una edad mínima específica de uso ni la
+                            aplicación implementa verificación de edad en el código. Si eres padre, madre o tutor y
+                            consideras que un menor a tu cargo ha utilizado la aplicación y deseas más información
+                            o la eliminación de datos asociados, contáctanos a través del correo indicado en la
+                            sección de contacto.
+                        </p>
+
+                        <h2>12. Cambios a esta política</h2>
+                        <p>
+                            Podemos actualizar esta Política de Privacidad ocasionalmente para reflejar cambios en
+                            la aplicación, en los servicios de terceros que utilizamos o en la normativa aplicable.
+                            La fecha de la última actualización se muestra siempre en la parte superior de esta
+                            página. Te recomendamos revisar este documento periódicamente.
+                        </p>
+
+                        <h2>13. Contacto</h2>
+                        <p>
+                            Si tienes preguntas, dudas o deseas ejercer alguno de tus derechos sobre tus datos
+                            personales, puedes contactarnos:
+                        </p>
+                        <ul>
+                            <li><strong>Correo electrónico:</strong> <a href="mailto:gonzalo.lozg@gmail.com">gonzalo.lozg@gmail.com</a></li>
+                            <li><strong>Responsable:</strong> NekoDojo</li>
+                            <li><strong>Aplicación:</strong> MTCQuiz — com.gondroid.mtcquiz (Android) / com.gonzadev.mtcquiz (iOS)</li>
+                        </ul>
+
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="../../../assets/js/components/navbar.js"></script>
+    <script src="../../../assets/js/components/footer.js"></script>
+</body>
+
+</html>
