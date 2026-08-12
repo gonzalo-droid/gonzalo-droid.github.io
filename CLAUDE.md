@@ -53,11 +53,13 @@ Deployment is automatic via GitHub Actions on push to `master` branch.
 **GitHub Pages (production):**
 - `/` → `index.html`
 - `/articles` → `articles/index.html`
-- `/article/slug` → `404.html` redirects to `article/index.html` (slug via sessionStorage)
+- `/article/<slug>` → GitHub Pages has no server-side routing, so this request 404s first. `404.html` inspects `location.pathname`; if it matches `/article/<slug>`, it stores the slug in `sessionStorage.articleSlug` and redirects (`location.replace('/article/')`) to the real article page. `assets/js/article.js` reads the slug from `sessionStorage` (consuming it), falls back to the legacy `#slug` hash for old inbound links, and then calls `history.replaceState` so the address bar shows `/article/<slug>`. Any other unknown path shows the plain 404 UI and redirects to `/` after 3 seconds.
 - `/privacy-policy` → `privacy-policy/index.html`
 
+This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. The underlying HTTP response for a fresh crawl of `/article/<slug>` is still a 404 before the client-side redirect kicks in — a fully correct fix would need per-article prerendering/SSG.
+
 **Express.js (local development):**
-- Same routes but with dynamic `:slug` parameter support
+- Same routes but with dynamic `:slug` parameter support (`GET /article/:slug` serves `article/index.html` directly, and `article.js` reads the slug from the path).
 
 ## Article System
 
