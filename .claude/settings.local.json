@@ -12,7 +12,9 @@
       "Bash(lsof:*)",
       "Bash(pgrep:*)",
       "Bash(tree:*)",
-      "mcp__playwright"
+      "mcp__playwright",
+      "Bash(python3 -c ' *)",
+      "Bash(awk '{print $5, $9}')"
     ]
   }
 }
