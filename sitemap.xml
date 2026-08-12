@@ -16,4 +16,48 @@
       <loc>https://gonzalo-lozg.me/app-ads.txt</loc>
       <lastmod>2026-04-28</lastmod>
    </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/introducci-n-a-jetpack-compose</loc>
+      <lastmod>2024-03-20</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/clean-architecture-en-android</loc>
+      <lastmod>2024-03-19</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/coroutines-y-flow-en-android</loc>
+      <lastmod>2024-03-18</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/testing-en-android</loc>
+      <lastmod>2024-03-17</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform</loc>
+      <lastmod>2024-03-20</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/integraci-n-de-ia-en-apps-android</loc>
+      <lastmod>2024-03-19</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android</loc>
+      <lastmod>2024-03-18</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/bienvenido-a-mi-blog</loc>
+      <lastmod>2026-03-26</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/coroutines-en-android-programaci-n-as-ncrona-moderna</loc>
+      <lastmod>2026-03-26</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/inyecci-n-de-dependencias-en-android-con-hilt</loc>
+      <lastmod>2026-03-26</lastmod>
+   </url>
+   <url>
+      <loc>https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android</loc>
+      <lastmod>2026-03-26</lastmod>
+   </url>
 </urlset>

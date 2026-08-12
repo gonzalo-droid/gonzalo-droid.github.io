@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artículo - Gonzalo López | Mobile Developer</title>
+    <title id="pageTitle">Artículo - Gonzalo López | Mobile Developer</title>
+    <meta id="metaDescription" name="description" content="Artículo del blog de Gonzalo López, Mobile Developer especializado en Android e iOS.">
+
+    <!-- Canonical -->
+    <link id="canonicalLink" rel="canonical" href="https://gonzalo-lozg.me/article/">
+
+    <!-- Open Graph -->
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Artículo - Gonzalo López | Mobile Developer">
+    <meta id="ogDescription" property="og:description" content="Artículo del blog de Gonzalo López, Mobile Developer especializado en Android e iOS.">
+    <meta id="ogImage" property="og:image" content="https://gonzalo-lozg.me/assets/img/background.svg">
+    <meta id="ogUrl" property="og:url" content="https://gonzalo-lozg.me/article/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Artículo - Gonzalo López | Mobile Developer">
+    <meta id="twitterDescription" name="twitter:description" content="Artículo del blog de Gonzalo López, Mobile Developer especializado en Android e iOS.">
+    <meta id="twitterImage" name="twitter:image" content="https://gonzalo-lozg.me/assets/img/background.svg">
+
+    <!-- JSON-LD structured data (populated dynamically by article.js) -->
+    <script type="application/ld+json" id="articleJsonLd"></script>
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,10 +42,10 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Markdown & Syntax Highlighting -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
 
     <!-- Theme -->
     <script src="/assets/js/theme.js"></script>
@@ -168,6 +188,7 @@
 
     <script src="/assets/js/components/navbar.js"></script>
     <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/utils.js"></script>
     <script src="/assets/js/article.js"></script>
 </body>
 </html>

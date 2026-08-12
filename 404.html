@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página no encontrada - Gonzalo López</title>
-    <meta http-equiv="refresh" content="3;url=/">
     <link href="/assets/img/favicon.png" rel="icon">
+    <script>
+        // GitHub Pages has no server-side routing, so a direct hit on
+        // /article/<slug> lands here as a real 404. If the path matches
+        // the article pattern, stash the slug and redirect to the real
+        // article page, where article.js reads it from sessionStorage.
+        // Any other unknown path falls through to the plain 404 UI below.
+        (function () {
+            var match = window.location.pathname.match(/^\/article\/([^/]+)\/?$/);
+            if (match && match[1]) {
+                sessionStorage.setItem('articleSlug', decodeURIComponent(match[1]));
+                location.replace('/article/');
+            } else {
+                // Genuinely unknown path: show the 404 UI and bounce home after 3s
+                window.addEventListener('DOMContentLoaded', function () {
+                    setTimeout(function () {
+                        location.replace('/');
+                    }, 3000);
+                });
+            }
+        })();
+    </script>
     <style>
         * {
             margin: 0;

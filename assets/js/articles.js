@@ -10,8 +10,7 @@ async function loadArticles() {
     const filtersContainer = document.getElementById('articleFilters');
 
     try {
-        const response = await fetch('/content/articles.json');
-        const articles = await response.json();
+        const articles = await fetchArticles();
 
         // Sort by date (newest first)
         articles.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -64,7 +63,7 @@ function renderArticles(articles, container) {
         const formattedDate = formatDate(article.date);
 
         return `
-            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}" onclick="window.location.href='/article#${slug}'">
+            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}" onclick="window.location.href='/article/${slug}'">
                 <div class="article-item-image">
                     <img src="${imagePath}" alt="${article.title}" loading="lazy">
                 </div>
@@ -111,22 +110,5 @@ function initFilters(articles, container) {
                 }
             });
         });
-    });
-}
-
-// Generate slug from title
-function generateSlug(title) {
-    return title.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-}
-
-// Format date
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
     });
 }
