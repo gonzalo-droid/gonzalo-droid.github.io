@@ -32,7 +32,7 @@
     --text-secondary: #666666;
     --text-heading: #173b6c;
     --text-heading-dark: #050d18;
-    --text-muted: #a8a9b4;
+    --text-muted-legacy: #a8a9b4;
     --text-light: #ffffff;
     --text-nav-icon: #6f7180;
     --text-link-dark: #122f57;
@@ -75,7 +75,7 @@
     --text-secondary: #a8a9b4;
     --text-heading: #ffffff;
     --text-heading-dark: #f0f0f0;
-    --text-muted: #8888a0;
+    --text-muted-legacy: #8888a0;
     --text-light: #ffffff;
     --text-nav-icon: #8888a0;
     --text-link-dark: #a8c8e8;
@@ -261,7 +261,7 @@
   .nav-menu a:focus {
     display: flex;
     align-items: center;
-    color: var(--text-muted);
+    color: var(--text-muted-legacy);
     padding: 12px 15px;
     margin-bottom: 8px;
     transition: 0.3s;
@@ -1550,7 +1550,7 @@
 
 .article-item-date {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-muted-legacy);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -1611,7 +1611,7 @@
   grid-column: 1 / -1;
   text-align: center;
   padding: 60px 0;
-  color: var(--text-muted);
+  color: var(--text-muted-legacy);
 }
 
 @media (max-width: 992px) {
