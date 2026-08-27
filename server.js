@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // Rutas específicas ANTES de archivos estáticos
 // Estas rutas sirven los mismos archivos que GitHub Pages servirá
