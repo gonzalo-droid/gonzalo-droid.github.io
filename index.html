@@ -84,6 +84,46 @@
             </div>
 
             <div class="projects-grid" id="projectsGrid"></div>
+
+            <!-- Los proyectos se cargan por fetch() desde content/projects.json (projects.js).
+                 Sin JavaScript esa petición nunca ocurre, así que este fallback estático evita
+                 que la sección insignia del portafolio quede vacía. No es prerenderizado real
+                 (eso vendría del script build:pages de un plan posterior); es solo la lista
+                 con sus enlaces reales para que nada quede oculto por defecto. -->
+            <noscript>
+                <div>
+                    <h3 class="t-h3">Proyectos</h3>
+                    <ul>
+                        <li>
+                            <strong>Quote Anime</strong> — Frases de anime con widget, notificaciones diarias y modo offline.
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.quoteanime">Play Store</a>,
+                            <a href="https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB">App Store</a>,
+                            <a href="https://www.animequote.app/">Web</a>
+                        </li>
+                        <li>
+                            <strong>AutoTest Licencia</strong> — Simulacros y balotarios para el examen de licencia de conducir.
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz">Play Store</a>
+                        </li>
+                        <li>
+                            <strong>CixCash App</strong> — Conversión de criptomonedas y divisas en Kotlin Multiplatform, con registro de transacciones.
+                            <a href="https://github.com/gonzalo-droid/cixCashApp">Ver código</a>
+                        </li>
+                        <li>
+                            <strong>Note.AI</strong> — Notas de voz con transcripción automática usando OpenAI Whisper.
+                            <a href="https://github.com/gonzalo-droid/NoteAI">Ver código</a>
+                        </li>
+                        <li>
+                            <strong>U-Learning</strong> — Plataforma educativa para cursos online, en Android, iOS y navegador.
+                        </li>
+                        <li>
+                            <strong>Admin Lotes</strong> — Gestión de proyectos inmobiliarios multiempresa, con app de campo para asesores.
+                        </li>
+                        <li>
+                            <strong>Solti-CRM</strong> — CRM comercial con seguimiento de clientes en pre-venta y post-venta.
+                        </li>
+                    </ul>
+                </div>
+            </noscript>
         </div>
     </section>
 
