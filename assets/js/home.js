@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all features
     // Note: Navbar, footer, and back-to-top are handled by components
     initScrollAnimations();
-    initStatsCounter();
+    initCopyMail();
     loadLatestArticles();
 });
 
@@ -24,43 +24,22 @@ function initScrollAnimations() {
     animatedElements.forEach(el => observer.observe(el));
 }
 
-// Stats Counter Animation
-function initStatsCounter() {
-    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
-    let hasAnimated = false;
+// Copy email to clipboard
+function initCopyMail() {
+    const button = document.querySelector('.copy-mail');
+    if (!button) return;
 
-    const animateCounter = (el) => {
-        const target = parseInt(el.dataset.count);
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                el.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                el.textContent = target;
-            }
-        };
-
-        updateCounter();
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true;
-                statNumbers.forEach(el => animateCounter(el));
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('.stats-bar');
-    if (statsSection) {
-        observer.observe(statsSection);
-    }
+    button.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(button.dataset.mail);
+            const original = button.textContent;
+            button.textContent = 'Copiado';
+            setTimeout(() => { button.textContent = original; }, 2000);
+        } catch {
+            // Sin permiso de portapapeles: el enlace mailto de al lado sigue funcionando.
+            button.textContent = 'Usa el enlace';
+        }
+    });
 }
 
 // Load Latest Articles

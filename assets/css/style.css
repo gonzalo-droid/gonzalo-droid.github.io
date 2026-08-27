@@ -1535,58 +1535,6 @@
 }
 
 /*--------------------------------------------------------------
-# Stats Bar
---------------------------------------------------------------*/
-.stats-bar {
-  background: var(--bg-hero);
-  padding: 40px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  text-align: center;
-}
-
-.stat-item {
-  padding: 20px;
-}
-
-.stat-number {
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--accent-primary);
-  display: inline;
-}
-
-.stat-plus {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--accent-primary);
-}
-
-.stat-label {
-  display: block;
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--text-light);
-  opacity: 0.8;
-}
-
-@media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .stat-number {
-    font-size: 36px;
-  }
-}
-
-/*--------------------------------------------------------------
 # Experience Section
 --------------------------------------------------------------*/
 .experience {
@@ -2008,16 +1956,6 @@
   transform: translateX(0);
 }
 
-.stat-item[data-animate] {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.stat-item[data-animate].animate-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
 /*--------------------------------------------------------------
 # Page Header (Articles, etc.)
 --------------------------------------------------------------*/
@@ -2211,3 +2149,93 @@
     transform: translateY(0);
   }
 }
+
+/*--------------------------------------------------------------
+# Home sections (mecha redesign)
+--------------------------------------------------------------*/
+.section { padding: var(--sp-9) 0; border-top: 1px solid var(--border); }
+.section-title { margin-bottom: var(--sp-6); }
+.container { width: min(1120px, 100% - var(--sp-6)); margin-inline: auto; }
+
+/* Timeline */
+.timeline { border-left: 1px solid var(--border); margin-left: var(--sp-2); }
+
+.timeline-item { position: relative; padding: 0 0 var(--sp-6) var(--sp-5); }
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.timeline-period, .timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.timeline-tech { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin-top: var(--sp-2); }
+
+.timeline-tech span {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: var(--sp-1) var(--sp-2);
+}
+
+/* Contacto */
+.contact-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: var(--sp-5) var(--sp-6);
+}
+
+.contact-mail { display: flex; align-items: center; gap: var(--sp-3); margin: var(--sp-2) 0 0; }
+.contact-mail a { font-family: var(--font-mono); color: var(--text); }
+
+.copy-mail {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: var(--sp-1) var(--sp-2);
+  cursor: pointer;
+}
+
+.copy-mail:hover { border-color: var(--accent); color: var(--accent); }
+
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  list-style: none;
+  padding: 0;
+  margin: var(--sp-4) 0 0;
+}
+
+.contact-social a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-social a:hover { color: var(--accent); }
