@@ -1347,7 +1347,11 @@
   overflow: hidden;
   box-shadow: 0 4px 20px var(--shadow-card);
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  /* Antes "all": una transición tan amplia también animaba opacity/transform
+     cuando [data-animate] cambia de estado (p.ej. al quitar la clase .js),
+     retrasando ~0.3s la visibilidad real del contenido sin JS. Acotada a lo
+     que el :hover de abajo realmente cambia. */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .article-card:hover {
@@ -1432,23 +1436,23 @@
 /*--------------------------------------------------------------
 # Scroll Animations
 --------------------------------------------------------------*/
-/* El estado por defecto es VISIBLE. La animación solo existe si el usuario
-   no ha pedido reducir movimiento — así un fallo de JS nunca deja la
-   página en blanco. */
+/* El estado por defecto es visible. La animación solo se activa si JS ha
+   corrido (clase .js, puesta por theme.js antes del primer pintado) Y el
+   usuario no ha pedido reducir movimiento. Sin JS, nada se oculta nunca. */
 @media (prefers-reduced-motion: no-preference) {
-  [data-animate] {
+  .js [data-animate] {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
   }
 
-  [data-animate].animate-visible {
+  .js [data-animate].animate-visible {
     opacity: 1;
     transform: none;
   }
 
-  .timeline-item[data-animate] { transform: translateX(-24px); }
-  .timeline-item[data-animate].animate-visible { transform: none; }
+  .js .timeline-item[data-animate] { transform: translateX(-24px); }
+  .js .timeline-item[data-animate].animate-visible { transform: none; }
 }
 
 /*--------------------------------------------------------------
