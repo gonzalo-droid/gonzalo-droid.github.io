@@ -407,6 +407,9 @@
     margin-bottom: var(--sp-4);
   }
 
+  /* border-radius: 50% aquí es un indicador de estado circular (un punto),
+     no una decisión de radio sobre una superficie de interfaz — misma
+     familia de excepción que .phone. No "corregir" a 0 o 4px. */
   .hero-badge .dot {
     width: 6px;
     height: 6px;
@@ -457,7 +460,7 @@
   .phone {
     margin: 0;
     width: 104px;
-    padding: 3px;
+    padding: var(--sp-1);
     background: var(--surface);
     border: 2px solid var(--border-strong);
     border-radius: 12px;
