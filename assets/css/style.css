@@ -1029,18 +1029,20 @@
 .tech { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
 .tags { display: flex; gap: 8px; flex-wrap: wrap; }
 
-.tag{
+/* Mismo tratamiento que .project-tech span / .timeline-tech span: tokens,
+   mono, cuadrado. No es una excepción de radio (no es un objeto físico como
+   .phone o el .dot de estado), así que sigue la regla general (0 / 4px). */
+.tag {
   display: inline-flex;
   align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border-tag);
-  background: var(--bg-tag);
-  font-size: 12px;
+  padding: var(--sp-1) var(--sp-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   line-height: 1;
   white-space: nowrap;
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  color: var(--text-muted);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 /*--------------------------------------------------------------
@@ -1361,7 +1363,7 @@
 
 .article-card-content h3 {
   font-size: 16px;
-  color: var(--text-heading);
+  color: var(--text);
   margin: 0 0 10px 0;
   line-height: 1.4;
 }
@@ -1372,7 +1374,7 @@
 }
 
 .article-card-content h3 a:hover {
-  color: var(--accent-primary);
+  color: var(--accent);
 }
 
 .article-card-date {
@@ -1387,12 +1389,14 @@
   gap: 5px;
 }
 
+/* Mismo tratamiento que .project-tech span / .timeline-tech span / .tag:
+   tokens, mono, cuadrado — no una quinta variante de chip. */
 .article-card-tags span {
-  background: var(--bg-tag);
-  color: var(--text-secondary);
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: var(--sp-1) var(--sp-2);
 }
 
 .articles-cta {
