@@ -46,7 +46,11 @@
     "tech": ["KMM", "Kotlin", "Compose", "Koin", "Ktor"],
     "image": "/assets/img/portfolio/app_cixcash.webp",
     "shot": "/assets/img/portfolio/shots/cixcash.webp",
-    "highlights": [],
+    "highlights": [
+      "Balance visible por moneda",
+      "Transacciones persistidas en base de datos",
+      "Conversión entre ARS, USD, BTC y ETH"
+    ],
     "links": [
       { "label": "Ver código", "url": "https://github.com/gonzalo-droid/cixCashApp" }
     ]
@@ -58,7 +62,11 @@
     "platforms": ["android"],
     "tech": ["Kotlin", "Compose", "Room", "Firebase", "MVVM"],
     "image": "/assets/img/portfolio/app_noteai.webp",
-    "highlights": [],
+    "highlights": [
+      "Listado y creación de notas en local",
+      "Grabación de voz asociada a cada nota",
+      "Transcripción automática con OpenAI Whisper"
+    ],
     "links": [
       { "label": "Ver código", "url": "https://github.com/gonzalo-droid/NoteAI" }
     ]

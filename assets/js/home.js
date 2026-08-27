@@ -6,35 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLatestArticles();
 });
 
-// Image Lightbox functionality
-function openImageLightbox(imageSrc) {
-    const lightbox = document.getElementById('imageLightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-
-    if (lightbox && lightboxImage) {
-        lightboxImage.src = imageSrc;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeImageLightbox() {
-    const lightbox = document.getElementById('imageLightbox');
-
-    if (lightbox) {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
-
-// Close lightbox with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeImageLightbox();
-    }
-});
-
-
 // Scroll Animations with Intersection Observer
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('[data-animate]');
