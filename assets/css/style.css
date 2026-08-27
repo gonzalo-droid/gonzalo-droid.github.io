@@ -428,7 +428,12 @@
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
   }
 
+  /* background declarado explícitamente: Bootstrap también define
+     .btn-secondary (background-color: #6c757d) con la misma especificidad
+     de clase; sin esta línea, esa propiedad no la pisa nadie aquí y el botón
+     sale gris de Bootstrap en vez de transparente. */
   .btn-secondary {
+    background: transparent;
     color: var(--text);
     border: 1px solid var(--border-strong);
     font-weight: 600;
@@ -1463,6 +1468,17 @@
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(10px);
   border-bottom-color: var(--border);
+}
+
+/* .navbar-fixed being display:flex turns .navbar-container into a flex item,
+   which shrinks it to its content width instead of filling the bar — leaving
+   .navbar-brand-link's `margin-right: auto` with no free space to absorb, so
+   the brand doesn't get pushed left. flex: 1 makes it fill the available
+   width again; its own max-width: 1200px + margin: 0 auto (declared above,
+   in the legacy "Enhanced Navbar" block) still cap and center it on wide
+   viewports. */
+.navbar-fixed .navbar-container {
+  flex: 1;
 }
 
 .navbar-brand-link {
