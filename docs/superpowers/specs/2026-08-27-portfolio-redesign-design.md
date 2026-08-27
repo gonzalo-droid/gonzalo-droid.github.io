@@ -43,7 +43,7 @@ Los problemas que motivan este trabajo, en orden de gravedad:
 | Stack | Sin build step obligatorio · fuera Bootstrap, se quedan Bootstrap Icons |
 | Proyectos | Agrupados por producto (11 → 7) · tarjeta compacta + `/project/<slug>` |
 | Blog | Curado · HTML generado por script manual para el SEO |
-| Contacto | Email visible + botón copiar · CV en PDF servido desde el sitio |
+| Contacto | Email visible + botón copiar · CV en PDF servido desde el sitio, uno por idioma |
 | Tema | Sigue la preferencia del sistema; ambos temas diseñados con el mismo cuidado |
 | Imágenes | Recortar las capturas de los gráficos de Play Store y montarlas en marcos CSS |
 
@@ -210,7 +210,16 @@ móvil y web · y luego:
 4. Chips de stack.
 5. Links a stores y web.
 
-El texto de estas secciones lo tiene que escribir Gonzalo; el diseño reserva el espacio.
+**Reparto de la escritura.** Los bloques 1 y 2 los redacta esta implementación,
+reordenando y ampliando el contenido que ya existe en las tarjetas actuales: es material
+de Gonzalo, solo mal presentado.
+
+El bloque 3 **no se inventa**. Nadie salvo Gonzalo sabe por qué eligió MVVM en U-Learning
+o qué se complicó en CixCash, y un texto inventado lo dejaría defendiendo en una
+entrevista una decisión que nunca tomó. Por eso el campo `decisiones` de
+`content/projects.json` es **opcional**: si viene vacío, la página no renderiza la
+sección y se ve completa igual. Se rellena cuando Gonzalo tenga material, empezando por
+Quote Anime y U-Learning, que son los que un recruiter abrirá primero.
 
 ### `/articles` — lista
 
@@ -263,7 +272,30 @@ Dos idiomas, ES por defecto.
   el botón de CV, `.google-plus` en el link de GitHub.
 - `generateSlug()` está duplicada en `home.js`, `articles.js` y `article.js`. Se unifica
   en `utils.js`, que ya existe y ya se carga en las tres páginas.
-- El CV pasa de ser un enlace a una carpeta de Drive a un PDF servido desde el sitio.
+- El CV pasa de ser un enlace a una carpeta de Drive a PDFs servidos desde el sitio.
+
+### CV
+
+Dos archivos en la raíz: `cv-es.pdf` y `cv-en.pdf`. El botón sigue al idioma activo, y
+**cae al que exista si falta el otro**, de modo que se puede publicar uno solo sin
+provocar un 404.
+
+Dos acciones, que es lo que se pidió (previsualizar y descargar) sin iframe ni terceros:
+
+```html
+<a href="/cv-en.pdf" target="_blank">Ver CV</a>
+<a href="/cv-en.pdf" download="Gonzalo-Lopez-CV.pdf">Descargar</a>
+```
+
+Motivo de no seguir con Drive: su endpoint de descarga devuelve `application/octet-stream`,
+así que el navegador no previsualiza y el archivo baja con el nombre que Drive decida;
+además el enlace deja de funcionar en silencio si cambian los permisos o se mueve el
+archivo. El enlace actual se verificó y responde `200`, así que la alternativa era viable
+— se descarta por esos dos costes, no por no funcionar.
+
+El de inglés es la fuente de verdad; el español se actualiza a partir de él.
+
+**Pendiente de Gonzalo:** aportar los PDFs, o autorizar su descarga desde Drive.
 
 ## 7. Curación del blog
 
@@ -280,15 +312,31 @@ mezcladas entre 2024 y 2026, y duplicados temáticos.
 - Los que quedan necesitan portada propia. Se genera una portada tipográfica por artículo
   en lenguaje Mecha, para no depender de imágenes de stock.
 
-Quedan 7 artículos. La selección final la confirma Gonzalo antes de tocar `articles.json`.
+Quedan **7 artículos**, confirmados:
+
+| Se queda | Archivo | Tamaño |
+|---|---|---|
+| Testing en Android | `android-testing.md` | 4.748 |
+| Jetpack Compose: El futuro de la UI | `android-jetpack-compose.md` | 4.478 |
+| Inyección de Dependencias con Hilt | `android-dependency-injection.md` | 4.252 |
+| Coroutines: Programación asíncrona moderna | `android-coroutines.md` | 4.185 |
+| Integración de IA en Apps Android | `android-ai.md` | 3.418 |
+| Arquitectura MVVM en Android | `android-mvvm.md` | 3.353 |
+| Kotlin Multiplatform | `kotlin-multiplatform.md` | 2.931 |
+
+Salen: `clean-architecture.md`, `welcome.md`, `jetpack-compose.md`, `coroutines-flow.md`.
+
+Nota para Gonzalo: el artículo que se cae por estar vacío es precisamente el de Clean
+Architecture, que su propia bio declara como especialidad. Es el hueco más caro del blog
+y el mejor candidato para el próximo que escriba. Fuera del alcance de este trabajo.
 
 ## Fuera de alcance
 
 - Migrar a Astro/11ty o cualquier framework.
 - Traducir los artículos al inglés.
 - Formulario de contacto y agendamiento de llamadas.
-- Reescribir el copy de la home y de los proyectos: el diseño reserva el espacio, el
-  texto lo escribe Gonzalo.
+- Escribir el bloque de *decisiones técnicas* de cada proyecto: es material que solo
+  Gonzalo tiene. El diseño lo deja opcional y lo oculta si viene vacío.
 - Capturas nuevas de emulador. Se trabaja con las imágenes existentes; si más adelante
   llegan capturas limpias, se sustituyen sin tocar el diseño.
 
