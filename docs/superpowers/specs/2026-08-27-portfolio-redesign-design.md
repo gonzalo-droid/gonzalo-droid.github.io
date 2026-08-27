@@ -270,8 +270,14 @@ Dos idiomas, ES por defecto.
   que no existe en ninguna página.
 - Se eliminan las clases heredadas del template usadas como semántica: `.instagram` en
   el botón de CV, `.google-plus` en el link de GitHub.
-- `generateSlug()` está duplicada en `home.js`, `articles.js` y `article.js`. Se unifica
-  en `utils.js`, que ya existe y ya se carga en las tres páginas.
+- El enlace de política de privacidad del footer está vacío:
+  `<a href="/privacy-policy" target="_blank"></a>`, sin texto dentro
+  (`assets/js/components/footer.js:16`). Es invisible e inaccesible en todo el sitio.
+  Se le pone texto.
+- `CLAUDE.md` afirma que `generateSlug()` está duplicada en `home.js`, `articles.js` y
+  `article.js`. **Es falso**: la función vive solo en `utils.js:5` y las tres páginas la
+  consumen desde ahí. Ese apunte se corrige en `CLAUDE.md` en lugar de "arreglar" un
+  problema inexistente.
 - El CV pasa de ser un enlace a una carpeta de Drive a PDFs servidos desde el sitio.
 
 ### CV
