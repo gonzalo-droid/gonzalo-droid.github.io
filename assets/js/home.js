@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all features
     // Note: Navbar, footer, and back-to-top are handled by components
     initScrollAnimations();
-    initPortfolioFilters();
     initStatsCounter();
     loadLatestArticles();
 });
@@ -52,37 +51,6 @@ function initScrollAnimations() {
     });
 
     animatedElements.forEach(el => observer.observe(el));
-}
-
-// Portfolio Filters
-function initPortfolioFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-
-            projectCards.forEach(card => {
-                const category = card.dataset.category;
-
-                if (filter === 'all' || category.split(',').map(c => c.trim()).includes(filter)) {
-                    card.classList.remove('hidden', 'fade-out');
-                    card.classList.add('fade-in');
-                } else {
-                    card.classList.add('fade-out');
-                    setTimeout(() => {
-                        card.classList.add('hidden');
-                        card.classList.remove('fade-out');
-                    }, 300);
-                }
-            });
-        });
-    });
 }
 
 // Stats Counter Animation
