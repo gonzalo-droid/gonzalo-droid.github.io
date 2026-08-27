@@ -1503,23 +1503,6 @@
 /*--------------------------------------------------------------
 # Enhanced Navbar
 --------------------------------------------------------------*/
-.navbar-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  background: transparent;
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-
-.navbar-fixed.scrolled {
-  background: rgba(4, 11, 20, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-}
-
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1553,34 +1536,6 @@
 .navbar-links {
   display: flex;
   gap: 30px;
-}
-
-.navbar-links a {
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  position: relative;
-}
-
-.navbar-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-primary);
-  transition: width 0.3s ease;
-}
-
-.navbar-links a:hover {
-  color: var(--accent-primary);
-}
-
-.navbar-links a:hover::after {
-  width: 100%;
 }
 
 .navbar-actions {
@@ -1677,6 +1632,10 @@
   z-index: 997;
   display: flex;
   align-items: center;
+  /* Keeps the navbar close to the legacy 70px it replaces, so .navbar-mobile's
+     `top: 70px` (untouched, further down in this file) still lines up. Not a raw
+     px: composed from spacing tokens. */
+  min-height: calc(var(--sp-8) + var(--sp-2));
   padding: var(--sp-3) var(--sp-5);
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -1702,7 +1661,9 @@
   position: relative;
   color: var(--text-muted);
   font-size: 0.875rem;
+  font-weight: 500;
   padding: var(--sp-2) 0;
+  transition: color var(--dur) var(--ease);
 }
 
 .navbar-links a::after {
@@ -1718,6 +1679,7 @@
 
 .navbar-links a:hover,
 .navbar-links a.active { color: var(--text); }
+.navbar-links a:hover::after,
 .navbar-links a.active::after { width: 100%; }
 
 #footer {
