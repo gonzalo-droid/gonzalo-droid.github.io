@@ -41,6 +41,7 @@ const NavbarComponent = {
         return `
     <nav class="navbar-fixed ${transparentClass}" id="mainNavbar">
         <div class="navbar-container">
+            <a href="/" class="navbar-brand-link">GONZALO<span>_</span></a>
             <div class="navbar-right">
                 <div class="navbar-links">
                     ${navLinks}
@@ -117,6 +118,39 @@ const NavbarComponent = {
         updateNavbar();
     },
 
+    // Marca como activo el enlace de la sección visible. Solo aplica en la home,
+    // donde los enlaces son anclas (#about, #portfolio, ...).
+    initScrollSpy() {
+        if (window.location.pathname !== '/') return;
+
+        const anchors = Array.from(
+            document.querySelectorAll('.navbar-links a[href^="/#"], .navbar-mobile a[href^="/#"]')
+        );
+        if (anchors.length === 0) return;
+
+        const byId = new Map();
+        for (const a of anchors) {
+            const id = a.getAttribute('href').slice(2);
+            if (!byId.has(id)) byId.set(id, []);
+            byId.get(id).push(a);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                for (const list of byId.values()) {
+                    list.forEach((a) => a.classList.remove('active'));
+                }
+                (byId.get(entry.target.id) || []).forEach((a) => a.classList.add('active'));
+            }
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        for (const id of byId.keys()) {
+            const section = document.getElementById(id);
+            if (section) observer.observe(section);
+        }
+    },
+
     // Render navbar into a container
     render(containerId, options = {}) {
         const container = document.getElementById(containerId);
@@ -128,6 +162,7 @@ const NavbarComponent = {
             if (typeof ThemeManager !== 'undefined') {
                 ThemeManager.bindToggle();
             }
+            this.initScrollSpy();
         }
     }
 };

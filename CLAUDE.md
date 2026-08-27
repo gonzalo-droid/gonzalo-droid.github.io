@@ -12,6 +12,7 @@ Portfolio website for a Mobile Developer with an integrated blog system. Static-
 npm install          # Install dependencies
 npm start            # Start Express server on port 8080
 npx live-server .    # Alternative: static dev server
+npm test             # node --test test/*.test.js — token contrast + projects.json validation
 ```
 
 Deployment is automatic via GitHub Actions on push to `master` branch.
@@ -22,21 +23,29 @@ Deployment is automatic via GitHub Actions on push to `master` branch.
 /
 ├── assets/
 │   ├── css/
-│   │   └── style.css          # Main styles with CSS variables
+│   │   ├── tokens.css         # Design tokens: color, spacing, typography, shape (both themes)
+│   │   └── style.css          # Styles; migrated blocks consume tokens.css instead of raw values
 │   ├── img/
-│   │   ├── articles/          # Article images
-│   │   └── portfolio/         # Project screenshots
+│   │   └── portfolio/         # Project screenshots (article images live here too, not in a separate folder)
 │   └── js/
 │       ├── components/
-│       │   └── navbar.js      # Reusable navbar component
+│       │   ├── navbar.js      # Reusable navbar component
+│       │   └── footer.js      # Reusable footer component
 │       ├── article.js         # Single article renderer
 │       ├── articles.js        # Articles list page
 │       ├── home.js            # Homepage interactivity
-│       └── theme.js           # Dark/light mode management
+│       ├── projects.js        # Renders the home project grid from content/projects.json
+│       ├── theme.js           # Dark/light mode management + `.js` class for the animation gate
+│       └── utils.js           # Shared helpers: generateSlug(), formatDate(), fetchArticles()
 ├── content/
 │   ├── articles/              # Markdown article files
 │   │   └── *.md
-│   └── articles.json          # Article metadata
+│   ├── articles.json          # Article metadata
+│   └── projects.json          # Project data rendered by projects.js
+├── test/
+│   ├── tokens.test.js         # Fails the build if a text token drops below 4.5:1 (WCAG AA)
+│   ├── projects.test.js       # Validates content/projects.json (required fields, unique slugs, images exist)
+│   └── helpers/contrast.js    # WCAG contrast math shared by tokens.test.js
 ├── articles/
 │   └── index.html             # Articles list page
 ├── article/
@@ -66,25 +75,63 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
 - Metadata in `content/articles.json`
 - Content as Markdown files in `content/articles/*.md`
 - Client-side rendering with marked.js + highlight.js
-- Slug generation: `title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')`
+- Slug generation: `generateSlug()` in `assets/js/utils.js`, consumed by `home.js`, `articles.js` and `article.js`
 
-## Theme System
+## Project System
 
-- CSS variables in `assets/css/style.css` (`:root` and `[data-theme="dark"]`)
-- ThemeManager in `assets/js/theme.js` handles toggle and localStorage persistence
-- `theme.js` loads synchronously before DOM to prevent flash
-- Navbar component calls `ThemeManager.bindToggle()` after rendering
+- Data in `content/projects.json` — 7 products (grouped by product, not by platform), each with slug, title,
+  summary, platforms, tech, image, highlights and links
+- `assets/js/projects.js` fetches it and renders the home project grid, including the platform filter
+  (`.filter-btn[data-filter]` / `article.project-card[data-category]`)
+- Cards link to `/project/<slug>`. That route does not exist yet and currently 404s — deliberate, built in a
+  later plan. Do not "fix" this by removing or hiding the links.
+
+## Design System
+
+- **Tokens** live in `assets/css/tokens.css` — color, spacing (base-4 scale, `--sp-1` … `--sp-10`), typography
+  and shape, defined once for light (`:root`) and once for dark (`[data-theme="dark"]`). Blocks of `style.css`
+  that have been migrated to the design system consume these tokens instead of writing raw hex or raw
+  typography px directly.
+  - `index.html` no longer loads Bootstrap CSS (Bootstrap Icons are still used). `articles/index.html` and
+    `article/index.html` still load Bootstrap and have not been migrated to tokens yet — that is a later plan.
+    Older, not-yet-migrated selectors in `style.css` (article cards, resume/testimonials/portfolio-filter
+    leftovers, the skills `.tag`/`.tech` block) still use the old CSS variables and arbitrary pixel values;
+    treat those as pending migration, not as the intended design language.
+- **Contrast is enforced by a test, not by convention.** `npm test` runs `test/tokens.test.js`, which fails the
+  build if any text token (`--text`, `--text-muted`, `--accent`, `--accent-2` over `--bg`, and `--accent-fg`
+  over `--accent`) drops below 4.5:1 (WCAG AA) in either theme. Do not lower the threshold to make a color
+  choice pass — change the color.
+- **Typography:** Archivo (display/UI) and JetBrains Mono (technical labels), loaded in `index.html`. Open
+  Sans, Raleway and Poppins are gone from the redesigned home; `articles/index.html` and `article/index.html`
+  still load the old three-family stack until they are migrated.
+- **Radius rule:** components built with the tokens use only `0` (`--radius-sm`) and `4px` (`--radius`), with
+  exactly two documented exceptions, each with an explanatory comment in `style.css`: `.phone` / `.phone img`
+  (depicts a physical device, so it keeps a rounder radius) and `.hero-badge .dot` (a circular status
+  indicator, `border-radius: 50%`). Any other radius value you find belongs to a not-yet-migrated block.
+- **Animation rule — the default state must be visible; hiding is gated on `.js`.** `theme.js` adds a `js`
+  class to `<html>` synchronously in `<head>`, before first paint. `style.css` only hides `[data-animate]`
+  elements under `.js` *and* inside `@media (prefers-reduced-motion: no-preference)`. Never wrap a new
+  animation in only the reduced-motion query — without the `.js` gate, content stays hidden when JavaScript
+  fails to load or run, which is the exact bug this pattern fixes. Every new `[data-animate]` element must
+  render visible with no JS and no motion preference.
+- ThemeManager in `assets/js/theme.js` handles the dark/light toggle and localStorage persistence, and loads
+  synchronously in `<head>` (on all of `index.html`, `articles/index.html` and `article/index.html`) to
+  prevent a flash — this is also where the `.js` class above gets added.
+- Navbar component calls `ThemeManager.bindToggle()` after rendering.
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `assets/js/theme.js` | Dark/light mode management |
-| `assets/js/home.js` | Homepage interactivity (filters, animations, stats) |
+| `assets/js/theme.js` | Dark/light mode management, `.js` class for the animation gate |
+| `assets/js/home.js` | Homepage interactivity (scroll animations, copy-email button) |
+| `assets/js/projects.js` | Renders and filters the home project grid from `content/projects.json` |
 | `assets/js/articles.js` | Articles list page loader |
 | `assets/js/article.js` | Single article renderer |
+| `assets/js/utils.js` | Shared helpers: `generateSlug()`, `formatDate()`, `fetchArticles()` |
 | `assets/js/components/navbar.js` | Reusable navbar with mobile menu |
-| `assets/css/style.css` | Main styles with CSS variables |
+| `assets/css/tokens.css` | Design tokens: color, spacing, typography, shape (both themes) |
+| `assets/css/style.css` | Main styles; migrated blocks consume `tokens.css` |
 
 ## Conventions
 
@@ -96,15 +143,17 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
 
 ## Important Patterns
 
-1. **Scroll animations:** Elements with `data-animate` attribute are observed via Intersection Observer
-2. **Portfolio filters:** Cards have `data-category` attribute (android, ios, kmm, web)
-3. **Stats counter:** Numbers animate using requestAnimationFrame when visible
-4. **Mobile menu:** Toggle handled by navbar.js component
-5. **GitHub Pages routing:** 404.html catches `/article/slug` and redirects with sessionStorage
+1. **Scroll animations:** Elements with `data-animate` attribute are observed via Intersection Observer; see
+   the Design System animation rule above for how visibility is gated
+2. **Project filters:** Cards have `data-category` attribute (android, ios, kmm, web), filtered client-side by
+   `initProjectFilters()` in `assets/js/projects.js`
+3. **Mobile menu:** Toggle handled by navbar.js component
+4. **GitHub Pages routing:** 404.html catches `/article/slug` and redirects with sessionStorage
 
 ## Gotchas
 
 - Article fetch paths use `/content/articles/` from root
+- Article images are stored under `assets/img/portfolio/`, not a separate `assets/img/articles/` folder
 - Theme script must stay synchronous (in `<head>`) to avoid flash
-- Slug logic is duplicated in `home.js`, `articles.js`, and `article.js` - keep in sync
 - Navbar component must call `ThemeManager.bindToggle()` after rendering
+- `/project/<slug>` links from the home project grid 404 on purpose — the route is built in a later plan

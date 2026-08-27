@@ -1,0 +1,129 @@
+[
+  {
+    "slug": "quote-anime",
+    "title": "Quote Anime",
+    "summary": "Frases de anime con widget, notificaciones diarias y modo offline.",
+    "platforms": ["android", "ios"],
+    "tech": ["Kotlin", "Compose", "Swift", "Room", "Firebase", "Glance Widget", "WorkManager"],
+    "image": "/assets/img/portfolio/app_quote_anime.webp",
+    "shot": "/assets/img/portfolio/shots/quote-anime.webp",
+    "highlights": [
+      "Catálogo de frases organizado por categorías de anime",
+      "Favoritos accesibles sin conexión",
+      "Widget de frase aleatoria en la pantalla de inicio",
+      "Notificaciones diarias a la hora que elija el usuario",
+      "Compartir frases como imagen con diseño propio"
+    ],
+    "links": [
+      { "label": "Play Store", "url": "https://play.google.com/store/apps/details?id=com.gondroid.quoteanime" },
+      { "label": "App Store", "url": "https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB" },
+      { "label": "Web", "url": "https://www.animequote.app/" }
+    ]
+  },
+  {
+    "slug": "autotest-licencia",
+    "title": "AutoTest Licencia",
+    "summary": "Simulacros y balotarios para el examen de licencia de conducir.",
+    "platforms": ["android"],
+    "tech": ["Kotlin", "Compose", "Clean Architecture", "MVVM", "Room", "Firebase"],
+    "image": "/assets/img/portfolio/app_autotest.webp",
+    "shot": "/assets/img/portfolio/shots/autotest.webp",
+    "highlights": [
+      "Simulacros de evaluación realistas",
+      "Descarga y compartición de balotarios en PDF por categoría",
+      "Acceso a las distintas categorías del examen",
+      "Estadísticas de progreso"
+    ],
+    "links": [
+      { "label": "Play Store", "url": "https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz" }
+    ]
+  },
+  {
+    "slug": "cixcash",
+    "title": "CixCash App",
+    "summary": "Conversión de criptomonedas y divisas en Kotlin Multiplatform, con registro de transacciones.",
+    "platforms": ["kmm"],
+    "tech": ["KMM", "Kotlin", "Compose", "Koin", "Ktor"],
+    "image": "/assets/img/portfolio/app_cixcash.webp",
+    "shot": "/assets/img/portfolio/shots/cixcash.webp",
+    "highlights": [
+      "Balance visible por moneda",
+      "Transacciones persistidas en base de datos",
+      "Conversión entre ARS, USD, BTC y ETH"
+    ],
+    "links": [
+      { "label": "Ver código", "url": "https://github.com/gonzalo-droid/cixCashApp" }
+    ]
+  },
+  {
+    "slug": "note-ai",
+    "title": "Note.AI",
+    "summary": "Notas de voz con transcripción automática usando OpenAI Whisper.",
+    "platforms": ["android"],
+    "tech": ["Kotlin", "Compose", "Room", "Firebase", "MVVM"],
+    "image": "/assets/img/portfolio/app_noteai.webp",
+    "highlights": [
+      "Listado y creación de notas en local",
+      "Grabación de voz asociada a cada nota",
+      "Transcripción automática con OpenAI Whisper"
+    ],
+    "links": [
+      { "label": "Ver código", "url": "https://github.com/gonzalo-droid/NoteAI" }
+    ]
+  },
+  {
+    "slug": "u-learning",
+    "title": "U-Learning",
+    "summary": "Plataforma educativa para cursos online, en Android, iOS y navegador.",
+    "platforms": ["android", "ios", "web"],
+    "tech": ["Kotlin", "Swift", "MVI", "StateFlow", "Hilt", "UIKit", "Angular", "Laravel", "AWS"],
+    "image": "/assets/img/portfolio/app_ulearning.webp",
+    "shot": "/assets/img/portfolio/shots/ulearning.webp",
+    "gallery": [
+      "/assets/img/portfolio/app_ulearning.webp",
+      "/assets/img/portfolio/app_ulearning_ios.webp",
+      "/assets/img/portfolio/web_ulearning.webp"
+    ],
+    "highlights": [
+      "App Android con MVI, StateFlow/SharedFlow y testing con Mockito",
+      "App iOS en Swift y UIKit, distribuida por TestFlight",
+      "Plataforma web y administrativa sobre AWS EC2 con despliegue continuo"
+    ],
+    "links": []
+  },
+  {
+    "slug": "admin-lotes",
+    "title": "Admin Lotes",
+    "summary": "Gestión de proyectos inmobiliarios multiempresa, con app de campo para asesores.",
+    "platforms": ["android", "web"],
+    "tech": ["Kotlin", "MVP", "Retrofit", "Dagger 2", "Firebase", "Laravel", "Vue", "MySQL"],
+    "image": "/assets/img/portfolio/app_erp.webp",
+    "gallery": [
+      "/assets/img/portfolio/app_erp.webp",
+      "/assets/img/portfolio/web_erp.webp"
+    ],
+    "highlights": [
+      "Seguimiento de lotes para asesores de venta en campo",
+      "Contratos, facturación electrónica y ventas en la plataforma web",
+      "Arquitectura por capas con SOLID e inyección de dependencias"
+    ],
+    "links": []
+  },
+  {
+    "slug": "solti-crm",
+    "title": "Solti-CRM",
+    "summary": "CRM comercial con seguimiento de clientes en pre-venta y post-venta.",
+    "platforms": ["android", "web"],
+    "tech": ["Java", "MVC", "Volley", "Firebase", "Laravel", "JavaScript", "MySQL"],
+    "image": "/assets/img/portfolio/app_crm.webp",
+    "gallery": [
+      "/assets/img/portfolio/app_crm.webp",
+      "/assets/img/portfolio/web_crm.webp"
+    ],
+    "highlights": [
+      "Registro de clientes, llamadas, correos y ubicación con servicios de Google",
+      "Seguimiento comercial en pre-venta y post-venta desde la web"
+    ],
+    "links": []
+  }
+]

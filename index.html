@@ -30,14 +30,11 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
         integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script src="/assets/js/theme.js"></script>
 </head>
 
@@ -46,58 +43,107 @@
     <div id="navbar-container" data-transparent="true"></div>
 
     <!-- HERO -->
-    <section id="hero" class="d-flex flex-column justify-content-end align-items-start p-5">
-        <div class="hero-container">
-            <h1>Gonzalo López</h1>
-            <p><strong>Mobile Developer</strong></p>
+    <section id="hero" class="hero">
+        <div class="container hero-inner">
+            <p class="hero-badge"><span class="dot"></span>Disponible para remoto</p>
 
-            <div class="download-cv">
-                <a class="instagram" id="downloadLink"
-                    href="https://drive.google.com/drive/folders/1_jF9ljevjeBtkrfiAQmkjxyfxu0BOV6p?usp=sharing"
-                    target="_blank">
-                    Descargar CV <i class="bi bi-download"></i> </a>
+            <h1 class="t-display">Gonzalo<br>López</h1>
+
+            <p class="hero-role"><strong>Android Developer</strong> · Kotlin · Compose · KMM</p>
+            <p class="hero-pitch t-body">
+                5 años construyendo apps en producción. Hoy en banca, para millones de usuarios.
+            </p>
+
+            <div class="hero-cta">
+                <a class="btn-primary" href="#portfolio">Ver proyectos</a>
+                <a class="btn-secondary" href="https://drive.google.com/file/d/1aNYpEk3DXCDbyXXamSAKisFue7hUL8C6/view?usp=sharing" target="_blank" rel="noopener">CV</a>
             </div>
-            <div class="profile d-flex justify-content">
 
-                <div class="social-links mt-3 text-center">
+            <div class="hero-shots" aria-hidden="true">
+                <figure class="phone"><img src="/assets/img/portfolio/shots/autotest.webp" alt=""></figure>
+                <figure class="phone phone-lg"><img src="/assets/img/portfolio/shots/quote-anime.webp" alt=""></figure>
+                <figure class="phone phone-lg"><img src="/assets/img/portfolio/shots/ulearning.webp" alt=""></figure>
+                <figure class="phone"><img src="/assets/img/portfolio/shots/cixcash.webp" alt=""></figure>
+            </div>
+        </div>
+    </section>
 
-                    <a href="https://www.linkedin.com/in/gonzalo-lozg/" target="_blank" class="linkedin"><i
-                            class="bi bi-linkedin"></i></a>
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="t-h1">Proyectos</h2>
+            </div>
 
-                    <a href="https://github.com/gonzalo-droid" target="_blank" class="google-plus"><i
-                            class="bi bi-github"></i></a>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="android">Android</button>
+                <button class="filter-btn" data-filter="ios">iOS</button>
+                <button class="filter-btn" data-filter="kmm">KMM</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
 
-                    <a href="https://www.instagram.com/gonzalo.lozg/" target="_blank" class="instagram"><i
-                            class="bi bi-instagram"></i></a>
+            <div class="projects-grid" id="projectsGrid"></div>
 
-                    <a href="https://www.tiktok.com/@gonzalodroid" target="_blank" class="tiktok"><i
-                            class="bi bi-tiktok"></i></a>
-
-                    <a href="https://www.youtube.com/@GonzaloDroid2050" target="_blank" class="youtube"><i
-                            class="bi bi-youtube"></i></a>
+            <!-- Los proyectos se cargan por fetch() desde content/projects.json (projects.js).
+                 Sin JavaScript esa petición nunca ocurre, así que este fallback estático evita
+                 que la sección insignia del portafolio quede vacía. No es prerenderizado real
+                 (eso vendría del script build:pages de un plan posterior); es solo la lista
+                 con sus enlaces reales para que nada quede oculto por defecto. -->
+            <noscript>
+                <div>
+                    <h3 class="t-h3">Proyectos</h3>
+                    <ul>
+                        <li>
+                            <strong>Quote Anime</strong> — Frases de anime con widget, notificaciones diarias y modo offline.
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.quoteanime">Play Store</a>,
+                            <a href="https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB">App Store</a>,
+                            <a href="https://www.animequote.app/">Web</a>
+                        </li>
+                        <li>
+                            <strong>AutoTest Licencia</strong> — Simulacros y balotarios para el examen de licencia de conducir.
+                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz">Play Store</a>
+                        </li>
+                        <li>
+                            <strong>CixCash App</strong> — Conversión de criptomonedas y divisas en Kotlin Multiplatform, con registro de transacciones.
+                            <a href="https://github.com/gonzalo-droid/cixCashApp">Ver código</a>
+                        </li>
+                        <li>
+                            <strong>Note.AI</strong> — Notas de voz con transcripción automática usando OpenAI Whisper.
+                            <a href="https://github.com/gonzalo-droid/NoteAI">Ver código</a>
+                        </li>
+                        <li>
+                            <strong>U-Learning</strong> — Plataforma educativa para cursos online, en Android, iOS y navegador.
+                        </li>
+                        <li>
+                            <strong>Admin Lotes</strong> — Gestión de proyectos inmobiliarios multiempresa, con app de campo para asesores.
+                        </li>
+                        <li>
+                            <strong>Solti-CRM</strong> — CRM comercial con seguimiento de clientes en pre-venta y post-venta.
+                        </li>
+                    </ul>
                 </div>
-            </div>
-
+            </noscript>
         </div>
     </section>
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about" data-animate>
+    <section id="about" class="about section" data-animate>
         <div class="container">
 
             <div class="section-title">
-                <h2>Hola, Nakamas</h2>
+                <h2 class="t-h1">Hola, Nakamas</h2>
             </div>
 
-            <div class="row">
-                <div class="col-lg-3">
+            <div class="about-grid">
+                <div class="about-photo">
                     <picture>
                         <source srcset="assets/img/profile.webp" type="image/webp">
-                        <img src="assets/img/profile.jpeg" class="img-fluid" alt="Gonzalo López - Mobile Developer"
+                        <img src="assets/img/profile.jpeg" alt="Gonzalo López - Mobile Developer"
                             loading="lazy">
                     </picture>
                 </div>
-                <div class="col-lg-9 pt-4 pt-lg-0 content">
+                <div class="about-content">
                     <p>
                         Android/Mobile Developer con +5 años construyendo apps en producción con Kotlin. Me especializo
                         en refactorización de legacy, arquitectura limpia (MVVM/MVP/MVI) y modularización para entregar
@@ -110,22 +156,18 @@
                                 target="_blank">Neko Manga Cix</a></strong>, una tienda/comunidad para amantes del
                         manga.
                     </p>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="tags">
-                                <span class="tag">Kotlin</span>
-                                <span class="tag">Java</span>
-                                <span class="tag">Swift</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Jetpack Compose</span>
-                                <span class="tag">KMM | Multiplataforma</span>
-                                <span class="tag">Clean Architecture</span>
-                                <span class="tag">MVVM | MVP | MVI</span>
-                                <span class="tag">Testing</span>
-                                <span class="tag">Firebase | CI/CD</span>
-                                <span class="tag">Git | GitHub</span>
-                            </div>
-                        </div>
+                    <div class="tags">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">Swift</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Jetpack Compose</span>
+                        <span class="tag">KMM | Multiplataforma</span>
+                        <span class="tag">Clean Architecture</span>
+                        <span class="tag">MVVM | MVP | MVI</span>
+                        <span class="tag">Testing</span>
+                        <span class="tag">Firebase | CI/CD</span>
+                        <span class="tag">Git | GitHub</span>
                     </div>
                 </div>
             </div>
@@ -135,10 +177,10 @@
     <!-- End About Section -->
 
     <!-- ======= Experience Section ======= -->
-    <section id="experience" class="experience section-bg" data-animate>
+    <section id="experience" class="experience section" data-animate>
         <div class="container">
             <div class="section-title">
-                <h2>Mi camino</h2>
+                <h2 class="t-h1">Mi camino</h2>
             </div>
 
             <div class="timeline">
@@ -148,7 +190,6 @@
                         <span>Presente</span>
                         <small>2025</small>
                     </div>
-                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>Android Developer</h3>
@@ -175,7 +216,6 @@
                         <span>2025</span>
                         <small>2022</small>
                     </div>
-                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>Android Developer</h3>
@@ -202,7 +242,6 @@
                         <span>2022</span>
                         <small>2022</small>
                     </div>
-                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>Android Developer</h3>
@@ -226,7 +265,6 @@
                         <span>2022</span>
                         <small>2021</small>
                     </div>
-                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>Android Developer</h3>
@@ -253,7 +291,6 @@
                         <span>Presente</span>
                         <small>2019</small>
                     </div>
-                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>Android Developer Freelance</h3>
@@ -278,364 +315,11 @@
     </section>
     <!-- End Experience Section -->
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg" data-animate>
-        <div class="container">
-            <div class="section-title">
-                <h2>Proyectos</h2>
-            </div>
-
-            <!-- Portfolio Filters -->
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="android">Android</button>
-                <button class="filter-btn" data-filter="ios">iOS</button>
-                <button class="filter-btn" data-filter="kmm">KMM</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Quote Anime -->
-                <div class="project-card" data-category="android,ios">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/app_quote_anime.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_quote_anime.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_quote_anime.png"
-                                alt="Quote Anime | Frases Anime - Frases de anime que te acompañan cada día"
-                                loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Quote Anime | Frases Anime</h3>
-                        <p class="project-description">Descubre y comparte frases inspiradoras de tus animes favoritos. Explora por categorías,guarda tus frases preferidas y recíbelas cada día como notificación o directamente en tu pantalla de inicio con el widget integrado. Mi proyecto más reciente, disponible en      
-                            <a href="https://www.animequote.app/"
-                                target="_blank"><strong> Frases Anime | Web </strong></a>
-                        </p>
-                        <div class="project-features">
-                            <strong>Frases:</strong> Catálogo organizado por categorías de anime<br>
-                            <strong>Favoritos:</strong> Guarda y accede a tus frases favoritas offline<br>
-                            <strong>Widget:</strong> Frase aleatoria en tu pantalla de inicio<br>
-                            <strong>Notificaciones:</strong> Recibe frases diarias a la hora que elijas<br>
-                            <strong>Compartir:</strong> Comparte frases como imagen con diseño personalizado
-                        </div>
-                        <div class="project-tech">
-                            <span>Android</span>
-                            <span>Kotlin</span>
-                            <span>iOS</span>
-                            <span>Swift</span>
-                            <span>Compose</span>
-                            <span>Clean Architecture</span>
-                            <span>Room</span>
-                            <span>Firebase</span>
-                            <span>Glance Widget</span>
-                            <span>WorkManager</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.quoteanime"
-                                target="_blank"><i class=" bi-google-play"></i> Play Store</a>
-                            
-                                <span></span>
-
-                            <a href="https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB"
-                                target="_blank"><i class=" bi-apple"></i> App Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AutoTest Licencia -->
-                <div class="project-card" data-category="android">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/app_autotest.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_autotest.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_autotest.jpg"
-                                alt="AutoTest Licencia - App de práctica para examen de licencia" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>AutoTest Licencia</h3>
-                        <p class="project-description">Práctica para tu examen de licencia conducir, repasa con un balotario actualizado y categorizado, realiza el simulacro de evalución y mide tus resultados
-                            
-                        </p>
-                        <div class="project-features">
-                            <strong>Cuestionario:</strong> Simulacros realistas<br>
-                            <strong>Pdf:</strong> Descarga y comparte los balotarios según la categoría<br>
-                            <strong>Categorías:</strong> Accede a las diferentes categorías del examen<br>
-                            <strong>Estadísticas:</strong> Mide tu progreso
-                        </div>
-                        <div class="project-tech">
-                            <span>Firebase</span>
-                            <span>Android</span>
-                            <span>Kotlin</span>
-                            <span>Compose</span>
-                            <span>Clean Architecture</span>
-                            <span>ROOM</span>
-                            <span>MVVM</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz"
-                                target="_blank"><i class="bi bi-google-play"></i> Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CixCash App -->
-                <div class="project-card" data-category="kmm">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/app_cixcash.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_cixcash.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_cixcash.jpg"
-                                alt="CixCash App - Conversión de criptomonedas KMM" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3><a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank">CixCash App</a></h3>
-                        <p class="project-description">Aplicación de conversión de criptomonedas y divisas en Kotlin
-                            Multiplatform para Android/iOS. Registra transacciones y visualiza balances.</p>
-                        <div class="project-features">
-                            <strong>Balance:</strong> Visualización por moneda<br>
-                            <strong>Transacciones:</strong> Persistencia en BD<br>
-                            <strong>Conversión:</strong> ARS, USD, BTC, ETH
-                        </div>
-                        <div class="project-tech">
-                            <span>KMM</span>
-                            <span>iOS</span>
-                            <span>Android</span>
-                            <span>Compose</span>
-                            <span>Koin</span>
-                            <span>Ktor</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/gonzalo-droid/cixCashApp" target="_blank"><i
-                                    class="bi bi-github"></i> Ver código</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Note.AI -->
-                <div class="project-card" data-category="android">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_noteai.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_noteai.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_noteai.jpg"
-                                alt="Note.AI - Notas con transcripción OpenAI Whisper" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3><a href="https://github.com/gonzalo-droid/NoteAI" target="_blank">Note.AI</a></h3>
-                        <p class="project-description">Proyecto personal con desarrollo moderno en Android. Notas de voz
-                            con transcripción usando OpenAI Whisper.</p>
-                        <div class="project-features">
-                            <strong>Notas:</strong> Listado y creación local<br>
-                            <strong>Voz:</strong> Grabación asociada<br>
-                            <strong>OpenAI:</strong> Transcripción con Whisper
-                        </div>
-                        <div class="project-tech">
-                            <span>Android</span>
-                            <span>Kotlin</span>
-                            <span>Compose</span>
-                            <span>ROOM</span>
-                            <span>Firebase</span>
-                            <span>MVVM</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/gonzalo-droid/NoteAI" target="_blank"><i
-                                    class="bi bi-github"></i> Ver código</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- U-Learning iOS -->
-                <div class="project-card" data-category="ios">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/app_ulearning_ios.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_ulearning_ios.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_ulearning_ios.jpg"
-                                alt="U-Learning iOS - App educativa Swift" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>U-Learning v1.0 | iOS </h3>
-                        <p class="project-description">Aplicación para estudiantes. Curva de aprendizaje en iOS,
-                            comprendiendo ventajas y desventajas entre Android e iOS.</p>
-                        <div class="project-tech">
-                            <span>iOS</span>
-                            <span>Swift</span>
-                            <span>MVVM</span>
-                            <span>Testflight</span>
-                            <span>UiKit</span>
-                            <span>Firebase</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- U-Learning Android -->
-                <div class="project-card" data-category="android">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/app_ulearning.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_ulearning.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_ulearning.jpg"
-                                alt="U-Learning Android - App educativa Kotlin MVI" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>U-Learning v1.0 | Android</h3>
-                        <p class="project-description">App para estudiantes con enfoque en organización y legibilidad.
-                            Implementación de MVI, StateFlow/SharedFlow y testing con Mockito.</p>
-                        <div class="project-tech">
-                            <span>Android</span>
-                            <span>Kotlin</span>
-                            <span>MVI</span>
-                            <span>StateFlow</span>
-                            <span>Hilt</span>
-                            <span>Material.3</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- U-Learning Web -->
-                <div class="project-card" data-category="web">
-                    <div class="project-card-image"
-                        onclick="openImageLightbox('assets/img/portfolio/web_ulearning.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/web_ulearning.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_ulearning.jpg"
-                                alt="U-Learning Web - Plataforma Laravel Angular AWS" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>U-Learning | Web</h3>
-                        <p class="project-description">Ecommerce y plataformas administrativas. Configuración de AWS con
-                            EC2 e implementación de despliegue continuo.</p>
-                        <div class="project-tech">
-                            <span>Laravel 8</span>
-                            <span>Angular 12</span>
-                            <span>Postgres</span>
-                            <span>AWS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Admin Lotes Android -->
-                <div class="project-card" data-category="android">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_erp.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_erp.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_erp.jpg"
-                                alt="Admin Lotes Android - Gestión inmobiliaria Kotlin" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Admin Lotes | Android</h3>
-                        <p class="project-description">App para asesores de venta con seguimiento eficaz de lotes.
-                            Buenas prácticas con SOLID, arquitectura por capas e inyección de dependencias.</p>
-                        <div class="project-tech">
-                            <span>Kotlin</span>
-                            <span>MVP</span>
-                            <span>Retrofit</span>
-                            <span>Dagger2</span>
-                            <span>Firebase</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Admin Lotes Web -->
-                <div class="project-card" data-category="web">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_erp.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/web_erp.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_erp.jpg" alt="Admin Lotes Web - Sistema Laravel Vue"
-                                loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Admin Lotes | Web</h3>
-                        <p class="project-description">Gestión de proyectos inmobiliarios multiempresa. Contratos,
-                            facturación electrónica y ventas. Desarrollo, despliegue y capacitación.</p>
-                        <div class="project-tech">
-                            <span>Laravel 6</span>
-                            <span>Vue</span>
-                            <span>MySQL</span>
-                            <span>Apache2</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Solti-CRM Android -->
-                <div class="project-card" data-category="android">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/app_crm.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/app_crm.webp" type="image/webp">
-                            <img src="assets/img/portfolio/app_crm.jpg"
-                                alt="Solti-CRM Android - Gestión de clientes Java" loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Solti-CRM | Android</h3>
-                        <p class="project-description">App para asesores de venta con registro de clientes, llamadas,
-                            correos y ubicación usando servicios de Google.</p>
-                        <div class="project-tech">
-                            <span>Java</span>
-                            <span>MVC</span>
-                            <span>Volley</span>
-                            <span>Firebase</span>
-                            <span>Play Store</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Solti-CRM Web -->
-                <div class="project-card" data-category="web">
-                    <div class="project-card-image" onclick="openImageLightbox('assets/img/portfolio/web_crm.webp')">
-                        <picture>
-                            <source srcset="assets/img/portfolio/web_crm.webp" type="image/webp">
-                            <img src="assets/img/portfolio/web_crm.jpg" alt="Solti-CRM Web - Sistema comercial Laravel"
-                                loading="lazy">
-                        </picture>
-                        <span class="zoom-icon"><i class="bi bi-zoom-in"></i></span>
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Solti-CRM | Web</h3>
-                        <p class="project-description">Sistema comercial de gestión de clientes con seguimiento en
-                            pre-venta y post-venta. Primer proyecto comercial completo.</p>
-                        <div class="project-tech">
-                            <span>Laravel 6</span>
-                            <span>JavaScript</span>
-                            <span>MySQL</span>
-                            <span>Apache2</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Image Lightbox -->
-    <div class="image-lightbox" id="imageLightbox" onclick="closeImageLightbox()">
-        <button class="close-lightbox" onclick="closeImageLightbox()"><i class="bi bi-x"></i></button>
-        <img id="lightboxImage" src="" alt="Project Image">
-    </div>
-
-
     <!-- ======= Articles Section ======= -->
-    <section id="articles" class="articles section-bg" data-animate>
+    <section id="articles" class="articles section" data-animate>
         <div class="container">
             <div class="section-title">
-                <h2>Últimos Artículos</h2>
+                <h2 class="t-h1">Últimos Artículos</h2>
                 <p>Comparto conocimiento sobre desarrollo móvil y buenas prácticas</p>
             </div>
 
@@ -644,7 +328,7 @@
             </div>
 
             <div class="articles-cta">
-                <a href="/articles" class="btn-articles">
+                <a href="/articles" class="btn-secondary">
                     Ver todos los artículos <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -653,63 +337,26 @@
     <!-- End Articles Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact" data-animate>
+    <section id="contact" class="section">
         <div class="container">
-
-            <div class="section-title">
-                <h2>Sigamos en contacto 👨🏽‍💻</h2>
-            </div>
-
-            <div class="row">
-
-                <div class="col-lg-12 ">
-                    <div class="info row justify-content-around g-2">
-                        <div class="contact-item col-12 col-md-3 d-flex align-items-center gap-3">
-                            <a href="https://www.linkedin.com/in/gonzalo-lozg/" target="_blank" class="icon-link">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                            <div class="text">
-                                <div class="label"><strong>LinkedIn</strong></div>
-                                <a href="https://www.linkedin.com/in/gonzalo-lozg/" target="_blank">@gonzalo-lozg</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item col-12 col-md-3 d-flex align-items-center gap-3">
-                            <a href="https://github.com/gonzalo-droid/" target="_blank" class="icon-link">
-                                <i class="bi bi-github"></i>
-                            </a>
-                            <div class="text">
-                                <div class="label"><strong>GitHub</strong></div>
-                                <a href="https://github.com/gonzalo-droid" target="_blank">@gonzalo-droid</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item col-12 col-md-3 d-flex align-items-center gap-3">
-                            <a href="https://www.instagram.com/gonzalo.lozg/" target="_blank" class="icon-link">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <div class="text">
-                                <div class="label"><strong>Instagram</strong></div>
-                                <a href="https://www.instagram.com/gonzalo.lozg/" target="_blank">@gonzalo.lozg</a>
-                            </div>
-                        </div>
-
-
-                        <div class="contact-item col-12 col-md-3 d-flex align-items-center gap-3">
-                            <a href="https://www.instagram.com/neko.manga.cix/" target="_blank" class="icon-link">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <div class="text">
-                                <div class="label"><strong>Instagram</strong></div>
-                                <a href="https://www.instagram.com/neko.manga.cix/" target="_blank">Neko Manga Cix</a>
-                            </div>
-                        </div>
-
-                    </div>
-
+            <div class="contact-card">
+                <div>
+                    <h2 class="t-h2">¿Hablamos?</h2>
+                    <p class="contact-mail">
+                        <a href="mailto:gonzalo.lozg@gmail.com">gonzalo.lozg@gmail.com</a>
+                        <button type="button" class="copy-mail" data-mail="gonzalo.lozg@gmail.com">Copiar</button>
+                    </p>
                 </div>
+                <a class="btn-primary" href="https://drive.google.com/file/d/1aNYpEk3DXCDbyXXamSAKisFue7hUL8C6/view?usp=sharing" target="_blank" rel="noopener">Descargar CV</a>
             </div>
 
+            <ul class="contact-social">
+                <li><a href="https://www.linkedin.com/in/gonzalo-lozg/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://github.com/gonzalo-droid" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.instagram.com/gonzalo.lozg/" target="_blank" rel="noopener">Instagram</a></li>
+                <li><a href="https://www.tiktok.com/@gonzalodroid" target="_blank" rel="noopener">TikTok</a></li>
+                <li><a href="https://www.youtube.com/@GonzaloDroid2050" target="_blank" rel="noopener">YouTube</a></li>
+            </ul>
         </div>
     </section><!-- End Contact Section -->
 
@@ -719,6 +366,7 @@
     <script src="/assets/js/components/navbar.js"></script>
     <script src="/assets/js/components/footer.js"></script>
     <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/projects.js"></script>
     <script src="/assets/js/home.js"></script>
 
 </body>

@@ -1,4 +1,12 @@
 /**
+ * theme.js se carga de forma síncrona en <head> en todas las páginas
+ * (index.html, articles/index.html, article/index.html), antes del primer
+ * pintado. Esta clase es la señal que usa style.css para saber si el JS
+ * llegó a ejecutarse: sin ella, [data-animate] nunca se oculta.
+ */
+document.documentElement.classList.add('js');
+
+/**
  * Theme Manager - Handles dark/light mode switching
  * Features:
  * - System preference detection
