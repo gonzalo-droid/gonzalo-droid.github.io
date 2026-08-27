@@ -148,15 +148,11 @@
     color: var(--accent);
   }
 
-  a {
-    color: var(--accent-primary);
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: var(--accent-hover);
-    text-decoration: none;
-  }
+  /* El color base de los enlaces lo pone el reset (línea 11: var(--accent)).
+     Antes había aquí una regla `a { color: var(--accent-primary) }` con la
+     misma especificidad que ganaba por ir después en el archivo, pintando
+     los enlaces de copy (y los de Markdown en /article) del azul del
+     template viejo (#149ddd, 2.79:1) en vez del acento Mecha. */
 
   /*--------------------------------------------------------------
   # Back to top button
