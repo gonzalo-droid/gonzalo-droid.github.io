@@ -1,4 +1,17 @@
   /*--------------------------------------------------------------
+  # Minimal reset (reemplaza el reset que aportaba Bootstrap en index.html;
+  # /articles y /article/<slug> siguen cargando Bootstrap además de esto,
+  # así que aquí no hay conflicto para ellas)
+  --------------------------------------------------------------*/
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+  img, picture, svg { max-width: 100%; }
+  button { font: inherit; }
+  ul { list-style: none; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--text); }
+
+  /*--------------------------------------------------------------
   # CSS Variables for Theme Support
   --------------------------------------------------------------*/
   :root {
@@ -205,54 +218,8 @@
     border: 8px solid var(--border-profile);
   }
 
-  #header .profile h1 {
-    font-size: 24px;
-    margin: 0;
-    padding: 0;
-    font-weight: 600;
-    -moz-text-align-last: center;
-    text-align-last: center;
-    font-family: "Poppins", sans-serif;
-  }
-
   .profile h1 a,
   .profile h1 a:hover {
-    color: var(--text-light);
-    text-decoration: none;
-  }
-
-  .download-cv a {
-    cursor: pointer;
-    font-size: 18px;
-    display: inline-block;
-    background: var(--bg-btn);
-    color: var(--text-light);
-    line-height: 1;
-    padding: 8px 10px;
-    margin-right: 4px;
-    border-radius: 20px;
-    text-align: center;
-    width: auto;
-    height: auto;
-  }
-
-  .profile .social-links a {
-    font-size: 18px;
-    display: inline-block;
-    background: var(--bg-btn);
-    color: var(--text-light);
-    line-height: 1;
-    padding: 8px 0;
-    margin-right: 4px;
-    border-radius: 50%;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    transition: 0.3s;
-  }
-
-  #header .profile .social-links a:hover {
-    background: var(--accent-primary);
     color: var(--text-light);
     text-decoration: none;
   }
@@ -580,28 +547,6 @@
     margin-left: 60px;
   }
 
-  .facts .count-box p {
-    padding: 15px 0 0 0;
-    margin: 0 0 0 60px;
-    font-family: "Raleway", sans-serif;
-    font-size: 14px;
-    color: var(--text-link-dark);
-  }
-
-  .facts .count-box a {
-    font-weight: 600;
-    display: block;
-    margin-top: 20px;
-    color: var(--text-link-dark);
-    font-size: 15px;
-    font-family: "Poppins", sans-serif;
-    transition: ease-in-out 0.3s;
-  }
-
-  .facts .count-box a:hover {
-    color: var(--accent-border);
-  }
-
   /*--------------------------------------------------------------
   # Akills
   --------------------------------------------------------------*/
@@ -610,16 +555,6 @@
     display: block;
     background: none;
     border-radius: 0;
-  }
-
-  .skills .progress .skill {
-    padding: 0;
-    margin: 0 0 6px 0;
-    text-transform: uppercase;
-    display: block;
-    font-weight: 600;
-    font-family: "Poppins", sans-serif;
-    color: var(--text-heading-dark);
   }
 
   .skills .progress .skill .val {
@@ -655,16 +590,6 @@
     margin-top: -2px;
     border-left: 2px solid var(--accent-border);
     position: relative;
-  }
-
-  .resume .resume-item h4 {
-    line-height: 18px;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-family: "Poppins", sans-serif;
-    color: var(--text-heading-dark);
-    margin-bottom: 10px;
   }
 
   .resume .resume-item h5 {
@@ -955,193 +880,6 @@
     padding-bottom: 130px;
   }
 
-  .contact .info {
-    padding: 30px;
-    background: var(--bg-card);
-    width: 100%;
-    box-shadow: 0 0 24px 0 var(--shadow-color);
-  }
-
-  .contact .info i {
-    font-size: 20px;
-    color: var(--accent-primary);
-    float: left;
-    width: 44px;
-    height: 44px;
-    background: var(--bg-icon);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .contact .info h4 {
-    padding: 0 0 0 60px;
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-heading-dark);
-  }
-
-  .contact .info p {
-    padding: 0 0 0 60px;
-    font-size: 14px;
-    color: var(--text-heading);
-  }
-
-  .contact .info .email p {
-    padding-top: 5px;
-  }
-
-  .contact .info .social-links {
-    padding-left: 60px;
-  }
-
-  .contact .info .social-links a {
-    font-size: 18px;
-    display: inline-block;
-    background: var(--bg-btn);
-    color: var(--text-light);
-    line-height: 1;
-    padding: 8px 0;
-    border-radius: 50%;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    transition: 0.3s;
-    margin-right: 10px;
-  }
-
-  .contact .info .social-links a:hover {
-    background: var(--accent-primary);
-    color: var(--text-light);
-  }
-
-  .contact .info .email:hover i,
-  .contact .info .address:hover i,
-  .contact .info .phone:hover i {
-    background: var(--accent-primary);
-    color: var(--text-light);
-  }
-
-  .contact .php-email-form {
-    width: 100%;
-    padding: 30px;
-    background: var(--bg-card);
-    box-shadow: 0 0 24px 0 var(--shadow-color);
-  }
-
-  .contact .php-email-form .form-group {
-    padding-bottom: 8px;
-  }
-
-  .contact .php-email-form .validate {
-    display: none;
-    color: red;
-    margin: 0 0 15px 0;
-    font-weight: 400;
-    font-size: 13px;
-  }
-
-  .contact .php-email-form .error-message {
-    display: none;
-    color: var(--text-light);
-    background: var(--error-color);
-    text-align: left;
-    padding: 15px;
-    font-weight: 600;
-  }
-
-  .contact .php-email-form .error-message br+br {
-    margin-top: 25px;
-  }
-
-  .contact .php-email-form .sent-message {
-    display: none;
-    color: var(--text-light);
-    background: var(--success-color);
-    text-align: center;
-    padding: 15px;
-    font-weight: 600;
-  }
-
-  .contact .php-email-form .loading {
-    display: none;
-    background: var(--bg-card);
-    text-align: center;
-    padding: 15px;
-  }
-
-  .contact .php-email-form .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid var(--success-color);
-    border-top-color: var(--border-color);
-    -webkit-animation: animate-loading 1s linear infinite;
-    animation: animate-loading 1s linear infinite;
-  }
-
-  .contact .php-email-form .form-group {
-    margin-bottom: 15px;
-  }
-
-  .contact .php-email-form label {
-    padding-bottom: 8px;
-  }
-
-  .contact .php-email-form input,
-  .contact .php-email-form textarea {
-    border-radius: 0;
-    box-shadow: none;
-    font-size: 14px;
-  }
-
-  .contact .php-email-form input {
-    height: 44px;
-  }
-
-  .contact .php-email-form textarea {
-    padding: 10px 15px;
-  }
-
-  .contact .php-email-form button[type=submit] {
-    background: var(--accent-primary);
-    border: 0;
-    padding: 10px 24px;
-    color: var(--text-light);
-    transition: 0.4s;
-    border-radius: 4px;
-  }
-
-  .contact .php-email-form button[type=submit]:hover {
-    background: var(--accent-hover);
-  }
-
-  @-webkit-keyframes animate-loading {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes animate-loading {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
   /*--------------------------------------------------------------
   # Breadcrumbs
   --------------------------------------------------------------*/
@@ -1343,19 +1081,6 @@
   display: flex;
   align-items: center;
   gap: 40px;
-}
-
-.navbar-brand {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent-primary);
-  text-decoration: none;
-  letter-spacing: 2px;
-  margin-right: auto;
-}
-
-.navbar-brand:hover {
-  color: var(--accent-hover);
 }
 
 .navbar-links {
@@ -1613,12 +1338,15 @@
   margin-bottom: 40px;
 }
 
+/* .article-card solo lo usa el preview de la home (assets/js/home.js);
+   /articles usa .article-item, con su propio bloque de estilos más abajo.
+   Migrado a tokens Mecha en vez de --bg-card (legado, azul marino en dark). */
 .article-card {
-  background: var(--bg-card);
-  border-radius: 12px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   box-shadow: 0 4px 20px var(--shadow-card);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
@@ -1704,25 +1432,23 @@
 /*--------------------------------------------------------------
 # Scroll Animations
 --------------------------------------------------------------*/
-[data-animate] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* El estado por defecto es VISIBLE. La animación solo existe si el usuario
+   no ha pedido reducir movimiento — así un fallo de JS nunca deja la
+   página en blanco. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  }
 
-[data-animate].animate-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  [data-animate].animate-visible {
+    opacity: 1;
+    transform: none;
+  }
 
-.timeline-item[data-animate] {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-
-.timeline-item[data-animate].animate-visible {
-  opacity: 1;
-  transform: translateX(0);
+  .timeline-item[data-animate] { transform: translateX(-24px); }
+  .timeline-item[data-animate].animate-visible { transform: none; }
 }
 
 /*--------------------------------------------------------------
@@ -1925,6 +1651,26 @@
 .section { padding: var(--sp-9) 0; border-top: 1px solid var(--border); }
 .section-title { margin-bottom: var(--sp-6); }
 .container { width: min(1120px, 100% - var(--sp-6)); margin-inline: auto; }
+
+/* About (reemplaza el .row/.col-lg-* de Bootstrap) */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+.about-photo img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 200px; }
+}
 
 /* Timeline */
 .timeline { border-left: 1px solid var(--border); margin-left: var(--sp-2); }
