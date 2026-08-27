@@ -1669,6 +1669,74 @@
 }
 
 /*--------------------------------------------------------------
+# Mecha — Navbar & Footer
+--------------------------------------------------------------*/
+.navbar-fixed {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 997;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-5);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.navbar-fixed.scrolled {
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--border);
+}
+
+.navbar-brand-link {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-right: auto;
+}
+
+.navbar-brand-link span { color: var(--accent); }
+
+.navbar-links a {
+  position: relative;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: var(--sp-2) 0;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--dur) var(--ease);
+}
+
+.navbar-links a:hover,
+.navbar-links a.active { color: var(--text); }
+.navbar-links a.active::after { width: 100%; }
+
+#footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--sp-6) var(--sp-5);
+  color: var(--text-muted);
+}
+
+#footer a { color: var(--text-muted); }
+#footer a:hover { color: var(--accent); }
+
+.back-to-top {
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+/*--------------------------------------------------------------
 # Stats Bar
 --------------------------------------------------------------*/
 .stats-bar {
@@ -2289,15 +2357,6 @@
   text-align: center;
   padding: 60px 0;
   color: var(--text-muted);
-}
-
-/* Navbar active link */
-.navbar-links a.active {
-  color: var(--accent-primary);
-}
-
-.navbar-links a.active::after {
-  width: 100%;
 }
 
 @media (max-width: 992px) {
