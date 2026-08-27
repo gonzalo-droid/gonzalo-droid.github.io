@@ -1,0 +1,52 @@
+/* Sistema de diseño Mecha — única fuente de valores.
+   Ninguna otra hoja define hex, px de tipografía ni espaciados crudos. */
+
+:root {
+  /* Color — tema claro (por defecto) */
+  --bg: #F5F5F3;
+  --surface: #FFFFFF;
+  --border: #E3E2DE;
+  --border-strong: #C9C8C3;
+  --text: #0E1013;
+  --text-muted: #5C616C;
+  --accent: #BE4517;
+  --accent-2: #5A3FD6;
+  --accent-fg: #FFFFFF;
+
+  /* Espaciado — base 4 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  /* Forma — Mecha es angular */
+  --radius: 4px;
+  --radius-sm: 0;
+  --cut: 9px; /* esquina cortada del botón primario */
+
+  /* Tipografía */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Movimiento */
+  --dur: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0E1013;
+  --surface: #16191E;
+  --border: #262A32;
+  --border-strong: #3A3E48;
+  --text: #E8E9EC;
+  --text-muted: #8A8E99;
+  --accent: #FF6B35;
+  --accent-2: #8570FF;
+  --accent-fg: #0E1013;
+}
