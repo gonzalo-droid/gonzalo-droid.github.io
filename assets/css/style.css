@@ -91,10 +91,48 @@
   # Base Styles
   --------------------------------------------------------------*/
   body {
-    font-family: "Open Sans", sans-serif;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: var(--bg);
+    transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  }
+
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
+
+  .t-display {
+    font-size: clamp(2.75rem, 8vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.93;
+    text-transform: uppercase;
+  }
+
+  .t-h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .t-h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .t-h3 { font-size: 1.25rem; font-weight: 700; }
+  .t-body { font-size: 1rem; line-height: 1.65; color: var(--text-muted); }
+  .t-small { font-size: 0.875rem; color: var(--text-muted); }
+
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
 
   a {
@@ -105,15 +143,6 @@
   a:hover {
     color: var(--accent-hover);
     text-decoration: none;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif;
   }
 
   /*--------------------------------------------------------------
