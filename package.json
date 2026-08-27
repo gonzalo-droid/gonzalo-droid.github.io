@@ -4,7 +4,7 @@
   "description": "Deploy",
   "main": "index.js",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/*.test.js",
     "start": "node server.js",
     "setup": "npm install",
     "dev:daemon": "nohup node server.js &"

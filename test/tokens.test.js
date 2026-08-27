@@ -44,7 +44,7 @@ for (const theme of THEMES) {
   });
 }
 
-// Spacing scale test outside the loop — it's defined once in :root
+// Test de escala de espaciado fuera del loop — se define una sola vez en :root
 test('define la escala de espaciado completa', () => {
   const t = parseTokens(css, ':root');
   for (let i = 1; i <= 10; i++) {
