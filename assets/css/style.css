@@ -10,6 +10,12 @@
   ul { list-style: none; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: var(--text); }
+  /* Bootstrap's reboot (aun cargado en /articles y /article/<slug>) solía aportar
+     esto; su ausencia aqui es la causa raiz de que los h2 de #section-title
+     cayeran a los margenes por defecto del user agent (0.83em, derivados del
+     font-size con clamp() y por tanto fuera de la escala --sp-*). Se corrige
+     en el reset para arreglar la clase de problema, no solo esta instancia. */
+  h1, h2, h3, h4, h5, h6 { margin: 0; }
 
   /*--------------------------------------------------------------
   # CSS Variables for Theme Support
@@ -1241,6 +1247,14 @@
   gap: var(--sp-4);
 }
 
+/* Fallback de #projectsGrid sin JS (ver index.html). Su h3 usa .t-h3, que
+   no lleva margen propio a propósito (es una utilidad tipográfica), así
+   que aquí se le da uno explícito y en escala en vez de dejarlo caer al
+   0 del reset de h1-h6. */
+noscript h3 {
+  margin-bottom: var(--sp-3);
+}
+
 .project-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1458,6 +1472,31 @@
   color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
   margin: 0 auto;
+}
+
+/*--------------------------------------------------------------
+# Article detail (article/index.html)
+# Bootstrap's reboot le daba a estos h1-h6 margin-top:0/margin-bottom:.5rem;
+# el "h1..h6 { margin: 0 }" del reset (arriba, junto a "a:hover") pisa ahora
+# esa regla de Bootstrap por cargar después con la misma especificidad. Sin
+# esto, el título del artículo y los subtítulos del Markdown renderizado
+# quedarían pegados al contenido de al lado.
+--------------------------------------------------------------*/
+.article-header h1 {
+  margin-bottom: var(--sp-2);
+}
+
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6 {
+  margin: var(--sp-6) 0 var(--sp-3);
+}
+
+.article-body > :first-child {
+  margin-top: 0;
 }
 
 /*--------------------------------------------------------------
