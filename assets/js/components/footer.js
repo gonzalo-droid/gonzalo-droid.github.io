@@ -12,9 +12,6 @@ const FooterComponent = {
             <div class="copyright">
                 &copy; ${year} <strong><span>Gonzalo López - Mobile Developer</span></strong>
             </div>
-            <div class="privacy">
-                <a href="/privacy-policy">Política de privacidad</a>
-            </div>
         </div>
     </footer>
 
