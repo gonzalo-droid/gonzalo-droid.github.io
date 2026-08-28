@@ -7,15 +7,23 @@
     <link href="/assets/img/favicon.png" rel="icon">
     <script>
         // GitHub Pages has no server-side routing, so a direct hit on
-        // /article/<slug> lands here as a real 404. If the path matches
-        // the article pattern, stash the slug and redirect to the real
-        // article page, where article.js reads it from sessionStorage.
+        // /article/<slug> or /project/<slug> lands here as a real 404. If
+        // the path matches either pattern, stash the slug and redirect to
+        // the real page, where article.js / project.js read it back from
+        // sessionStorage.
         // Any other unknown path falls through to the plain 404 UI below.
         (function () {
-            var match = window.location.pathname.match(/^\/article\/([^/]+)\/?$/);
-            if (match && match[1]) {
-                sessionStorage.setItem('articleSlug', decodeURIComponent(match[1]));
+            var path = window.location.pathname;
+
+            var article = path.match(/^\/article\/([^/]+)\/?$/);
+            var project = path.match(/^\/project\/([^/]+)\/?$/);
+
+            if (article && article[1]) {
+                sessionStorage.setItem('articleSlug', decodeURIComponent(article[1]));
                 location.replace('/article/');
+            } else if (project && project[1]) {
+                sessionStorage.setItem('projectSlug', decodeURIComponent(project[1]));
+                location.replace('/project/');
             } else {
                 // Genuinely unknown path: show the 404 UI and bounce home after 3s
                 window.addEventListener('DOMContentLoaded', function () {

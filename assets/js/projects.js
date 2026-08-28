@@ -13,21 +13,21 @@ const PLATFORM_LABELS = {
     web: 'Web',
 };
 
-// Las tarjetas NO enlazan a /project/<slug>: esas páginas todavía no existen
-// y enlazarlas producía un 404 en cada clic. Mientras tanto se muestran los
-// enlaces externos reales de cada proyecto; los que no tienen ninguno (trabajo
-// de cliente sin URL pública) quedan como tarjeta informativa.
+// La imagen y el título llevan a /project/<slug>. Los enlaces externos
+// (stores, repositorio) van aparte como chips, para que se distingan del
+// enlace al detalle y de los chips de tecnología, que son informativos.
 function renderProjects(container, projects) {
     container.innerHTML = projects.map((p) => `
         <article class="project-card" data-category="${p.platforms.join(',')}">
-            <div class="project-card-image">
+            <a class="project-card-image" href="/project/${p.slug}"
+               aria-label="Ver el detalle de ${p.title}">
                 <img src="${p.image}" alt="${p.title}" loading="lazy">
                 <span class="project-card-platform t-label">
                     ${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}
                 </span>
-            </div>
+            </a>
             <div class="project-card-content">
-                <h3 class="t-h3">${p.title}</h3>
+                <h3 class="t-h3"><a href="/project/${p.slug}">${p.title}</a></h3>
                 <p class="t-small">${p.summary}</p>
                 <div class="project-tech">
                     ${p.tech.slice(0, 3).map((t) => `<span>${t}</span>`).join('')}
