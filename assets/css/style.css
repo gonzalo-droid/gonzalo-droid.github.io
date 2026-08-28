@@ -1161,20 +1161,28 @@ noscript h3 {
 .project-card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-3);
-  margin-top: var(--sp-3);
-  padding-top: var(--sp-3);
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
   border-top: 1px solid var(--border);
 }
 
+/* Chips de acción: se distinguen de los chips de tecnología (informativos,
+   apagados) por el borde y el texto en color de acento. */
 .project-card-links a {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.project-card-links a:hover {
-  color: var(--text);
+.project-card-links a:hover,
+.project-card-links a:focus-visible {
+  background: var(--accent);
+  color: var(--accent-fg);
 }

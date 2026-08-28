@@ -52,7 +52,7 @@
       "Conversión entre ARS, USD, BTC y ETH"
     ],
     "links": [
-      { "label": "Ver código", "url": "https://github.com/gonzalo-droid/cixCashApp" }
+      { "label": "GitHub", "url": "https://github.com/gonzalo-droid/cixCashApp" }
     ]
   },
   {
@@ -68,7 +68,7 @@
       "Transcripción automática con OpenAI Whisper"
     ],
     "links": [
-      { "label": "Ver código", "url": "https://github.com/gonzalo-droid/NoteAI" }
+      { "label": "GitHub", "url": "https://github.com/gonzalo-droid/NoteAI" }
     ]
   },
   {
