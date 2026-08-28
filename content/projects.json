@@ -1,10 +1,56 @@
 [
   {
+    "slug": "nekomangacix",
+    "title": "Neko Manga Cix",
+    "summary": "Ecommerce de manga y coleccionables con preventas, reserva del 50% y envíos a todo el Perú.",
+    "platforms": [
+      "web"
+    ],
+    "tech": [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Supabase",
+      "Cloudinary",
+      "Vercel"
+    ],
+    "image": "/assets/img/portfolio/web_nekomangacix_home.webp",
+    "gallery": [
+      "/assets/img/portfolio/web_nekomangacix_catalogo.webp",
+      "/assets/img/portfolio/web_nekomangacix_producto.webp"
+    ],
+    "highlights": [
+      "Catálogo de más de 6.000 títulos con filtros por editorial, tipo, disponibilidad y precio",
+      "Preventas con reserva del 50% y el resto al recibir el producto",
+      "Búsqueda por título, editorial y autor, y ordenación por novedad o precio",
+      "Fichas con SKU, género, editorial y guía de formatos",
+      "Pagos con tarjeta, Yape/Plin, transferencia o efectivo al recoger",
+      "Modo claro y oscuro"
+    ],
+    "links": [
+      {
+        "label": "Web",
+        "url": "https://www.nekomangacix.com/"
+      }
+    ]
+  },
+  {
     "slug": "quote-anime",
     "title": "Quote Anime",
     "summary": "Frases de anime con widget, notificaciones diarias y modo offline.",
-    "platforms": ["android", "ios"],
-    "tech": ["Kotlin", "Compose", "Swift", "Room", "Firebase", "Glance Widget", "WorkManager"],
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "tech": [
+      "Kotlin",
+      "Compose",
+      "Swift",
+      "Room",
+      "Firebase",
+      "Glance Widget",
+      "WorkManager"
+    ],
     "image": "/assets/img/portfolio/app_quote_anime.webp",
     "shot": "/assets/img/portfolio/shots/quote-anime.webp",
     "highlights": [
@@ -15,17 +61,35 @@
       "Compartir frases como imagen con diseño propio"
     ],
     "links": [
-      { "label": "Play Store", "url": "https://play.google.com/store/apps/details?id=com.gondroid.quoteanime" },
-      { "label": "App Store", "url": "https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB" },
-      { "label": "Web", "url": "https://www.animequote.app/" }
+      {
+        "label": "Play Store",
+        "url": "https://play.google.com/store/apps/details?id=com.gondroid.quoteanime"
+      },
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/pe/app/quoteanime-frases-de-anime/id6762100338?l=en-GB"
+      },
+      {
+        "label": "Web",
+        "url": "https://www.animequote.app/"
+      }
     ]
   },
   {
     "slug": "autotest-licencia",
     "title": "AutoTest Licencia",
     "summary": "Simulacros y balotarios para el examen de licencia de conducir.",
-    "platforms": ["android"],
-    "tech": ["Kotlin", "Compose", "Clean Architecture", "MVVM", "Room", "Firebase"],
+    "platforms": [
+      "android"
+    ],
+    "tech": [
+      "Kotlin",
+      "Compose",
+      "Clean Architecture",
+      "MVVM",
+      "Room",
+      "Firebase"
+    ],
     "image": "/assets/img/portfolio/app_autotest.webp",
     "shot": "/assets/img/portfolio/shots/autotest.webp",
     "highlights": [
@@ -35,15 +99,26 @@
       "Estadísticas de progreso"
     ],
     "links": [
-      { "label": "Play Store", "url": "https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz" }
+      {
+        "label": "Play Store",
+        "url": "https://play.google.com/store/apps/details?id=com.gondroid.mtcquiz"
+      }
     ]
   },
   {
     "slug": "cixcash",
     "title": "CixCash App",
     "summary": "Conversión de criptomonedas y divisas en Kotlin Multiplatform, con registro de transacciones.",
-    "platforms": ["kmm"],
-    "tech": ["KMM", "Kotlin", "Compose", "Koin", "Ktor"],
+    "platforms": [
+      "kmm"
+    ],
+    "tech": [
+      "KMM",
+      "Kotlin",
+      "Compose",
+      "Koin",
+      "Ktor"
+    ],
     "image": "/assets/img/portfolio/app_cixcash.webp",
     "shot": "/assets/img/portfolio/shots/cixcash.webp",
     "highlights": [
@@ -52,15 +127,26 @@
       "Conversión entre ARS, USD, BTC y ETH"
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/gonzalo-droid/cixCashApp" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/gonzalo-droid/cixCashApp"
+      }
     ]
   },
   {
     "slug": "note-ai",
     "title": "Note.AI",
     "summary": "Notas de voz con transcripción automática usando OpenAI Whisper.",
-    "platforms": ["android"],
-    "tech": ["Kotlin", "Compose", "Room", "Firebase", "MVVM"],
+    "platforms": [
+      "android"
+    ],
+    "tech": [
+      "Kotlin",
+      "Compose",
+      "Room",
+      "Firebase",
+      "MVVM"
+    ],
     "image": "/assets/img/portfolio/app_noteai.webp",
     "highlights": [
       "Listado y creación de notas en local",
@@ -68,15 +154,32 @@
       "Transcripción automática con OpenAI Whisper"
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/gonzalo-droid/NoteAI" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/gonzalo-droid/NoteAI"
+      }
     ]
   },
   {
     "slug": "u-learning",
     "title": "U-Learning",
     "summary": "Plataforma educativa para cursos online, en Android, iOS y navegador.",
-    "platforms": ["android", "ios", "web"],
-    "tech": ["Kotlin", "Swift", "MVI", "StateFlow", "Hilt", "UIKit", "Angular", "Laravel", "AWS"],
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "tech": [
+      "Kotlin",
+      "Swift",
+      "MVI",
+      "StateFlow",
+      "Hilt",
+      "UIKit",
+      "Angular",
+      "Laravel",
+      "AWS"
+    ],
     "image": "/assets/img/portfolio/app_ulearning.webp",
     "shot": "/assets/img/portfolio/shots/ulearning.webp",
     "gallery": [
@@ -95,8 +198,20 @@
     "slug": "admin-lotes",
     "title": "Admin Lotes",
     "summary": "Gestión de proyectos inmobiliarios multiempresa, con app de campo para asesores.",
-    "platforms": ["android", "web"],
-    "tech": ["Kotlin", "MVP", "Retrofit", "Dagger 2", "Firebase", "Laravel", "Vue", "MySQL"],
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "tech": [
+      "Kotlin",
+      "MVP",
+      "Retrofit",
+      "Dagger 2",
+      "Firebase",
+      "Laravel",
+      "Vue",
+      "MySQL"
+    ],
     "image": "/assets/img/portfolio/app_erp.webp",
     "gallery": [
       "/assets/img/portfolio/app_erp.webp",
@@ -113,8 +228,19 @@
     "slug": "solti-crm",
     "title": "Solti-CRM",
     "summary": "CRM comercial con seguimiento de clientes en pre-venta y post-venta.",
-    "platforms": ["android", "web"],
-    "tech": ["Java", "MVC", "Volley", "Firebase", "Laravel", "JavaScript", "MySQL"],
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "tech": [
+      "Java",
+      "MVC",
+      "Volley",
+      "Firebase",
+      "Laravel",
+      "JavaScript",
+      "MySQL"
+    ],
     "image": "/assets/img/portfolio/app_crm.webp",
     "gallery": [
       "/assets/img/portfolio/app_crm.webp",

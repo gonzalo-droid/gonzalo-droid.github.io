@@ -10,8 +10,25 @@ const projects = JSON.parse(
 
 const PLATFORMS = ['android', 'ios', 'kmm', 'web'];
 
-test('hay exactamente 7 proyectos agrupados por producto', () => {
-  assert.strictEqual(projects.length, 7);
+// El número es el inventario actual, no un tope: sube a propósito cuando se
+// añade un proyecto. Está fijado para que una pérdida accidental de entradas
+// —al reagrupar o al editar el JSON a mano— falle en vez de pasar inadvertida.
+test('el inventario de proyectos es el esperado', () => {
+  assert.strictEqual(projects.length, 8);
+});
+
+// Los 11 bloques originales se agruparon por producto: U-Learning, Admin Lotes
+// y Solti-CRM absorbieron sus variantes por plataforma en vez de repetirse.
+test('no hay productos repetidos por plataforma', () => {
+  const titles = projects.map((p) => p.title.toLowerCase());
+  assert.strictEqual(new Set(titles).size, titles.length, 'hay títulos duplicados');
+
+  for (const t of titles) {
+    assert.ok(
+      !/\b(android|ios|web|kmm)\b/.test(t),
+      `el título "${t}" nombra una plataforma: debería agruparse en un solo producto`
+    );
+  }
 });
 
 test('cada proyecto tiene los campos obligatorios', () => {
