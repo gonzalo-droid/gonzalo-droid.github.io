@@ -75,3 +75,17 @@ test('las imágenes de la galería existen en disco', () => {
     }
   }
 });
+
+test('el fallback <noscript> lista todos los proyectos', () => {
+  // La grilla se pinta con JS; el <noscript> es lo único que ve alguien sin
+  // JavaScript. Si se añade un proyecto y se olvida aquí, queda invisible.
+  const html = read('index.html');
+  const block = html.slice(html.indexOf('<noscript>'), html.indexOf('</noscript>'));
+
+  for (const p of projects) {
+    assert.ok(
+      block.includes(p.title),
+      `${p.title} falta en el fallback <noscript> de #portfolio`
+    );
+  }
+});
