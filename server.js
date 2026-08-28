@@ -21,6 +21,15 @@ app.get('/article/:slug', (req, res) => {
     res.sendFile('article/index.html', { root: __dirname });
 });
 
+// Project detail page - client-side JS reads the slug from the path
+app.get('/project', (req, res) => {
+    res.sendFile('project/index.html', { root: __dirname });
+});
+
+app.get('/project/:slug', (req, res) => {
+    res.sendFile('project/index.html', { root: __dirname });
+});
+
 app.get('/privacy-policy', (req, res) => {
     res.sendFile('privacy-policy/index.html', { root: __dirname });
 });
