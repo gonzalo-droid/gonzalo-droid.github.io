@@ -13,24 +13,43 @@ const PLATFORM_LABELS = {
     web: 'Web',
 };
 
+// Las tarjetas NO enlazan a /project/<slug>: esas páginas todavía no existen
+// y enlazarlas producía un 404 en cada clic. Mientras tanto se muestran los
+// enlaces externos reales de cada proyecto; los que no tienen ninguno (trabajo
+// de cliente sin URL pública) quedan como tarjeta informativa.
 function renderProjects(container, projects) {
     container.innerHTML = projects.map((p) => `
         <article class="project-card" data-category="${p.platforms.join(',')}">
-            <a class="project-card-image" href="/project/${p.slug}">
+            <div class="project-card-image">
                 <img src="${p.image}" alt="${p.title}" loading="lazy">
                 <span class="project-card-platform t-label">
                     ${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}
                 </span>
-            </a>
+            </div>
             <div class="project-card-content">
-                <h3 class="t-h3"><a href="/project/${p.slug}">${p.title}</a></h3>
+                <h3 class="t-h3">${p.title}</h3>
                 <p class="t-small">${p.summary}</p>
                 <div class="project-tech">
                     ${p.tech.slice(0, 3).map((t) => `<span>${t}</span>`).join('')}
                 </div>
+                ${renderProjectLinks(p)}
             </div>
         </article>
     `).join('');
+}
+
+function renderProjectLinks(project) {
+    const links = project.links || [];
+    if (links.length === 0) return '';
+
+    return `
+        <div class="project-card-links">
+            ${links.map((l) => `
+                <a href="${l.url}" target="_blank" rel="noopener"
+                   aria-label="${l.label} — ${project.title}">${l.label}</a>
+            `).join('')}
+        </div>
+    `;
 }
 
 function initProjectFilters() {
