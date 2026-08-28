@@ -1,0 +1,146 @@
+{
+  "nav.home": "Home",
+  "nav.about": "Hi",
+  "nav.experience": "Companies",
+  "nav.projects": "Projects",
+  "nav.blog": "Blog",
+  "nav.contact": "Contact",
+  "nav.menu": "Menu",
+  "nav.theme": "Toggle theme",
+  "nav.lang": "Change language",
+  "hero.badge": "Open to remote work",
+  "hero.role": "Android Developer",
+  "hero.stack": "· Kotlin · Compose · KMM",
+  "hero.pitch": "5 years building production apps. Currently in banking, serving millions of users.",
+  "hero.cta.projects": "View projects",
+  "hero.cta.cv": "Resume",
+  "projects.title": "Projects",
+  "projects.filter.all": "All",
+  "projects.filter.android": "Android",
+  "projects.filter.ios": "iOS",
+  "projects.filter.kmm": "KMM",
+  "projects.filter.web": "Web",
+  "projects.error": "Projects could not be loaded.",
+  "projects.detail.aria": "View details for",
+  "about.title": "Hey there",
+  "experience.title": "My path",
+  "articles.title": "Latest articles",
+  "articles.cta": "See all articles",
+  "contact.title": "Let's talk",
+  "contact.copy": "Copy",
+  "contact.copied": "Copied",
+  "contact.copyFallback": "Use the link",
+  "contact.cv": "Download resume",
+  "project.crumb": "Projects",
+  "project.loading": "Loading project…",
+  "project.includes": "What it includes",
+  "project.decisions": "Technical decisions",
+  "project.stack": "Stack",
+  "project.back": "← Back to projects",
+  "project.notFound": "Project not found",
+  "project.noneGiven": "No project was specified.",
+  "project.loadError": "The project information could not be loaded.",
+  "footer.rights": "Gonzalo López - Mobile Developer",
+  "projects": {
+    "nekomangacix": {
+      "summary": "Manga and collectibles ecommerce with pre-orders, 50% deposits and shipping across Peru.",
+      "highlights": [
+        "Catalogue of 6,000+ titles filterable by publisher, type, availability and price",
+        "Pre-orders with a 50% deposit and the balance due on arrival",
+        "Search by title, publisher and author, sorted by newest or price",
+        "Product pages with SKU, genre, publisher and a format guide",
+        "Payments by card, Yape/Plin, bank transfer or cash on pickup",
+        "Light and dark mode"
+      ]
+    },
+    "quote-anime": {
+      "summary": "Anime quotes with a home-screen widget, daily notifications and offline mode.",
+      "highlights": [
+        "Quote catalogue organised by anime category",
+        "Favourites available offline",
+        "Random-quote widget on the home screen",
+        "Daily notifications at the time the user picks",
+        "Share quotes as an image with custom artwork"
+      ]
+    },
+    "autotest-licencia": {
+      "summary": "Mock exams and question banks for the Peruvian driving licence test.",
+      "highlights": [
+        "Realistic mock exams",
+        "Download and share question banks as PDF by category",
+        "Access to every exam category",
+        "Progress statistics"
+      ]
+    },
+    "cixcash": {
+      "summary": "Crypto and currency conversion in Kotlin Multiplatform, with transaction tracking.",
+      "highlights": [
+        "Balance shown per currency",
+        "Transactions persisted to a local database",
+        "Conversion between ARS, USD, BTC and ETH"
+      ]
+    },
+    "note-ai": {
+      "summary": "Voice notes with automatic transcription using OpenAI Whisper.",
+      "highlights": [
+        "Local note listing and creation",
+        "Voice recording attached to each note",
+        "Automatic transcription with OpenAI Whisper"
+      ]
+    },
+    "u-learning": {
+      "summary": "E-learning platform for online courses, on Android, iOS and the web.",
+      "highlights": [
+        "Android app with MVI, StateFlow/SharedFlow and testing with Mockito",
+        "iOS app in Swift and UIKit, distributed through TestFlight",
+        "Web and admin platform on AWS EC2 with continuous deployment"
+      ]
+    },
+    "admin-lotes": {
+      "summary": "Multi-company real-estate management, with a field app for sales reps.",
+      "highlights": [
+        "Plot tracking for sales reps in the field",
+        "Contracts, e-invoicing and sales on the web platform",
+        "Layered architecture with SOLID and dependency injection"
+      ]
+    },
+    "solti-crm": {
+      "summary": "Commercial CRM with customer follow-up before and after the sale.",
+      "highlights": [
+        "Customer, call, email and location logging through Google services",
+        "Pre-sale and post-sale follow-up from the web"
+      ]
+    }
+  },
+  "about.p1": "Android/Mobile Developer with 5+ years building production apps in Kotlin. I specialise in legacy refactoring, clean architecture (MVVM/MVP/MVI) and modularisation, delivering features that stay maintainable, testable and scalable. I currently work at Banco Falabella and I'm looking to keep growing in multicultural teams building high-impact products.",
+  "about.p2": "Away from code I'm a sci-fi, anime and manga geek. Cat person (Lilith and Garu), and I run my own side project <strong><a href=\"https://www.instagram.com/neko.manga.cix/\" target=\"_blank\">Neko Manga Cix</a></strong>, a shop and community for manga lovers.",
+  "exp.falabella.role": "Android Developer",
+  "exp.falabella.period": "Aug 2025 - Present",
+  "exp.falabella.desc": "Maintenance and evolution of a multi-module ecosystem serving several countries. I built the new Digital Card flow with Jetpack Compose, refactored towards a modular architecture (MVP/MVVM + Clean Architecture), and handled releases and CI/CD on Bitrise.",
+  "exp.talana.role": "Android Developer",
+  "exp.talana.period": "Oct 2022 - Aug 2025",
+  "exp.talana.desc": "I built the Benefits module and biometric login, and developed custom UI components for a rebrand. Product instrumentation with Analytics, Firebase Performance and heatmaps. Migration of features to Kotlin and Jetpack Compose.",
+  "exp.peruapps.role": "Android Developer",
+  "exp.peruapps.period": "Jul 2022 - Sep 2022",
+  "exp.peruapps.desc": "I led development of PEX, an app for toll payments and nearby-merchant lookup, integrating Google Maps and Firebase.",
+  "exp.tismart.role": "Android Developer",
+  "exp.tismart.period": "Sep 2021 - Jun 2022",
+  "exp.tismart.desc": "I implemented vaccination QR validation in Ripley Pago, plus multi-screen support with View Binding and adaptive layouts.",
+  "exp.freelance.role": "Freelance Android Developer",
+  "exp.freelance.period": "Oct 2019 - Present",
+  "exp.freelance.desc": "Commercial app development: U-Learning (Android/iOS for students), real-estate management and Solti-CRM.",
+  "_review": [
+    "about.p1",
+    "about.p2",
+    "exp.falabella.desc",
+    "exp.talana.desc",
+    "exp.peruapps.desc",
+    "exp.tismart.desc",
+    "exp.freelance.desc"
+  ],
+  "exp.falabella.company": "Banco Falabella - Chile",
+  "exp.talana.company": "Talana - Chile",
+  "exp.peruapps.company": "PeruAPPS - Peru",
+  "exp.tismart.company": "TiSmart - Peru",
+  "exp.freelance.company": "Independent projects - Peru"
+}

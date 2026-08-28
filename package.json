@@ -7,7 +7,8 @@
     "test": "node --test test/*.test.js",
     "start": "node server.js",
     "setup": "npm install",
-    "dev:daemon": "nohup node server.js &"
+    "dev:daemon": "nohup node server.js &",
+    "i18n:review": "node scripts/i18n-review.js"
   },
   "keywords": [],
   "author": "",

@@ -6,6 +6,11 @@ async function fetchProjects() {
     return response.json();
 }
 
+// Traducción con caída al español si i18n aún no cargó o falta la clave.
+const tr = (key) => (window.I18n ? window.I18n.t(key) : key);
+const trProject = (project, field, fallback) =>
+    (window.I18n ? window.I18n.project(project.slug, field, fallback) : fallback);
+
 const PLATFORM_LABELS = {
     android: 'Android',
     ios: 'iOS',
@@ -20,7 +25,7 @@ function renderProjects(container, projects) {
     container.innerHTML = projects.map((p) => `
         <article class="project-card" data-category="${p.platforms.join(',')}">
             <a class="project-card-image" href="/project/${p.slug}"
-               aria-label="Ver el detalle de ${p.title}">
+               aria-label="${tr('projects.detail.aria')} ${p.title}">
                 <img src="${p.image}" alt="${p.title}" loading="lazy">
                 <span class="project-card-platform t-label">
                     ${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}
@@ -28,7 +33,7 @@ function renderProjects(container, projects) {
             </a>
             <div class="project-card-content">
                 <h3 class="t-h3"><a href="/project/${p.slug}">${p.title}</a></h3>
-                <p class="t-small">${p.summary}</p>
+                <p class="t-small">${trProject(p, 'summary', p.summary)}</p>
                 <div class="project-tech">
                     ${p.tech.slice(0, 3).map((t) => `<span>${t}</span>`).join('')}
                 </div>
@@ -70,14 +75,28 @@ function initProjectFilters() {
     });
 }
 
+let cachedProjects = null;
+
+async function paint() {
+    const container = document.getElementById('projectsGrid');
+    if (!container) return;
+    if (!cachedProjects) cachedProjects = await fetchProjects();
+    renderProjects(container, cachedProjects);
+    initProjectFilters();
+}
+
+// El idioma llega después del primer pintado (i18n hace fetch), así que la
+// grilla se repinta cuando está listo y en cada cambio manual.
+document.addEventListener('languageready', () => paint());
+document.addEventListener('languagechange', () => paint());
+
 document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('projectsGrid');
     if (!container) return;
     try {
-        renderProjects(container, await fetchProjects());
-        initProjectFilters();
+        await paint();
     } catch (err) {
-        container.innerHTML = '<p class="t-small">No se pudieron cargar los proyectos.</p>';
+        container.innerHTML = `<p class="t-small">${tr('projects.error')}</p>`;
         console.error(err);
     }
 });
