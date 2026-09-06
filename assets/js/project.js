@@ -9,6 +9,10 @@ const PLATFORM_LABELS = {
     web: 'Web',
 };
 
+const tr = (key, fallback) => (window.I18n ? window.I18n.t(key) : (fallback || key));
+const trProject = (project, field, fallback) =>
+    (window.I18n ? window.I18n.project(project.slug, field, fallback) : fallback);
+
 function escapeHtml(value) {
     return String(value)
         .replace(/&/g, '&amp;')
@@ -98,8 +102,9 @@ function renderProject(project) {
 
     const platforms = project.platforms.map((p) => PLATFORM_LABELS[p] || p).join(' · ');
 
-    const highlights = (project.highlights || []).length
-        ? `<ul class="project-list">${project.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}</ul>`
+    const hl = trProject(project, 'highlights', project.highlights);
+    const highlights = (hl || []).length
+        ? `<ul class="project-list">${hl.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}</ul>`
         : '';
 
     const decisions = project.decisions
@@ -116,23 +121,23 @@ function renderProject(project) {
         <header class="project-head">
             <p class="t-label project-platforms">${escapeHtml(platforms)}</p>
             <h1 class="t-h1">${escapeHtml(project.title)}</h1>
-            <p class="project-summary">${escapeHtml(project.summary)}</p>
+            <p class="project-summary">${escapeHtml(trProject(project, 'summary', project.summary))}</p>
             ${links}
         </header>
 
         ${renderGallery(project)}
 
-        ${renderSection('Qué incluye', highlights)}
-        ${renderSection('Decisiones técnicas', decisions)}
+        ${renderSection(tr('project.includes', 'Qué incluye'), highlights)}
+        ${renderSection(tr('project.decisions', 'Decisiones técnicas'), decisions)}
 
         <section class="project-block">
-            <h2 class="project-block-title">Stack</h2>
+            <h2 class="project-block-title">${escapeHtml(tr('project.stack', 'Stack'))}</h2>
             <div class="project-tech project-tech-full">
                 ${project.tech.map((t) => `<span>${escapeHtml(t)}</span>`).join('')}
             </div>
         </section>
 
-        <a class="project-back" href="/#portfolio">← Volver a proyectos</a>
+        <a class="project-back" href="/#portfolio">${escapeHtml(tr('project.back', '← Volver a proyectos'))}</a>
     `;
     container.setAttribute('aria-busy', 'false');
 }
@@ -141,11 +146,20 @@ function showError(message) {
     const container = document.getElementById('projectDetail');
     container.setAttribute('aria-busy', 'false');
     container.innerHTML = `
-        <h1 class="t-h1">Proyecto no encontrado</h1>
+        <h1 class="t-h1">${escapeHtml(tr('project.notFound', 'Proyecto no encontrado'))}</h1>
         <p class="t-body">${escapeHtml(message)}</p>
-        <a class="project-back" href="/#portfolio">← Volver a proyectos</a>
+        <a class="project-back" href="/#portfolio">${escapeHtml(tr('project.back', '← Volver a proyectos'))}</a>
     `;
 }
+
+let cachedSlug = null;
+
+document.addEventListener('languagechange', async () => {
+    if (!cachedSlug) return;
+    const projects = await fetchProjects();
+    const project = projects.find((p) => p.slug === cachedSlug);
+    if (project) { updateSEO(project); renderProject(project); }
+});
 
 document.addEventListener('DOMContentLoaded', async () => {
     const slug = getSlug();
@@ -164,6 +178,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+        cachedSlug = project.slug;
         updateSEO(project);
         renderProject(project);
 

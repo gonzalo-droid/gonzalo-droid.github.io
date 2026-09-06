@@ -1294,3 +1294,31 @@ noscript h3 {
 }
 
 .project-back:hover { color: var(--accent); }
+
+/* Selector de idioma de la navbar */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.lang-switch button {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.lang-switch button:hover { color: var(--text); }
+
+.lang-switch button.active {
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 700;
+}

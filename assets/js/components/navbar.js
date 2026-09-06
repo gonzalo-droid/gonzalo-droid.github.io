@@ -21,21 +21,21 @@ const NavbarComponent = {
         const transparentClass = transparent ? '' : 'scrolled';
 
         const links = [
-            { href: '/#about', text: 'Hola' },
-            { href: '/#experience', text: 'Empresas' },
-            { href: '/#portfolio', text: 'Proyectos' },
-            { href: '/articles', text: 'Blog' },
-            { href: '/#contact', text: 'Contacto' }
+            { href: '/#about', text: 'Hola', key: 'nav.about' },
+            { href: '/#experience', text: 'Empresas', key: 'nav.experience' },
+            { href: '/#portfolio', text: 'Proyectos', key: 'nav.projects' },
+            { href: '/articles', text: 'Blog', key: 'nav.blog' },
+            { href: '/#contact', text: 'Contacto', key: 'nav.contact' }
         ];
 
         const navLinks = links.map(link => {
             const activeClass = this.isActive(link.href) ? ' class="active"' : '';
-            return `<a href="${link.href}"${activeClass}>${link.text}</a>`;
+            return `<a href="${link.href}"${activeClass} data-i18n="${link.key}">${link.text}</a>`;
         }).join('\n                    ');
 
         const mobileLinks = links.map(link => {
             const activeClass = this.isActive(link.href) ? ' class="active"' : '';
-            return `<a href="${link.href}"${activeClass}>${link.text}</a>`;
+            return `<a href="${link.href}"${activeClass} data-i18n="${link.key}">${link.text}</a>`;
         }).join('\n            ');
 
         return `
@@ -47,6 +47,10 @@ const NavbarComponent = {
                     ${navLinks}
                 </div>
                 <div class="navbar-actions">
+                    <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Cambiar idioma">
+                        <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+                        <button type="button" data-lang-option="en" aria-pressed="false">EN</button>
+                    </div>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                         <i class="bi bi-moon-fill" id="themeIcon"></i>
                     </button>
