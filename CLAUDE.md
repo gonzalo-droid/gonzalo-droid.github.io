@@ -12,7 +12,8 @@ Portfolio website for a Mobile Developer with an integrated blog system. Static-
 npm install          # Install dependencies
 npm start            # Start Express server on port 8080
 npx live-server .    # Alternative: static dev server
-npm test             # node --test test/*.test.js — token contrast + projects.json validation
+npm test             # node --test test/*.test.js — contraste de tokens, datos de proyectos, rutas e i18n
+npm run i18n:review  # lista las traducciones inglesas pendientes de revisión humana
 ```
 
 Deployment is automatic via GitHub Actions on push to `master` branch.
@@ -34,22 +35,34 @@ Deployment is automatic via GitHub Actions on push to `master` branch.
 │       ├── article.js         # Single article renderer
 │       ├── articles.js        # Articles list page
 │       ├── home.js            # Homepage interactivity
+│       ├── i18n.js            # ES/EN: loads the dictionary, swaps text, language switch
+│       ├── project.js         # Project detail page renderer (/project/<slug>)
 │       ├── projects.js        # Renders the home project grid from content/projects.json
 │       ├── theme.js           # Dark/light mode management + `.js` class for the animation gate
 │       └── utils.js           # Shared helpers: generateSlug(), formatDate(), fetchArticles()
 ├── content/
 │   ├── articles/              # Markdown article files
 │   │   └── *.md
+│   ├── i18n/
+│   │   ├── es.json            # Spanish strings (extracted verbatim from the HTML)
+│   │   └── en.json            # English strings + per-project copy + `_review` list
 │   ├── articles.json          # Article metadata
-│   └── projects.json          # Project data rendered by projects.js
+│   └── projects.json          # Project data rendered by projects.js and project.js
+├── scripts/
+│   └── i18n-review.js         # `npm run i18n:review` — lists draft translations awaiting review
 ├── test/
 │   ├── tokens.test.js         # Fails the build if a text token drops below 4.5:1 (WCAG AA)
+│   ├── no-token-collisions.test.js  # Fails if style.css redeclares a name defined in tokens.css
 │   ├── projects.test.js       # Validates content/projects.json (required fields, unique slugs, images exist)
+│   ├── project-pages.test.js  # Verifies /project/<slug> is routed both ways and the <noscript> is complete
+│   ├── i18n.test.js           # Key parity, dangling data-i18n keys, untranslated strings
 │   └── helpers/contrast.js    # WCAG contrast math shared by tokens.test.js
 ├── articles/
 │   └── index.html             # Articles list page
 ├── article/
 │   └── index.html             # Single article page
+├── project/
+│   └── index.html             # Project detail page
 ├── privacy-policy/
 │   └── index.html             # Privacy policy
 ├── 404.html                   # GitHub Pages 404 redirect
@@ -63,12 +76,16 @@ Deployment is automatic via GitHub Actions on push to `master` branch.
 - `/` → `index.html`
 - `/articles` → `articles/index.html`
 - `/article/<slug>` → GitHub Pages has no server-side routing, so this request 404s first. `404.html` inspects `location.pathname`; if it matches `/article/<slug>`, it stores the slug in `sessionStorage.articleSlug` and redirects (`location.replace('/article/')`) to the real article page. `assets/js/article.js` reads the slug from `sessionStorage` (consuming it), falls back to the legacy `#slug` hash for old inbound links, and then calls `history.replaceState` so the address bar shows `/article/<slug>`. Any other unknown path shows the plain 404 UI and redirects to `/` after 3 seconds.
+- `/project/<slug>` → same mechanism as articles: `404.html` matches the path, stores the slug in
+  `sessionStorage.projectSlug` and redirects to `/project/`, where `assets/js/project.js` reads it back and
+  calls `history.replaceState`.
 - `/privacy-policy` → `privacy-policy/index.html`
 
 This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. The underlying HTTP response for a fresh crawl of `/article/<slug>` is still a 404 before the client-side redirect kicks in — a fully correct fix would need per-article prerendering/SSG.
 
 **Express.js (local development):**
-- Same routes but with dynamic `:slug` parameter support (`GET /article/:slug` serves `article/index.html` directly, and `article.js` reads the slug from the path).
+- Same routes but with dynamic `:slug` parameter support: `GET /article/:slug` serves `article/index.html`
+  and `GET /project/:slug` serves `project/index.html`; the page scripts read the slug from the path.
 
 ## Article System
 
@@ -79,12 +96,18 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
 
 ## Project System
 
-- Data in `content/projects.json` — 7 products (grouped by product, not by platform), each with slug, title,
-  summary, platforms, tech, image, highlights and links
+- Data in `content/projects.json` — 8 products (grouped by product, not by platform), each with slug, title,
+  summary, platforms, tech, image, optional gallery/shot, highlights and links. `decisions` is optional and
+  currently empty on every project: it is Gonzalo's material to write, and the detail page hides the block
+  when it is missing rather than showing an empty heading.
 - `assets/js/projects.js` fetches it and renders the home project grid, including the platform filter
   (`.filter-btn[data-filter]` / `article.project-card[data-category]`)
-- Cards link to `/project/<slug>`. That route does not exist yet and currently 404s — deliberate, built in a
-  later plan. Do not "fix" this by removing or hiding the links.
+- `assets/js/project.js` renders the detail page at `/project/<slug>`
+- Cards link to `/project/<slug>`, and the external links (stores, repo, web) render as separate action chips
+  so they are distinguishable from the tech chips, which are informational and not clickable.
+- The grid is painted by JS, so the `<noscript>` block inside `#portfolio` is the only thing a visitor without
+  JavaScript sees. **It lists every project by hand — add a project there too, or it is invisible.**
+  `test/project-pages.test.js` fails if a project in `projects.json` is missing from it.
 
 ## Design System
 
@@ -119,6 +142,31 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
   prevent a flash — this is also where the `.js` class above gets added.
 - Navbar component calls `ThemeManager.bindToggle()` after rendering.
 
+## Internationalisation
+
+- The site is bilingual **ES/EN**. All copy lives in `content/i18n/es.json` and `content/i18n/en.json`.
+  The Spanish file was extracted verbatim from the HTML, so it is the source of truth for wording.
+- Markup opts in with `data-i18n="key"` (textContent), `data-i18n-html` (strings containing markup, such as
+  the About paragraphs), `data-i18n-aria` and `data-i18n-title`. **Wrap only the text, never a span that also
+  contains an icon** — replacing the whole element deletes the icon. See the timeline period and the articles
+  CTA for the pattern.
+- `en.json` also holds `projects[<slug>]` with the English `summary` and `highlights`; anything missing falls
+  back to the Spanish in `projects.json`.
+- **`en.json._review` lists translations that are drafts awaiting Gonzalo's review** — his bio and the
+  experience descriptions, which are his professional voice. Run `npm run i18n:review` to see them side by
+  side; remove a key from that list once reviewed.
+- The language switch lives in the navbar (`[data-lang-option]`), persists to `localStorage.lang` alongside
+  the theme, and honours `?lang=` so the `hreflang` links work.
+- **The English text appears after a brief flash of Spanish, and that is deliberate.** The HTML ships in
+  Spanish and `i18n.js` swaps it once the dictionary loads. Hiding content until the translation arrives would
+  reintroduce the exact bug the `.js` animation gate fixes. Do not "solve" the flash by hiding anything.
+- `i18n.js` assigns `window.I18n` explicitly: a top-level `const` in a classic script is script-scoped and
+  does **not** become a property of `window`, and other files check `window.I18n` before translating.
+- `test/i18n.test.js` fails on key drift between the two files, on a `data-i18n` pointing at a key that does
+  not exist, and on an English string identical to the Spanish one. Legitimate coincidences (job titles, month
+  abbreviations) are listed individually rather than exempting a pattern, so a genuinely untranslated string
+  still fails.
+
 ## Key Files
 
 | File | Purpose |
@@ -129,13 +177,16 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
 | `assets/js/articles.js` | Articles list page loader |
 | `assets/js/article.js` | Single article renderer |
 | `assets/js/utils.js` | Shared helpers: `generateSlug()`, `formatDate()`, `fetchArticles()` |
-| `assets/js/components/navbar.js` | Reusable navbar with mobile menu |
+| `assets/js/project.js` | Renders the project detail page at `/project/<slug>` |
+| `assets/js/i18n.js` | ES/EN dictionary loading, text swapping, language switch, hreflang |
+| `assets/js/components/navbar.js` | Reusable navbar with mobile menu, theme toggle and language switch |
 | `assets/css/tokens.css` | Design tokens: color, spacing, typography, shape (both themes) |
 | `assets/css/style.css` | Main styles; migrated blocks consume `tokens.css` |
 
 ## Conventions
 
-- **Language:** Spanish (es-ES locale for dates)
+- **Language:** Spanish is the source; English is a translation layer (see Internationalisation). Dates use
+  the es-ES locale. Commit messages are in Spanish, Conventional Commits format.
 - **CSS classes:** kebab-case (`navbar-fixed`, `article-card`)
 - **JS functions:** camelCase (`initScrollAnimations()`, `loadLatestArticles()`)
 - **Data attributes:** `data-animate`, `data-filter`, `data-category`
@@ -156,4 +207,7 @@ This is the standard GitHub-Pages-without-a-build-step SPA routing workaround. T
 - Article images are stored under `assets/img/portfolio/`, not a separate `assets/img/articles/` folder
 - Theme script must stay synchronous (in `<head>`) to avoid flash
 - Navbar component must call `ThemeManager.bindToggle()` after rendering
-- `/project/<slug>` links from the home project grid 404 on purpose — the route is built in a later plan
+- `/project/<slug>` and `/article/<slug>` return a **real 404 to crawlers** on GitHub Pages and only work
+  because `404.html` bounces them client-side. They are fine for people, invisible to Google. That is why the
+  project pages are **not** in `sitemap.xml`: declaring URLs that answer 404 is worse than omitting them. The
+  fix is per-page prerendering, still unwritten.
