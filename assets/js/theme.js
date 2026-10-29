@@ -74,10 +74,20 @@ const ThemeManager = {
    * @param {string} theme - Current theme
    */
   updateIcon(theme) {
-    const icon = document.getElementById('themeIcon');
-    if (icon) {
-      icon.className = theme === this.DARK ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+    const slot = document.getElementById('themeIcon');
+    if (!slot) return;
+
+    const name = theme === this.DARK ? 'sun-fill' : 'moon-fill';
+    const label = theme === this.DARK ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
+
+    // Los iconos son SVG inline (assets/js/icons.js), no una fuente: se
+    // sustituye el contenido en vez de cambiar una clase. Si icons.js no
+    // cargó, el botón se queda sin dibujo pero sigue siendo pulsable.
+    if (window.Icons) {
+      slot.innerHTML = window.Icons.icon(name, label);
     }
+    const button = slot.closest('button');
+    if (button) button.setAttribute('aria-label', label);
   },
 
   /**

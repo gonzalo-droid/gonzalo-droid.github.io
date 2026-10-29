@@ -8,7 +8,8 @@
     "start": "node server.js",
     "setup": "npm install",
     "dev:daemon": "nohup node server.js &",
-    "i18n:review": "node scripts/i18n-review.js"
+    "i18n:review": "node scripts/i18n-review.js",
+    "build:pages": "node scripts/build-pages.js"
   },
   "keywords": [],
   "author": "",

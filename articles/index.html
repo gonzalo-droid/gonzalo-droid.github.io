@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artículos - Gonzalo López | Mobile Developer</title>
+    <title>Artículos sobre desarrollo Android — Gonzalo López</title>
     <meta name="description" content="Artículos sobre desarrollo móvil, Android, iOS, Kotlin, arquitectura de software y buenas prácticas.">
 
     <!-- Preconnect -->
@@ -19,12 +19,105 @@
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/tokens.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Theme -->
     <script src="/assets/js/theme.js"></script>
+<!-- build:pages -->
+    <link rel="canonical" href="https://gonzalo-lozg.me/articles/">
+    <meta name="description" content="10 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Artículos sobre desarrollo Android — Gonzalo López">
+    <meta property="og:description" content="10 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
+    <meta property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/shots/quote-anime.webp">
+    <meta property="og:url" content="https://gonzalo-lozg.me/articles/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Artículos sobre desarrollo Android — Gonzalo López">
+    <meta name="twitter:description" content="10 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
+    <meta name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/shots/quote-anime.webp">
+    <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/articles/?lang=es">
+    <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/articles/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/articles/">
+<!-- /build:pages -->
+<!-- build:pages -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Artículos de Gonzalo López",
+  "url": "https://gonzalo-lozg.me/articles/",
+  "inLanguage": "es",
+  "author": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Introducción a Jetpack Compose",
+      "datePublished": "2024-03-20",
+      "url": "https://gonzalo-lozg.me/article/introducci-n-a-jetpack-compose"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Coroutines y Flow en Android",
+      "datePublished": "2024-03-18",
+      "url": "https://gonzalo-lozg.me/article/coroutines-y-flow-en-android"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Testing en Android",
+      "datePublished": "2024-03-17",
+      "url": "https://gonzalo-lozg.me/article/testing-en-android"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Desarrollo de Apps con Kotlin Multiplatform",
+      "datePublished": "2024-03-20",
+      "url": "https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Integración de IA en Apps Android",
+      "datePublished": "2024-03-19",
+      "url": "https://gonzalo-lozg.me/article/integraci-n-de-ia-en-apps-android"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Arquitectura MVVM en Android",
+      "datePublished": "2024-03-18",
+      "url": "https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Bienvenido a mi blog",
+      "datePublished": "2026-03-26",
+      "url": "https://gonzalo-lozg.me/article/bienvenido-a-mi-blog"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Coroutines en Android: Programación asíncrona moderna",
+      "datePublished": "2026-03-26",
+      "url": "https://gonzalo-lozg.me/article/coroutines-en-android-programaci-n-as-ncrona-moderna"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Inyección de Dependencias en Android con Hilt",
+      "datePublished": "2026-03-26",
+      "url": "https://gonzalo-lozg.me/article/inyecci-n-de-dependencias-en-android-con-hilt"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Jetpack Compose: El futuro de la UI en Android",
+      "datePublished": "2026-03-26",
+      "url": "https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android"
+    }
+  ]
+}
+    </script>
+<!-- /build:pages -->
 </head>
 <body>
     <!-- Navbar Container - rendered by component -->
@@ -48,11 +141,67 @@
 
             <!-- Articles Grid -->
             <div class="articles-list" id="articlesContainer">
-                <!-- Articles loaded dynamically -->
-                <div class="loading-spinner">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Cargando...</span>
-                    </div>
+                <article class="article-item">
+                    <h2><a href="/article/introducci-n-a-jetpack-compose">Introducción a Jetpack Compose</a></h2>
+                    <p class="article-item-date">19 de marzo de 2024</p>
+                    <p class="article-item-description">Una guía completa para comenzar con Jetpack Compose, el nuevo toolkit de UI para Android.</p>
+                    <p class="article-item-tags">Android · Jetpack Compose · UI · Kotlin</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/coroutines-y-flow-en-android">Coroutines y Flow en Android</a></h2>
+                    <p class="article-item-date">17 de marzo de 2024</p>
+                    <p class="article-item-description">Aprende a manejar operaciones asíncronas y flujos de datos con Coroutines y Flow en Android.</p>
+                    <p class="article-item-tags">Android · Coroutines · Flow · Kotlin · Asíncrono</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/testing-en-android">Testing en Android</a></h2>
+                    <p class="article-item-date">16 de marzo de 2024</p>
+                    <p class="article-item-description">Guía práctica sobre cómo implementar diferentes tipos de pruebas en aplicaciones Android.</p>
+                    <p class="article-item-tags">Android · Testing · JUnit · Espresso · Mockito</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/desarrollo-de-apps-con-kotlin-multiplatform">Desarrollo de Apps con Kotlin Multiplatform</a></h2>
+                    <p class="article-item-date">19 de marzo de 2024</p>
+                    <p class="article-item-description">Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.</p>
+                    <p class="article-item-tags">Kotlin · KMM · Android · iOS · Multiplataforma</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/integraci-n-de-ia-en-apps-android">Integración de IA en Apps Android</a></h2>
+                    <p class="article-item-date">18 de marzo de 2024</p>
+                    <p class="article-item-description">Cómo integrar inteligencia artificial en tus aplicaciones Android usando servicios como OpenAI y modelos de ML.</p>
+                    <p class="article-item-tags">Android · IA · OpenAI · ML · Kotlin</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/arquitectura-mvvm-en-android">Arquitectura MVVM en Android</a></h2>
+                    <p class="article-item-date">17 de marzo de 2024</p>
+                    <p class="article-item-description">Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.</p>
+                    <p class="article-item-tags">Android · MVVM · Arquitectura · Kotlin · ViewModel</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/bienvenido-a-mi-blog">Bienvenido a mi blog</a></h2>
+                    <p class="article-item-date">25 de marzo de 2026</p>
+                    <p class="article-item-description">¡Hola! Bienvenido a mi blog personal. Aquí compartiré artículos sobre tecnología, programación y otros temas que me interesan.</p>
+                    <p class="article-item-tags">Blog · Bienvenida</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/coroutines-en-android-programaci-n-as-ncrona-moderna">Coroutines en Android: Programación asíncrona moderna</a></h2>
+                    <p class="article-item-date">25 de marzo de 2026</p>
+                    <p class="article-item-description">Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus aplicaciones.</p>
+                    <p class="article-item-tags">Android · Coroutines · Kotlin · Asíncrono</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/inyecci-n-de-dependencias-en-android-con-hilt">Inyección de Dependencias en Android con Hilt</a></h2>
+                    <p class="article-item-date">25 de marzo de 2026</p>
+                    <p class="article-item-description">La inyección de dependencias es una técnica fundamental en el desarrollo de aplicaciones Android modernas. Aprende a implementar DI usando Hilt, la solución oficial de Google.</p>
+                    <p class="article-item-tags">Android · Hilt · Arquitectura · Kotlin · Testing</p>
+                </article>
+                <article class="article-item">
+                    <h2><a href="/article/jetpack-compose-el-futuro-de-la-ui-en-android">Jetpack Compose: El futuro de la UI en Android</a></h2>
+                    <p class="article-item-date">25 de marzo de 2026</p>
+                    <p class="article-item-description">Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características principales.</p>
+                    <p class="article-item-tags">Android · Jetpack Compose · UI · Kotlin</p>
+                </article>
+            </div>
                 </div>
             </div>
         </div>
@@ -61,6 +210,7 @@
     <!-- Footer Container - rendered by component -->
     <div id="footer-container"></div>
 
+    <script src="/assets/js/icons.js"></script>
     <script src="/assets/js/components/navbar.js"></script>
     <script src="/assets/js/components/footer.js"></script>
     <script src="/assets/js/utils.js"></script>

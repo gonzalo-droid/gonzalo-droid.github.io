@@ -11,6 +11,10 @@ const tr = (key) => (window.I18n ? window.I18n.t(key) : key);
 const trProject = (project, field, fallback) =>
     (window.I18n ? window.I18n.project(project.slug, field, fallback) : fallback);
 
+// La tarjeta usa una variante de 600px; la original, mucho mayor, se reserva
+// para la galería de /project/<slug>, que sí la muestra en grande.
+const cardImage = (src) => src.replace('/portfolio/', '/portfolio/cards/');
+
 const PLATFORM_LABELS = {
     android: 'Android',
     ios: 'iOS',
@@ -26,7 +30,7 @@ function renderProjects(container, projects) {
         <article class="project-card" data-category="${p.platforms.join(',')}">
             <a class="project-card-image" href="/project/${p.slug}"
                aria-label="${tr('projects.detail.aria')} ${p.title}">
-                <img src="${p.image}" alt="${p.title}" loading="lazy">
+                <img src="${cardImage(p.image)}" alt="${p.title}" loading="lazy" width="600" height="375" decoding="async">
                 <span class="project-card-platform t-label">
                     ${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}
                 </span>

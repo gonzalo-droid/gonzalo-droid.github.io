@@ -1322,3 +1322,13 @@ noscript h3 {
   color: var(--accent-fg);
   font-weight: 700;
 }
+
+/* Iconos SVG inline (assets/js/icons.js). Sustituyen a Bootstrap Icons, que
+   costaba 200 KB entre CSS y fuente para dibujar ocho glifos. */
+.icon {
+  display: inline-block;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+.error-icon .icon { font-size: 2.5rem; margin-bottom: var(--sp-4); }
