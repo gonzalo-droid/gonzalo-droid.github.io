@@ -72,20 +72,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/solti-crm?lang=en"/>
   </url>
   <url>
-    <loc>https://gonzalo-lozg.me/article/introducci-n-a-jetpack-compose</loc>
-    <lastmod>2024-03-20</lastmod>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/introducci-n-a-jetpack-compose?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/introducci-n-a-jetpack-compose?lang=en"/>
-  </url>
-  <url>
-    <loc>https://gonzalo-lozg.me/article/coroutines-y-flow-en-android</loc>
-    <lastmod>2024-03-18</lastmod>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/coroutines-y-flow-en-android?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/coroutines-y-flow-en-android?lang=en"/>
-  </url>
-  <url>
     <loc>https://gonzalo-lozg.me/article/testing-en-android</loc>
     <lastmod>2024-03-17</lastmod>
     <priority>0.6</priority>
@@ -100,11 +86,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform?lang=en"/>
   </url>
   <url>
-    <loc>https://gonzalo-lozg.me/article/integraci-n-de-ia-en-apps-android</loc>
+    <loc>https://gonzalo-lozg.me/article/integracion-de-ia-en-apps-android</loc>
     <lastmod>2024-03-19</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/integraci-n-de-ia-en-apps-android?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/integraci-n-de-ia-en-apps-android?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/integracion-de-ia-en-apps-android?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/integracion-de-ia-en-apps-android?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android</loc>
@@ -114,25 +100,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android?lang=en"/>
   </url>
   <url>
-    <loc>https://gonzalo-lozg.me/article/bienvenido-a-mi-blog</loc>
+    <loc>https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna</loc>
     <lastmod>2026-03-26</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/bienvenido-a-mi-blog?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/bienvenido-a-mi-blog?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna?lang=en"/>
   </url>
   <url>
-    <loc>https://gonzalo-lozg.me/article/coroutines-en-android-programaci-n-as-ncrona-moderna</loc>
+    <loc>https://gonzalo-lozg.me/article/inyeccion-de-dependencias-en-android-con-hilt</loc>
     <lastmod>2026-03-26</lastmod>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/coroutines-en-android-programaci-n-as-ncrona-moderna?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/coroutines-en-android-programaci-n-as-ncrona-moderna?lang=en"/>
-  </url>
-  <url>
-    <loc>https://gonzalo-lozg.me/article/inyecci-n-de-dependencias-en-android-con-hilt</loc>
-    <lastmod>2026-03-26</lastmod>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/inyecci-n-de-dependencias-en-android-con-hilt?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/inyecci-n-de-dependencias-en-android-con-hilt?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/inyeccion-de-dependencias-en-android-con-hilt?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/inyeccion-de-dependencias-en-android-con-hilt?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android</loc>

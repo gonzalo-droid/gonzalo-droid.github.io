@@ -1,32 +1,5 @@
 [
     {
-        "title": "Introducción a Jetpack Compose",
-        "date": "2024-03-20",
-        "file": "jetpack-compose.md",
-        "description": "Una guía completa para comenzar con Jetpack Compose, el nuevo toolkit de UI para Android.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": [
-            "Android",
-            "Jetpack Compose",
-            "UI",
-            "Kotlin"
-        ]
-    },
-    {
-        "title": "Coroutines y Flow en Android",
-        "date": "2024-03-18",
-        "file": "coroutines-flow.md",
-        "description": "Aprende a manejar operaciones asíncronas y flujos de datos con Coroutines y Flow en Android.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": [
-            "Android",
-            "Coroutines",
-            "Flow",
-            "Kotlin",
-            "Asíncrono"
-        ]
-    },
-    {
         "title": "Testing en Android",
         "date": "2024-03-17",
         "file": "android-testing.md",
@@ -80,17 +53,6 @@
             "Arquitectura",
             "Kotlin",
             "ViewModel"
-        ]
-    },
-    {
-        "title": "Bienvenido a mi blog",
-        "date": "2026-03-26",
-        "file": "welcome.md",
-        "description": "¡Hola! Bienvenido a mi blog personal. Aquí compartiré artículos sobre tecnología, programación y otros temas que me interesan.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": [
-            "Blog",
-            "Bienvenida"
         ]
     },
     {

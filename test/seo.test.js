@@ -18,7 +18,7 @@ const exists = (p) => fs.existsSync(path.join(root, p));
 const articles = JSON.parse(read('content/articles.json'));
 const projects = JSON.parse(read('content/projects.json'));
 
-const slugify = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const { generateSlug: slugify } = require('./helpers/slug');
 
 /** Texto que ve un crawler: sin scripts, estilos ni etiquetas. */
 function visibleWords(html) {

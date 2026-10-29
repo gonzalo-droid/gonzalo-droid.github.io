@@ -63,12 +63,12 @@ function renderArticles(articles, container) {
         const formattedDate = formatDate(article.date);
 
         return `
-            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}" onclick="window.location.href='/article/${slug}'">
+            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}">
                 <div class="article-item-image">
                     <img src="${imagePath}" alt="${article.title}" loading="lazy">
                 </div>
                 <div class="article-item-content">
-                    <h3>${article.title}</h3>
+                    <h3><a class="article-item-link" href="/article/${slug}">${article.title}</a></h3>
                     <div class="article-item-date">
                         ${window.Icons ? Icons.icon("calendar3") : ""}
                         ${formattedDate}

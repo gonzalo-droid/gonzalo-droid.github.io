@@ -29,9 +29,15 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const readJson = (p) => JSON.parse(read(p));
 
 /** Misma lógica que generateSlug() en assets/js/utils.js. No cambiarla sin
- *  cambiarla allí: los enlaces de la home se generan en cliente con esa. */
+ *  cambiarla allí: los enlaces de la home se generan en cliente con esa, y
+ *  test/slug.test.js falla si las dos implementaciones se separan. */
 const generateSlug = (title) =>
-  title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  title
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
 /** Recorta en el último espacio antes del límite, sin partir palabras. */
 function clip(text, max = 155) {
