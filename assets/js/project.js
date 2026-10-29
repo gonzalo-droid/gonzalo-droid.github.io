@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Que la barra de direcciones muestre /project/<slug> aunque hayamos
         // llegado por el rebote del 404 de GitHub Pages.
-        const path = `/project/${project.slug}`;
+        const path = `/project/${project.slug}/`;
         if (window.location.pathname !== path) {
             history.replaceState(null, '', path);
         }

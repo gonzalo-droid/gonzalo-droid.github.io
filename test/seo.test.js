@@ -152,3 +152,37 @@ test('cada proyecto tiene su variante de tarjeta a 600px', () => {
     assert.ok(small <= full, `la variante de ${p.title} pesa más que la original`);
   }
 });
+
+test('las URLs canónicas llevan barra final, que es lo que sirve GitHub Pages', () => {
+  // GitHub Pages sirve article/<slug>/index.html y redirige 301 la versión sin
+  // barra. Un canonical sin barra apunta a una redirección que vuelve a la
+  // propia página: señal confusa para el indexador, y un salto extra por clic.
+  const pages = [
+    ...articles.map((a) => `article/${slugify(a.title)}/index.html`),
+    ...projects.map((p) => `project/${p.slug}/index.html`),
+  ];
+
+  for (const page of pages) {
+    const canonical = read(page).match(/rel="canonical"[^>]*href="([^"]*)"/)[1];
+    assert.ok(
+      canonical.endsWith('/'),
+      `${page}: canonical sin barra final → ${canonical}`
+    );
+  }
+
+  const xml = read('sitemap.xml');
+  for (const loc of [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])) {
+    assert.ok(loc.endsWith('/'), `el sitemap declara ${loc}, que redirige`);
+  }
+});
+
+test('ningún enlace interno apunta a una URL que redirige', () => {
+  const sources = ['assets/js/projects.js', 'assets/js/articles.js', 'assets/js/home.js'];
+  for (const src of sources) {
+    const bad = [...read(src).matchAll(/href="\/(article|project)\/[^"]*[^/"]"/g)];
+    assert.deepStrictEqual(
+      bad.map((m) => m[0]), [],
+      `${src} enlaza sin barra final: provoca un 301 en cada clic`
+    );
+  }
+});

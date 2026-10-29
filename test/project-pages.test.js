@@ -48,7 +48,9 @@ test('todo slug enlazado desde la grilla resuelve a un proyecto', () => {
   // projects.js construye el href como /project/${p.slug}; el detalle busca
   // por p.slug. Si alguien cambia uno sin el otro, esto lo caza.
   const grid = read('assets/js/projects.js');
-  assert.match(grid, /href="\/project\/\$\{p\.slug\}"/);
+  // Con barra final: GitHub Pages redirige la versión sin barra, y un enlace
+  // interno que provoca un 301 desperdicia un salto en cada clic.
+  assert.match(grid, /href="\/project\/\$\{p\.slug\}\/"/);
 
   for (const p of projects) {
     assert.ok(p.slug, `proyecto sin slug: ${p.title}`);

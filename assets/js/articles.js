@@ -68,7 +68,7 @@ function renderArticles(articles, container) {
                     <img src="${imagePath}" alt="${article.title}" loading="lazy">
                 </div>
                 <div class="article-item-content">
-                    <h3><a class="article-item-link" href="/article/${slug}">${article.title}</a></h3>
+                    <h3><a class="article-item-link" href="/article/${slug}/">${article.title}</a></h3>
                     <div class="article-item-date">
                         ${window.Icons ? Icons.icon("calendar3") : ""}
                         ${formattedDate}
