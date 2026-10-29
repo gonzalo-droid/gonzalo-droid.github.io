@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Coroutines en Android: Programación asíncrona moderna - Gonzalo López | Mobile Developer</title>
+    <meta id="metaDescription" name="description" content="Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus…">
+
+    <!-- Canonical -->
+    <link id="canonicalLink" rel="canonical" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna">
+
+    <!-- Open Graph -->
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Coroutines en Android: Programación asíncrona moderna - Gonzalo López | Mobile Developer">
+    <meta id="ogDescription" property="og:description" content="Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus…">
+    <meta id="ogImage" property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_noteai.webp">
+    <meta id="ogUrl" property="og:url" content="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Coroutines en Android: Programación asíncrona moderna - Gonzalo López | Mobile Developer">
+    <meta id="twitterDescription" name="twitter:description" content="Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus…">
+    <meta id="twitterImage" name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_noteai.webp">
+
+    <!-- JSON-LD structured data (populated dynamically by article.js) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Coroutines en Android: Programación asíncrona moderna",
+  "description": "Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus…",
+  "image": "https://gonzalo-lozg.me/assets/img/portfolio/app_noteai.webp",
+  "datePublished": "2026-03-26",
+  "dateModified": "2026-03-26",
+  "author": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna"
+  },
+  "inLanguage": "es",
+  "keywords": "Android, Coroutines, Kotlin, Asíncrono"
+}
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Markdown & Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
+
+    <!-- Theme -->
+    <script src="/assets/js/theme.js"></script>
+
+    <style>
+        .article-section {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-body {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .article-body h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-heading);
+        }
+        .article-body h3 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-heading);
+        }
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        .article-body pre {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .article-body code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        .article-body ul, .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+        .article-body li {
+            margin-bottom: 8px;
+        }
+        .article-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 24px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(-5px);
+        }
+        .article-loading {
+            text-align: center;
+            padding: 60px 0;
+        }
+    </style>
+<!-- build:pages -->
+    <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna?lang=es">
+    <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/article/coroutines-en-android-programacion-asincrona-moderna">
+<!-- /build:pages -->
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <a href="/articles" class="back-link" style="color: rgba(255,255,255,0.8);">
+                <i data-icon="arrow-left"></i> Volver a Artículos
+            </a>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section class="article-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article>
+                        <div class="article-header">
+                            <h1 id="articleTitle">Coroutines en Android: Programación asíncrona moderna</h1>
+                            <div class="article-meta">
+                                <i data-icon="calendar3"></i>
+                                <span id="articleDate">25 de marzo de 2026</span>
+                            </div>
+                        </div>
+                        <div class="article-body" id="articleContent">
+<h1>Coroutines en Android: Programación asíncrona moderna</h1>
+<p>Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. En este artículo, exploraremos cómo utilizarlas efectivamente en el desarrollo de aplicaciones Android.</p>
+<h2>¿Qué son las Coroutines?</h2>
+<p>Las coroutines son una forma de programación asíncrona que permite escribir código secuencial para operaciones asíncronas. En Android, son especialmente útiles para manejar operaciones de red, base de datos y otras tareas que no deben bloquear el hilo principal.</p>
+<h2>Conceptos básicos</h2>
+<h3>1. Scope y Context</h3>
+<pre><code class="language-kotlin">class MyViewModel : ViewModel() {
+    // Scope específico para ViewModel
+    private val viewModelScope = CoroutineScope(Dispatchers.Main + Job())
+    
+    fun fetchData() {
+        viewModelScope.launch {
+            // Código asíncrono
+        }
+    }
+}</code></pre>
+<h3>2. Dispatchers</h3>
+<pre><code class="language-kotlin">class Repository {
+    suspend fun fetchData() = withContext(Dispatchers.IO) {
+        // Operaciones de red o base de datos
+    }
+    
+    suspend fun updateUI() = withContext(Dispatchers.Main) {
+        // Actualizaciones de UI
+    }
+}</code></pre>
+<h2>Patrones comunes</h2>
+<h3>1. Manejo de errores</h3>
+<pre><code class="language-kotlin">class UserRepository {
+    suspend fun getUser(id: String): Result&lt;User&gt; = try {
+        withContext(Dispatchers.IO) {
+            val user = api.getUser(id)
+            Result.success(user)
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+}
+
+// Uso
+viewModelScope.launch {
+    userRepository.getUser(&quot;123&quot;)
+        .onSuccess { user -&gt;
+            // Manejar éxito
+        }
+        .onFailure { error -&gt;
+            // Manejar error
+        }
+}</code></pre>
+<h3>2. Operaciones paralelas</h3>
+<pre><code class="language-kotlin">class DataManager {
+    suspend fun loadData() = coroutineScope {
+        val users = async { userRepository.getUsers() }
+        val posts = async { postRepository.getPosts() }
+        
+        val result = Pair(users.await(), posts.await())
+        result
+    }
+}</code></pre>
+<h2>Integración con Android</h2>
+<h3>1. ViewModel</h3>
+<pre><code class="language-kotlin">class UserViewModel(
+    private val repository: UserRepository
+) : ViewModel() {
+    private val _users = MutableStateFlow&lt;List&lt;User&gt;&gt;(emptyList())
+    val users: StateFlow&lt;List&lt;User&gt;&gt; = _users.asStateFlow()
+    
+    fun loadUsers() {
+        viewModelScope.launch {
+            try {
+                _users.value = repository.getUsers()
+            } catch (e: Exception) {
+                // Manejar error
+            }
+        }
+    }
+}</code></pre>
+<h3>2. Room Database</h3>
+<pre><code class="language-kotlin">@Dao
+interface UserDao {
+    @Query(&quot;SELECT * FROM users&quot;)
+    suspend fun getUsers(): List&lt;User&gt;
+    
+    @Insert
+    suspend fun insertUser(user: User)
+}
+
+class UserRepository(
+    private val userDao: UserDao
+) {
+    suspend fun getUsers() = withContext(Dispatchers.IO) {
+        userDao.getUsers()
+    }
+}</code></pre>
+<h2>Mejores prácticas</h2>
+<ol>
+<li><strong>Scopes apropiados</strong></li>
+</ol>
+<ul>
+<li>Usar <code>viewModelScope</code> en ViewModels</li>
+<li>Usar <code>lifecycleScope</code> en Activities/Fragments</li>
+<li>Crear scopes personalizados cuando sea necesario</li>
+</ul>
+<ol>
+<li><strong>Manejo de errores</strong></li>
+</ol>
+<ul>
+<li>Implementar try-catch en operaciones críticas</li>
+<li>Usar <code>Result</code> para encapsular resultados</li>
+<li>Manejar errores de red específicamente</li>
+</ul>
+<ol>
+<li><strong>Performance</strong></li>
+</ol>
+<ul>
+<li>Elegir el dispatcher correcto</li>
+<li>Evitar operaciones bloqueantes</li>
+<li>Usar <code>withContext</code> para cambiar de contexto</li>
+</ul>
+<h2>Testing</h2>
+<pre><code class="language-kotlin">@Test
+fun testUserLoading() = runTest {
+    // Arrange
+    val repository = mock&lt;UserRepository&gt;()
+    val users = listOf(User(&quot;1&quot;, &quot;Test&quot;))
+    whenever(repository.getUsers()).thenReturn(users)
+    
+    val viewModel = UserViewModel(repository)
+    
+    // Act
+    viewModel.loadUsers()
+    
+    // Assert
+    assertEquals(users, viewModel.users.value)
+}</code></pre>
+<h2>Ventajas de las Coroutines</h2>
+<ul>
+<li><strong>Código más legible y mantenible</strong></li>
+<li><strong>Mejor manejo de errores</strong></li>
+<li><strong>Integración con otras APIs de Kotlin</strong></li>
+<li><strong>Menos código boilerplate</strong></li>
+<li><strong>Mejor control del ciclo de vida</strong></li>
+</ul>
+<h2>Conclusión</h2>
+<p>Las coroutines son una herramienta esencial para el desarrollo moderno de Android. Su capacidad para manejar operaciones asíncronas de manera elegante y eficiente las convierte en la opción preferida para la programación asíncrona en Kotlin.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/components/navbar.js"></script>
+    <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/i18n.js"></script>
+    <script src="/assets/js/article.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Desarrollo de Apps con Kotlin Multiplatform - Gonzalo López | Mobile Developer</title>
+    <meta id="metaDescription" name="description" content="Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.">
+
+    <!-- Canonical -->
+    <link id="canonicalLink" rel="canonical" href="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform">
+
+    <!-- Open Graph -->
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Desarrollo de Apps con Kotlin Multiplatform - Gonzalo López | Mobile Developer">
+    <meta id="ogDescription" property="og:description" content="Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.">
+    <meta id="ogImage" property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_cixcash.webp">
+    <meta id="ogUrl" property="og:url" content="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Desarrollo de Apps con Kotlin Multiplatform - Gonzalo López | Mobile Developer">
+    <meta id="twitterDescription" name="twitter:description" content="Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.">
+    <meta id="twitterImage" name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_cixcash.webp">
+
+    <!-- JSON-LD structured data (populated dynamically by article.js) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Desarrollo de Apps con Kotlin Multiplatform",
+  "description": "Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.",
+  "image": "https://gonzalo-lozg.me/assets/img/portfolio/app_cixcash.webp",
+  "datePublished": "2024-03-20",
+  "dateModified": "2024-03-20",
+  "author": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform"
+  },
+  "inLanguage": "es",
+  "keywords": "Kotlin, KMM, Android, iOS, Multiplataforma"
+}
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Markdown & Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
+
+    <!-- Theme -->
+    <script src="/assets/js/theme.js"></script>
+
+    <style>
+        .article-section {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-body {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .article-body h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-heading);
+        }
+        .article-body h3 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-heading);
+        }
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        .article-body pre {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .article-body code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        .article-body ul, .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+        .article-body li {
+            margin-bottom: 8px;
+        }
+        .article-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 24px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(-5px);
+        }
+        .article-loading {
+            text-align: center;
+            padding: 60px 0;
+        }
+    </style>
+<!-- build:pages -->
+    <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform?lang=es">
+    <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/article/desarrollo-de-apps-con-kotlin-multiplatform">
+<!-- /build:pages -->
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <a href="/articles" class="back-link" style="color: rgba(255,255,255,0.8);">
+                <i data-icon="arrow-left"></i> Volver a Artículos
+            </a>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section class="article-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article>
+                        <div class="article-header">
+                            <h1 id="articleTitle">Desarrollo de Apps con Kotlin Multiplatform</h1>
+                            <div class="article-meta">
+                                <i data-icon="calendar3"></i>
+                                <span id="articleDate">19 de marzo de 2024</span>
+                            </div>
+                        </div>
+                        <div class="article-body" id="articleContent">
+<h1>Desarrollo de Apps con Kotlin Multiplatform</h1>
+<p>Kotlin Multiplatform (KMP) es una tecnología que permite compartir código entre diferentes plataformas, principalmente Android e iOS. En este artículo, exploraremos cómo utilizar KMP para desarrollar aplicaciones multiplataforma eficientemente.</p>
+<h2>¿Qué es Kotlin Multiplatform?</h2>
+<p>Kotlin Multiplatform es una solución que permite escribir código común en Kotlin y compilarlo para diferentes plataformas. Esto significa que puedes compartir la lógica de negocio, el manejo de datos y otras funcionalidades entre Android e iOS.</p>
+<h2>Ventajas de usar KMP</h2>
+<ul>
+<li><strong>Código compartido</strong>: Reduce la duplicación de código</li>
+<li><strong>Mantenibilidad</strong>: Un solo código base para múltiples plataformas</li>
+<li><strong>Rendimiento</strong>: Código nativo para cada plataforma</li>
+<li><strong>Flexibilidad</strong>: Puedes compartir tanto o tan poco código como necesites</li>
+</ul>
+<h2>Estructura básica de un proyecto KMP</h2>
+<pre><code class="language-kotlin">// commonMain/kotlin/com/example/shared/Repository.kt
+interface Repository {
+    suspend fun getData(): List&lt;Data&gt;
+}
+
+// androidMain/kotlin/com/example/shared/AndroidRepository.kt
+class AndroidRepository : Repository {
+    override suspend fun getData(): List&lt;Data&gt; {
+        // Implementación específica para Android
+    }
+}
+
+// iosMain/kotlin/com/example/shared/IosRepository.kt
+class IosRepository : Repository {
+    override suspend fun getData(): List&lt;Data&gt; {
+        // Implementación específica para iOS
+    }
+}</code></pre>
+<h2>Bibliotecas esenciales</h2>
+<ol>
+<li><strong>Ktor</strong>: Cliente HTTP multiplataforma</li>
+<li><strong>Kotlinx.serialization</strong>: Serialización JSON</li>
+<li><strong>SQLDelight</strong>: Base de datos SQL multiplataforma</li>
+<li><strong>Koin</strong>: Inyección de dependencias</li>
+</ol>
+<h2>Ejemplo de implementación</h2>
+<pre><code class="language-kotlin">// Modelo compartido
+data class User(
+    val id: String,
+    val name: String,
+    val email: String
+)
+
+// Repositorio compartido
+interface UserRepository {
+    suspend fun getUsers(): List&lt;User&gt;
+    suspend fun saveUser(user: User)
+}
+
+// ViewModel compartido
+class UserViewModel(
+    private val repository: UserRepository
+) {
+    private val _users = MutableStateFlow&lt;List&lt;User&gt;&gt;(emptyList())
+    val users: StateFlow&lt;List&lt;User&gt;&gt; = _users.asStateFlow()
+
+    suspend fun loadUsers() {
+        _users.value = repository.getUsers()
+    }
+}</code></pre>
+<h2>Mejores prácticas</h2>
+<ol>
+<li><strong>Separación de responsabilidades</strong></li>
+</ol>
+<ul>
+<li>Código común en módulos compartidos</li>
+<li>UI específica en cada plataforma</li>
+<li>Lógica de negocio compartida</li>
+</ul>
+<ol>
+<li><strong>Manejo de dependencias</strong></li>
+</ol>
+<ul>
+<li>Usar expect/actual para APIs específicas</li>
+<li>Implementar interfaces en cada plataforma</li>
+<li>Mantener la compatibilidad</li>
+</ul>
+<ol>
+<li><strong>Testing</strong></li>
+</ol>
+<ul>
+<li>Pruebas unitarias en código compartido</li>
+<li>Pruebas específicas para cada plataforma</li>
+<li>Mocks y stubs para testing</li>
+</ul>
+<h2>Conclusión</h2>
+<p>Kotlin Multiplatform es una excelente opción para desarrollar aplicaciones multiplataforma, permitiendo compartir código mientras mantienes la flexibilidad de implementar características específicas para cada plataforma.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/components/navbar.js"></script>
+    <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/i18n.js"></script>
+    <script src="/assets/js/article.js"></script>
+</body>
+</html>

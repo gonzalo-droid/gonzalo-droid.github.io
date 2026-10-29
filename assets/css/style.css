@@ -1322,3 +1322,28 @@ noscript h3 {
   color: var(--accent-fg);
   font-weight: 700;
 }
+
+/* Iconos SVG inline (assets/js/icons.js). Sustituyen a Bootstrap Icons, que
+   costaba 200 KB entre CSS y fuente para dibujar ocho glifos. */
+.icon {
+  display: inline-block;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+.error-icon .icon { font-size: 2.5rem; margin-bottom: var(--sp-4); }
+
+/* La tarjeta del blog navegaba con onclick: no se podía abrir en pestaña
+   nueva, no recibía foco de teclado y un lector de pantalla no la anunciaba
+   como enlace. Ahora el título es un enlace real y su ::after cubre la
+   tarjeta, de modo que toda ella sigue siendo clicable. */
+.article-item { position: relative; }
+
+.article-item-link { color: inherit; }
+.article-item-link::after { content: ""; position: absolute; inset: 0; }
+.article-item-link:hover { color: var(--accent); }
+
+.article-item-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

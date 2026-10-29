@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Jetpack Compose: El futuro de la UI en Android - Gonzalo López | Mobile Developer</title>
+    <meta id="metaDescription" name="description" content="Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características…">
+
+    <!-- Canonical -->
+    <link id="canonicalLink" rel="canonical" href="https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android">
+
+    <!-- Open Graph -->
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Jetpack Compose: El futuro de la UI en Android - Gonzalo López | Mobile Developer">
+    <meta id="ogDescription" property="og:description" content="Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características…">
+    <meta id="ogImage" property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_erp.webp">
+    <meta id="ogUrl" property="og:url" content="https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Jetpack Compose: El futuro de la UI en Android - Gonzalo López | Mobile Developer">
+    <meta id="twitterDescription" name="twitter:description" content="Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características…">
+    <meta id="twitterImage" name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_erp.webp">
+
+    <!-- JSON-LD structured data (populated dynamically by article.js) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Jetpack Compose: El futuro de la UI en Android",
+  "description": "Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características…",
+  "image": "https://gonzalo-lozg.me/assets/img/portfolio/app_erp.webp",
+  "datePublished": "2026-03-26",
+  "dateModified": "2026-03-26",
+  "author": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android"
+  },
+  "inLanguage": "es",
+  "keywords": "Android, Jetpack Compose, UI, Kotlin"
+}
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Markdown & Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
+
+    <!-- Theme -->
+    <script src="/assets/js/theme.js"></script>
+
+    <style>
+        .article-section {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-body {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .article-body h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-heading);
+        }
+        .article-body h3 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-heading);
+        }
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        .article-body pre {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .article-body code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        .article-body ul, .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+        .article-body li {
+            margin-bottom: 8px;
+        }
+        .article-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 24px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(-5px);
+        }
+        .article-loading {
+            text-align: center;
+            padding: 60px 0;
+        }
+    </style>
+<!-- build:pages -->
+    <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android?lang=es">
+    <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/article/jetpack-compose-el-futuro-de-la-ui-en-android">
+<!-- /build:pages -->
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <a href="/articles" class="back-link" style="color: rgba(255,255,255,0.8);">
+                <i data-icon="arrow-left"></i> Volver a Artículos
+            </a>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section class="article-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article>
+                        <div class="article-header">
+                            <h1 id="articleTitle">Jetpack Compose: El futuro de la UI en Android</h1>
+                            <div class="article-meta">
+                                <i data-icon="calendar3"></i>
+                                <span id="articleDate">25 de marzo de 2026</span>
+                            </div>
+                        </div>
+                        <div class="article-body" id="articleContent">
+<h1>Jetpack Compose: El futuro de la UI en Android</h1>
+<p>Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. En este artículo, exploraremos sus características principales y cómo utilizarlo efectivamente.</p>
+<h2>¿Qué es Jetpack Compose?</h2>
+<p>Jetpack Compose es un toolkit de UI declarativa que permite crear interfaces de usuario nativas de Android utilizando Kotlin. A diferencia del sistema de vistas tradicional, Compose utiliza un enfoque basado en funciones composables.</p>
+<h2>Conceptos básicos</h2>
+<h3>1. Composable Functions</h3>
+<pre><code class="language-kotlin">@Composable
+fun Greeting(name: String) {
+    Text(text = &quot;Hello, $name!&quot;)
+}
+
+@Composable
+fun App() {
+    Column {
+        Greeting(&quot;Android&quot;)
+        Button(onClick = { /* acción */ }) {
+            Text(&quot;Click me&quot;)
+        }
+    }
+}</code></pre>
+<h3>2. Estado y recomposición</h3>
+<pre><code class="language-kotlin">@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+    
+    Column {
+        Text(&quot;Count: $count&quot;)
+        Button(onClick = { count++ }) {
+            Text(&quot;Increment&quot;)
+        }
+    }
+}</code></pre>
+<h2>Componentes principales</h2>
+<h3>1. Layouts</h3>
+<pre><code class="language-kotlin">@Composable
+fun LayoutExample() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(&quot;Header&quot;)
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(&quot;Left&quot;)
+            Text(&quot;Right&quot;)
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
+                .background(Color.Gray)
+        ) {
+            Text(&quot;Centered&quot;, modifier = Modifier.align(Alignment.Center))
+        }
+    }
+}</code></pre>
+<h3>2. Lists y Grids</h3>
+<pre><code class="language-kotlin">@Composable
+fun ListExample(items: List&lt;String&gt;) {
+    LazyColumn {
+        items(items) { item -&gt;
+            ListItem(
+                headlineContent = { Text(item) },
+                leadingContent = {
+                    Icon(Icons.Default.Person, contentDescription = null)
+                }
+            )
+        }
+    }
+}</code></pre>
+<h2>Temas y estilos</h2>
+<h3>1. Material Design 3</h3>
+<pre><code class="language-kotlin">@Composable
+fun ThemedApp() {
+    MaterialTheme(
+        colorScheme = darkColorScheme(
+            primary = Purple80,
+            secondary = PurpleGrey80
+        ),
+        typography = Typography
+    ) {
+        // Contenido de la app
+    }
+}</code></pre>
+<h3>2. Modificadores personalizados</h3>
+<pre><code class="language-kotlin">fun Modifier.cardStyle() = this
+    .padding(16.dp)
+    .background(
+        color = MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(8.dp)
+    )
+    .shadow(4.dp)
+
+@Composable
+fun CardExample() {
+    Box(modifier = Modifier.cardStyle()) {
+        Text(&quot;Card content&quot;)
+    }
+}</code></pre>
+<h2>Navegación</h2>
+<pre><code class="language-kotlin">@Composable
+fun NavigationExample() {
+    val navController = rememberNavController()
+    
+    NavHost(navController = navController, startDestination = &quot;home&quot;) {
+        composable(&quot;home&quot;) { HomeScreen(navController) }
+        composable(&quot;detail/{id}&quot;) { backStackEntry -&gt;
+            DetailScreen(
+                id = backStackEntry.arguments?.getString(&quot;id&quot;),
+                onBack = { navController.popBackStack() }
+            )
+        }
+    }
+}</code></pre>
+<h2>Mejores prácticas</h2>
+<ol>
+<li><strong>Composición vs. herencia</strong></li>
+</ol>
+<ul>
+<li>Preferir composición sobre herencia</li>
+<li>Crear componentes reutilizables</li>
+<li>Mantener las funciones composables pequeñas</li>
+</ul>
+<ol>
+<li><strong>Manejo de estado</strong></li>
+</ol>
+<ul>
+<li>Usar <code>remember</code> y <code>mutableStateOf</code></li>
+<li>Implementar <code>ViewModel</code> para lógica compleja</li>
+<li>Utilizar <code>LaunchedEffect</code> para efectos secundarios</li>
+</ul>
+<ol>
+<li><strong>Performance</strong></li>
+</ol>
+<ul>
+<li>Evitar recomposiciones innecesarias</li>
+<li>Usar <code>remember</code> y <code>derivedStateOf</code></li>
+<li>Implementar <code>key</code> en listas</li>
+</ul>
+<h2>Testing</h2>
+<pre><code class="language-kotlin">@Test
+fun testGreeting() {
+    composeTestRule.setContent {
+        Greeting(&quot;Android&quot;)
+    }
+    
+    composeTestRule.onNodeWithText(&quot;Hello, Android!&quot;)
+        .assertIsDisplayed()
+}</code></pre>
+<h2>Ventajas de Compose</h2>
+<ul>
+<li><strong>Código más conciso y legible</strong></li>
+<li><strong>Menos código boilerplate</strong></li>
+<li><strong>Mejor manejo de estado</strong></li>
+<li><strong>Preview en tiempo real</strong></li>
+<li><strong>Integración con Material Design 3</strong></li>
+</ul>
+<h2>Conclusión</h2>
+<p>Jetpack Compose representa un cambio significativo en la forma de crear interfaces de usuario en Android. Su enfoque declarativo y su integración con Kotlin lo convierten en una herramienta poderosa para el desarrollo moderno de aplicaciones Android.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/components/navbar.js"></script>
+    <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/i18n.js"></script>
+    <script src="/assets/js/article.js"></script>
+</body>
+</html>

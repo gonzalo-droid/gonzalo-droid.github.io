@@ -1,35 +1,17 @@
 [
     {
-        "title": "Introducción a Jetpack Compose",
-        "date": "2024-03-20",
-        "file": "jetpack-compose.md",
-        "description": "Una guía completa para comenzar con Jetpack Compose, el nuevo toolkit de UI para Android.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "Jetpack Compose", "UI", "Kotlin"]
-    },
-    {
-        "title": "Clean Architecture en Android",
-        "date": "2024-03-19",
-        "file": "clean-architecture.md",
-        "description": "Cómo implementar Clean Architecture en tus aplicaciones Android para mantener un código limpio y mantenible.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "Clean Architecture", "Arquitectura", "Kotlin"]
-    },
-    {
-        "title": "Coroutines y Flow en Android",
-        "date": "2024-03-18",
-        "file": "coroutines-flow.md",
-        "description": "Aprende a manejar operaciones asíncronas y flujos de datos con Coroutines y Flow en Android.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "Coroutines", "Flow", "Kotlin", "Asíncrono"]
-    },
-    {
         "title": "Testing en Android",
         "date": "2024-03-17",
         "file": "android-testing.md",
         "description": "Guía práctica sobre cómo implementar diferentes tipos de pruebas en aplicaciones Android.",
         "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "Testing", "JUnit", "Espresso", "Mockito"]
+        "tags": [
+            "Android",
+            "Testing",
+            "JUnit",
+            "Espresso",
+            "Mockito"
+        ]
     },
     {
         "title": "Desarrollo de Apps con Kotlin Multiplatform",
@@ -37,7 +19,13 @@
         "file": "kotlin-multiplatform.md",
         "description": "Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.",
         "image": "assets/img/portfolio/app_cixcash.webp",
-        "tags": ["Kotlin", "KMM", "Android", "iOS", "Multiplataforma"]
+        "tags": [
+            "Kotlin",
+            "KMM",
+            "Android",
+            "iOS",
+            "Multiplataforma"
+        ]
     },
     {
         "title": "Integración de IA en Apps Android",
@@ -45,7 +33,13 @@
         "file": "android-ai.md",
         "description": "Cómo integrar inteligencia artificial en tus aplicaciones Android usando servicios como OpenAI y modelos de ML.",
         "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "IA", "OpenAI", "ML", "Kotlin"]
+        "tags": [
+            "Android",
+            "IA",
+            "OpenAI",
+            "ML",
+            "Kotlin"
+        ]
     },
     {
         "title": "Arquitectura MVVM en Android",
@@ -53,15 +47,13 @@
         "file": "android-mvvm.md",
         "description": "Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.",
         "image": "assets/img/portfolio/app_ulearning.webp",
-        "tags": ["Android", "MVVM", "Arquitectura", "Kotlin", "ViewModel"]
-    },
-    {
-        "title": "Bienvenido a mi blog",
-        "date": "2026-03-26",
-        "file": "welcome.md",
-        "description": "¡Hola! Bienvenido a mi blog personal. Aquí compartiré artículos sobre tecnología, programación y otros temas que me interesan.",
-        "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Blog", "Bienvenida"]
+        "tags": [
+            "Android",
+            "MVVM",
+            "Arquitectura",
+            "Kotlin",
+            "ViewModel"
+        ]
     },
     {
         "title": "Coroutines en Android: Programación asíncrona moderna",
@@ -69,7 +61,12 @@
         "file": "android-coroutines.md",
         "description": "Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus aplicaciones.",
         "image": "assets/img/portfolio/app_noteai.webp",
-        "tags": ["Android", "Coroutines", "Kotlin", "Asíncrono"]
+        "tags": [
+            "Android",
+            "Coroutines",
+            "Kotlin",
+            "Asíncrono"
+        ]
     },
     {
         "title": "Inyección de Dependencias en Android con Hilt",
@@ -77,7 +74,13 @@
         "file": "android-dependency-injection.md",
         "description": "La inyección de dependencias es una técnica fundamental en el desarrollo de aplicaciones Android modernas. Aprende a implementar DI usando Hilt, la solución oficial de Google.",
         "image": "assets/img/portfolio/app_crm.webp",
-        "tags": ["Android", "Hilt", "Arquitectura", "Kotlin", "Testing"]
+        "tags": [
+            "Android",
+            "Hilt",
+            "Arquitectura",
+            "Kotlin",
+            "Testing"
+        ]
     },
     {
         "title": "Jetpack Compose: El futuro de la UI en Android",
@@ -85,6 +88,11 @@
         "file": "android-jetpack-compose.md",
         "description": "Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características principales.",
         "image": "assets/img/portfolio/app_erp.webp",
-        "tags": ["Android", "Jetpack Compose", "UI", "Kotlin"]
+        "tags": [
+            "Android",
+            "Jetpack Compose",
+            "UI",
+            "Kotlin"
+        ]
     }
-] 
+]

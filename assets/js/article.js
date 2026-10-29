@@ -209,7 +209,7 @@ function showError(message) {
     document.getElementById('articleTitle').textContent = 'Error';
     document.getElementById('articleContent').innerHTML = `
         <div class="alert alert-danger" style="background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: #ff6b6b; padding: 20px; border-radius: 8px; text-align: center;">
-            <i class="bi bi-exclamation-circle" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+            <span class="error-icon">${window.Icons ? Icons.icon("exclamation-circle") : ""}</span>
             ${message}
             <br><br>
             <a href="/articles" style="color: #00d4ff;">Volver a artículos</a>

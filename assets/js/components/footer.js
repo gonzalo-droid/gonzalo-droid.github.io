@@ -16,7 +16,7 @@ const FooterComponent = {
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="bi bi-arrow-up"></i>
+        ${window.Icons ? Icons.icon("arrow-up") : ""}
     </a>`;
     },
 

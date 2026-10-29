@@ -34,7 +34,7 @@ async function loadArticles() {
         console.error('Error loading articles:', error);
         container.innerHTML = `
             <div class="no-articles">
-                <i class="bi bi-exclamation-circle" style="font-size: 48px; margin-bottom: 16px;"></i>
+                <span class="error-icon">${window.Icons ? Icons.icon("exclamation-circle") : ""}</span>
                 <p>Error al cargar los artículos. Por favor, intenta de nuevo más tarde.</p>
             </div>
         `;
@@ -63,14 +63,14 @@ function renderArticles(articles, container) {
         const formattedDate = formatDate(article.date);
 
         return `
-            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}" onclick="window.location.href='/article/${slug}'">
+            <article class="article-item" data-tags="${article.tags.map(t => t.toLowerCase()).join(',')}">
                 <div class="article-item-image">
                     <img src="${imagePath}" alt="${article.title}" loading="lazy">
                 </div>
                 <div class="article-item-content">
-                    <h3>${article.title}</h3>
+                    <h3><a class="article-item-link" href="/article/${slug}">${article.title}</a></h3>
                     <div class="article-item-date">
-                        <i class="bi bi-calendar3"></i>
+                        ${window.Icons ? Icons.icon("calendar3") : ""}
                         ${formattedDate}
                     </div>
                     <p class="article-item-description">${article.description}</p>
@@ -78,7 +78,7 @@ function renderArticles(articles, container) {
                         ${article.tags.slice(0, 4).map(tag => `<span>${tag}</span>`).join('')}
                     </div>
                     <div class="article-item-arrow">
-                        Leer artículo <i class="bi bi-arrow-right"></i>
+                        Leer artículo ${window.Icons ? Icons.icon("arrow-right") : ""}
                     </div>
                 </div>
             </article>

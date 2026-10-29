@@ -52,10 +52,10 @@ const NavbarComponent = {
                         <button type="button" data-lang-option="en" aria-pressed="false">EN</button>
                     </div>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                        <span id="themeIcon"></span>
                     </button>
                     <button class="navbar-mobile-toggle" id="navbarMobileToggle" aria-label="Menu">
-                        <i class="bi bi-list"></i>
+                        ${window.Icons ? Icons.icon("list") : ""}
                     </button>
                 </div>
             </div>

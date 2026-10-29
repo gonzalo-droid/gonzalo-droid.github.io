@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Arquitectura MVVM en Android - Gonzalo López | Mobile Developer</title>
+    <meta id="metaDescription" name="description" content="Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.">
+
+    <!-- Canonical -->
+    <link id="canonicalLink" rel="canonical" href="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android">
+
+    <!-- Open Graph -->
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Arquitectura MVVM en Android - Gonzalo López | Mobile Developer">
+    <meta id="ogDescription" property="og:description" content="Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.">
+    <meta id="ogImage" property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_ulearning.webp">
+    <meta id="ogUrl" property="og:url" content="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Arquitectura MVVM en Android - Gonzalo López | Mobile Developer">
+    <meta id="twitterDescription" name="twitter:description" content="Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.">
+    <meta id="twitterImage" name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/app_ulearning.webp">
+
+    <!-- JSON-LD structured data (populated dynamically by article.js) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Arquitectura MVVM en Android",
+  "description": "Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.",
+  "image": "https://gonzalo-lozg.me/assets/img/portfolio/app_ulearning.webp",
+  "datePublished": "2024-03-18",
+  "dateModified": "2024-03-18",
+  "author": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gonzalo López",
+    "url": "https://gonzalo-lozg.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android"
+  },
+  "inLanguage": "es",
+  "keywords": "Android, MVVM, Arquitectura, Kotlin, ViewModel"
+}
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Markdown & Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
+
+    <!-- Theme -->
+    <script src="/assets/js/theme.js"></script>
+
+    <style>
+        .article-section {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-body {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .article-body h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-heading);
+        }
+        .article-body h3 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-heading);
+        }
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        .article-body pre {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .article-body code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        .article-body ul, .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+        .article-body li {
+            margin-bottom: 8px;
+        }
+        .article-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 24px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(-5px);
+        }
+        .article-loading {
+            text-align: center;
+            padding: 60px 0;
+        }
+    </style>
+<!-- build:pages -->
+    <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android?lang=es">
+    <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/article/arquitectura-mvvm-en-android">
+<!-- /build:pages -->
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container" data-transparent="false"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <a href="/articles" class="back-link" style="color: rgba(255,255,255,0.8);">
+                <i data-icon="arrow-left"></i> Volver a Artículos
+            </a>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section class="article-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article>
+                        <div class="article-header">
+                            <h1 id="articleTitle">Arquitectura MVVM en Android</h1>
+                            <div class="article-meta">
+                                <i data-icon="calendar3"></i>
+                                <span id="articleDate">17 de marzo de 2024</span>
+                            </div>
+                        </div>
+                        <div class="article-body" id="articleContent">
+<h1>Arquitectura MVVM en Android</h1>
+<p>El patrón MVVM (Model-View-ViewModel) es una de las arquitecturas más populares en el desarrollo de aplicaciones Android modernas. En este artículo, exploraremos cómo implementar MVVM correctamente.</p>
+<h2>¿Qué es MVVM?</h2>
+<p>MVVM es un patrón arquitectónico que separa la lógica de presentación de la lógica de negocio y la interfaz de usuario. Sus componentes principales son:</p>
+<ul>
+<li><strong>Model</strong>: Representa los datos y la lógica de negocio</li>
+<li><strong>View</strong>: La interfaz de usuario</li>
+<li><strong>ViewModel</strong>: Maneja la lógica de presentación y el estado de la UI</li>
+</ul>
+<h2>Implementación básica</h2>
+<h3>1. Model</h3>
+<pre><code class="language-kotlin">data class User(
+    val id: String,
+    val name: String,
+    val email: String
+)
+
+interface UserRepository {
+    suspend fun getUsers(): List&lt;User&gt;
+    suspend fun saveUser(user: User)
+}</code></pre>
+<h3>2. ViewModel</h3>
+<pre><code class="language-kotlin">class UserViewModel(
+    private val repository: UserRepository
+) : ViewModel() {
+    private val _users = MutableStateFlow&lt;List&lt;User&gt;&gt;(emptyList())
+    val users: StateFlow&lt;List&lt;User&gt;&gt; = _users.asStateFlow()
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow&lt;Boolean&gt; = _isLoading.asStateFlow()
+
+    fun loadUsers() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                _users.value = repository.getUsers()
+            } catch (e: Exception) {
+                // Manejar error
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+}</code></pre>
+<h3>3. View (Compose)</h3>
+<pre><code class="language-kotlin">@Composable
+fun UserScreen(
+    viewModel: UserViewModel = hiltViewModel()
+) {
+    val users by viewModel.users.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.loadUsers()
+    }
+
+    if (isLoading) {
+        CircularProgressIndicator()
+    } else {
+        LazyColumn {
+            items(users) { user -&gt;
+                UserItem(user)
+            }
+        }
+    }
+}</code></pre>
+<h2>Mejores prácticas</h2>
+<ol>
+<li><strong>Manejo de estado</strong></li>
+</ol>
+<ul>
+<li>Usar StateFlow para estado observable</li>
+<li>Implementar estados de UI (loading, error, success)</li>
+<li>Manejar la configuración de cambios</li>
+</ul>
+<ol>
+<li><strong>Inyección de dependencias</strong></li>
+</ol>
+<ul>
+<li>Usar Hilt para inyección</li>
+<li>Proporcionar ViewModels a través de ViewModelProvider</li>
+<li>Mantener las dependencias testables</li>
+</ul>
+<ol>
+<li><strong>Testing</strong></li>
+</ol>
+<ul>
+<li>Pruebas unitarias para ViewModels</li>
+<li>Pruebas de integración para repositorios</li>
+<li>Pruebas de UI con Compose</li>
+</ul>
+<h2>Ejemplo de testing</h2>
+<pre><code class="language-kotlin">@Test
+fun `test user loading`() = runTest {
+    // Arrange
+    val repository = mock&lt;UserRepository&gt;()
+    val users = listOf(User(&quot;1&quot;, &quot;Test&quot;, &quot;test@test.com&quot;))
+    whenever(repository.getUsers()).thenReturn(users)
+    
+    val viewModel = UserViewModel(repository)
+    
+    // Act
+    viewModel.loadUsers()
+    
+    // Assert
+    assertEquals(users, viewModel.users.value)
+    assertFalse(viewModel.isLoading.value)
+}</code></pre>
+<h2>Ventajas de MVVM</h2>
+<ul>
+<li><strong>Separación de responsabilidades</strong></li>
+<li><strong>Testabilidad mejorada</strong></li>
+<li><strong>Mantenibilidad del código</strong></li>
+<li><strong>Reutilización de componentes</strong></li>
+<li><strong>Ciclo de vida más simple</strong></li>
+</ul>
+<h2>Conclusión</h2>
+<p>MVVM es una arquitectura robusta y flexible que se adapta bien a las necesidades modernas del desarrollo Android. Con las herramientas adecuadas y siguiendo las mejores prácticas, puedes crear aplicaciones mantenibles y escalables.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container - rendered by component -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/components/navbar.js"></script>
+    <script src="/assets/js/components/footer.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/i18n.js"></script>
+    <script src="/assets/js/article.js"></script>
+</body>
+</html>
