@@ -101,7 +101,10 @@ function buildArticles() {
 
   for (const article of articles) {
     const slug = generateSlug(article.title);
-    const url = `${SITE}/article/${slug}`;
+    // Con barra final: GitHub Pages sirve article/<slug>/index.html y redirige
+    // la versión sin barra. El canonical debe apuntar a la URL que responde 200,
+    // no a una que redirige.
+    const url = `${SITE}/article/${slug}/`;
     const md = read(path.join('content/articles', article.file));
     const body = renderMarkdown(md);
     const plain = toPlainText(md);
@@ -186,7 +189,7 @@ function buildProjects() {
   const written = [];
 
   for (const project of projects) {
-    const url = `${SITE}/project/${project.slug}`;
+    const url = `${SITE}/project/${project.slug}/`;
     const title = `${project.title} - ${AUTHOR} | Mobile Developer`;
     const description = clip(project.summary);
     const image = SITE + project.image;
@@ -281,7 +284,7 @@ function buildArticlesIndex(articles) {
     .map((a) => {
       const slug = generateSlug(a.title);
       return `                <article class="article-item">
-                    <h2><a href="/article/${slug}">${escapeHtml(a.title)}</a></h2>
+                    <h2><a href="/article/${slug}/">${escapeHtml(a.title)}</a></h2>
                     <p class="article-item-date">${escapeHtml(formatDate(a.date))}</p>
                     <p class="article-item-description">${escapeHtml(a.description || '')}</p>
                     <p class="article-item-tags">${(a.tags || []).map(escapeHtml).join(' · ')}</p>
@@ -330,7 +333,7 @@ function buildArticlesIndex(articles) {
         '@type': 'BlogPosting',
         headline: a.title,
         datePublished: a.date,
-        url: `${SITE}/article/${generateSlug(a.title)}`,
+        url: `${SITE}/article/${generateSlug(a.title)}/`,
       })),
     }));
   }
@@ -350,9 +353,9 @@ function buildSitemap(articles, projects) {
   const entries = [
     { loc: `${SITE}/`, lastmod: today, priority: '1.0' },
     { loc: `${SITE}/articles/`, lastmod: today, priority: '0.8' },
-    ...projects.map((p) => ({ loc: SITE + p.url, lastmod: today, priority: '0.8' })),
+    ...projects.map((p) => ({ loc: `${SITE}${p.url}/`, lastmod: today, priority: '0.8' })),
     ...articles.map((a) => ({
-      loc: SITE + a.url,
+      loc: `${SITE}${a.url}/`,
       lastmod: articleMeta[a.url.replace('/article/', '')] || today,
       priority: '0.6',
     })),

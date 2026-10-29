@@ -28,7 +28,7 @@ const PLATFORM_LABELS = {
 function renderProjects(container, projects) {
     container.innerHTML = projects.map((p) => `
         <article class="project-card" data-category="${p.platforms.join(',')}">
-            <a class="project-card-image" href="/project/${p.slug}"
+            <a class="project-card-image" href="/project/${p.slug}/"
                aria-label="${tr('projects.detail.aria')} ${p.title}">
                 <img src="${cardImage(p.image)}" alt="${p.title}" loading="lazy" width="600" height="375" decoding="async">
                 <span class="project-card-platform t-label">
@@ -36,7 +36,7 @@ function renderProjects(container, projects) {
                 </span>
             </a>
             <div class="project-card-content">
-                <h3 class="t-h3"><a href="/project/${p.slug}">${p.title}</a></h3>
+                <h3 class="t-h3"><a href="/project/${p.slug}/">${p.title}</a></h3>
                 <p class="t-small">${trProject(p, 'summary', p.summary)}</p>
                 <div class="project-tech">
                     ${p.tech.slice(0, 3).map((t) => `<span>${t}</span>`).join('')}

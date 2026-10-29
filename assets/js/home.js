@@ -67,7 +67,7 @@ async function loadLatestArticles() {
                         <img src="${imagePath}" alt="${article.title}" loading="lazy">
                     </div>
                     <div class="article-card-content">
-                        <h3><a href="/article/${slug}">${article.title}</a></h3>
+                        <h3><a href="/article/${slug}/">${article.title}</a></h3>
                         <div class="article-card-date">${formatDate(article.date)}</div>
                         <div class="article-card-tags">
                             ${article.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}
