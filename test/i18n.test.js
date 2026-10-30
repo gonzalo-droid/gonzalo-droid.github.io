@@ -67,6 +67,21 @@ test('los enlaces de la navbar están cableados a claves', () => {
   }
   assert.match(navbar, /data-lang-option="es"/);
   assert.match(navbar, /data-lang-option="en"/);
+
+  // Proyectos, Servicios y Contacto son anclas del inicio; Experiencia y Blog, páginas.
+  for (const href of ['/#proyectos', '/#servicios', '/experience/', '/articles/', '/#contacto']) {
+    assert.ok(navbar.includes(`href: '${href}'`), `la navbar no enlaza ${href}`);
+  }
+});
+
+test('el pie usa solo claves que existen y ofrece el cambio de idioma', () => {
+  const footer = read('assets/js/components/footer.js');
+  const known = new Set(uiKeys(es));
+  const keys = [...footer.matchAll(/(?:key:\s*|data-i18n(?:-aria)?=")'?([a-z][\w.]+)/g)].map((m) => m[1]);
+  assert.ok(keys.length >= 5, 'el pie no usa claves i18n');
+  for (const key of keys) assert.ok(known.has(key), `footer.js usa la clave "${key}", que no está en es.json`);
+  assert.match(footer, /data-lang-option="es"/);
+  assert.match(footer, /data-lang-option="en"/);
 });
 
 test('cada proyecto tiene traducción inglesa de resumen y caso', () => {

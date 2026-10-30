@@ -1,8 +1,9 @@
 {
   "nav.home": "Home",
   "nav.about": "Hi",
-  "nav.experience": "Companies",
+  "nav.experience": "Experience",
   "nav.projects": "Projects",
+  "nav.services": "Services",
   "nav.blog": "Blog",
   "nav.contact": "Contact",
   "nav.menu": "Menu",
@@ -41,6 +42,7 @@
   "project.noneGiven": "No project was specified.",
   "project.loadError": "The project information could not be loaded.",
   "footer.rights": "Gonzalo López - Mobile Developer",
+  "footer.top": "Back to top",
   "projects": {
     "nekomangacix": {
       "summary": "Manga and collectibles ecommerce with pre-orders, 50% deposits and shipping across Peru.",

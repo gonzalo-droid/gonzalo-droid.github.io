@@ -1,125 +1,79 @@
-// Navbar Component
-// Usage: Include this script and call renderNavbar() or it auto-renders on DOMContentLoaded
+// Barra de navegación: monograma GL, cinco enlaces, idioma, tema y menú móvil.
+// Se pinta sola en DOMContentLoaded dentro de #navbar-container.
 
 const NavbarComponent = {
-    // Check if current page matches the link
+    // Proyectos, Servicios y Contacto son anclas del inicio; Experiencia y
+    // Blog son páginas. El pie (footer.js) usa esta misma lista.
+    LINKS: [
+        { href: '/#proyectos', text: 'Proyectos', key: 'nav.projects' },
+        { href: '/#servicios', text: 'Servicios', key: 'nav.services' },
+        { href: '/experience/', text: 'Experiencia', key: 'nav.experience' },
+        { href: '/articles/', text: 'Blog', key: 'nav.blog' },
+        { href: '/#contacto', text: 'Contacto', key: 'nav.contact' }
+    ],
+
+    // Las páginas se marcan por ruta; en el inicio las anclas las marca el
+    // scroll-spy según la sección visible.
     isActive(href) {
         const path = window.location.pathname;
-        // Normalize path (remove trailing slash for comparison)
-        const normalizedPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
-
-        if (href === '/' && path === '/') return true;
-        if (href === '/articles' && (normalizedPath === '/articles' || path.startsWith('/articles'))) return true;
-        if (href.startsWith('/#') && path === '/') return false; // Don't mark anchors as active on home
+        if (href === '/experience/') return path.startsWith('/experience');
+        if (href === '/articles/') return path.startsWith('/articles') || path.startsWith('/article/');
         return false;
     },
 
-    // Generate navbar HTML
-    getHTML(options = {}) {
-        const { fixed = true, transparent = false } = options;
-        const navClass = fixed ? 'navbar-fixed' : 'navbar-fixed scrolled';
-        const transparentClass = transparent ? '' : 'scrolled';
-
-        const links = [
-            { href: '/#about', text: 'Hola', key: 'nav.about' },
-            { href: '/#experience', text: 'Empresas', key: 'nav.experience' },
-            { href: '/#portfolio', text: 'Proyectos', key: 'nav.projects' },
-            { href: '/articles', text: 'Blog', key: 'nav.blog' },
-            { href: '/#contact', text: 'Contacto', key: 'nav.contact' }
-        ];
-
-        const navLinks = links.map(link => {
-            const activeClass = this.isActive(link.href) ? ' class="active"' : '';
+    linksHTML() {
+        return this.LINKS.map((link) => {
+            const activeClass = this.isActive(link.href) ? ' class="active" aria-current="page"' : '';
             return `<a href="${link.href}"${activeClass} data-i18n="${link.key}">${link.text}</a>`;
-        }).join('\n                    ');
+        }).join('');
+    },
 
-        const mobileLinks = links.map(link => {
-            const activeClass = this.isActive(link.href) ? ' class="active"' : '';
-            return `<a href="${link.href}"${activeClass} data-i18n="${link.key}">${link.text}</a>`;
-        }).join('\n            ');
-
+    getHTML() {
+        const icon = (name) => (window.Icons ? Icons.icon(name) : '');
         return `
-    <nav class="navbar-fixed ${transparentClass}" id="mainNavbar">
-        <div class="navbar-container">
-            <a href="/" class="navbar-brand-link">GONZALO<span>_</span></a>
-            <div class="navbar-right">
-                <div class="navbar-links">
-                    ${navLinks}
+    <nav class="site-nav" id="mainNavbar">
+        <div class="nav-inner">
+            <a class="brand" href="/"><span class="brand-mark">GL</span> Gonzalo López</a>
+            <div class="nav-links">${this.linksHTML()}</div>
+            <div class="nav-actions">
+                <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Cambiar idioma">
+                    <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+                    <button type="button" data-lang-option="en" aria-pressed="false">EN</button>
                 </div>
-                <div class="navbar-actions">
-                    <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Cambiar idioma">
-                        <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
-                        <button type="button" data-lang-option="en" aria-pressed="false">EN</button>
-                    </div>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <span id="themeIcon"></span>
-                    </button>
-                    <button class="navbar-mobile-toggle" id="navbarMobileToggle" aria-label="Menu">
-                        ${window.Icons ? Icons.icon("list") : ""}
-                    </button>
-                </div>
+                <button type="button" class="icon-btn theme-toggle" id="themeToggle" data-i18n-aria="nav.theme" aria-label="Cambiar tema">
+                    <span id="themeIcon"></span>
+                </button>
+                <button type="button" class="icon-btn nav-toggle" id="navbarMobileToggle"
+                        aria-expanded="false" aria-controls="navbarMobile" data-i18n-aria="nav.menu" aria-label="Menú">
+                    ${icon('list')}
+                </button>
             </div>
         </div>
-        <div class="navbar-mobile" id="navbarMobile">
-            ${mobileLinks}
-        </div>
+        <div class="nav-mobile" id="navbarMobile" hidden>${this.linksHTML()}</div>
     </nav>`;
     },
 
-    // Initialize navbar functionality
     init() {
         this.initMobileNav();
-        this.initScrollEffect();
     },
 
-    // Mobile navigation toggle
+    // Menú móvil: los iconos son SVG (icons.js), así que se sustituye el
+    // dibujo entero en vez de alternar clases de una fuente de iconos.
     initMobileNav() {
-        const mobileToggle = document.getElementById('navbarMobileToggle');
-        const mobileMenu = document.getElementById('navbarMobile');
+        const toggle = document.getElementById('navbarMobileToggle');
+        const menu = document.getElementById('navbarMobile');
+        if (!toggle || !menu) return;
 
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                const icon = mobileToggle.querySelector('i');
-                icon.classList.toggle('bi-list');
-                icon.classList.toggle('bi-x');
-            });
-
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileToggle.querySelector('i');
-                    icon.classList.add('bi-list');
-                    icon.classList.remove('bi-x');
-                });
-            });
-        }
-    },
-
-    // Scroll effect - transparent to solid
-    initScrollEffect() {
-        const navbar = document.getElementById('mainNavbar');
-        const hero = document.getElementById('hero');
-
-        if (!navbar) return;
-
-        // If no hero section, keep navbar solid
-        if (!hero) {
-            navbar.classList.add('scrolled');
-            return;
-        }
-
-        const updateNavbar = () => {
-            const heroHeight = hero.offsetHeight;
-            if (window.scrollY > heroHeight - 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        const setOpen = (open) => {
+            menu.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            if (window.Icons) toggle.innerHTML = Icons.icon(open ? 'x' : 'list');
         };
 
-        window.addEventListener('scroll', updateNavbar);
-        updateNavbar();
+        toggle.addEventListener('click', () => setOpen(menu.hidden));
+        menu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => setOpen(false));
+        });
     },
 
     // Marca como activo el enlace de la sección visible. Solo aplica en la home,
@@ -128,7 +82,7 @@ const NavbarComponent = {
         if (window.location.pathname !== '/') return;
 
         const anchors = Array.from(
-            document.querySelectorAll('.navbar-links a[href^="/#"], .navbar-mobile a[href^="/#"]')
+            document.querySelectorAll('.nav-links a[href^="/#"], .nav-mobile a[href^="/#"]')
         );
         if (anchors.length === 0) return;
 
@@ -156,10 +110,10 @@ const NavbarComponent = {
     },
 
     // Render navbar into a container
-    render(containerId, options = {}) {
+    render(containerId) {
         const container = document.getElementById(containerId);
         if (container) {
-            container.innerHTML = this.getHTML(options);
+            container.innerHTML = this.getHTML();
             this.init();
 
             // Re-bind theme toggle after navbar is rendered
@@ -174,11 +128,7 @@ const NavbarComponent = {
 // Auto-initialize if navbar container exists
 document.addEventListener('DOMContentLoaded', () => {
     const navContainer = document.getElementById('navbar-container');
-    if (navContainer) {
-        NavbarComponent.render('navbar-container', {
-            transparent: navContainer.dataset.transparent === 'true'
-        });
-    }
+    if (navContainer) NavbarComponent.render('navbar-container');
 });
 
 // Export for use in other scripts

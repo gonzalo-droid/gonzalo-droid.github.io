@@ -1,8 +1,9 @@
 {
   "nav.home": "Inicio",
   "nav.about": "Hola",
-  "nav.experience": "Empresas",
+  "nav.experience": "Experiencia",
   "nav.projects": "Proyectos",
+  "nav.services": "Servicios",
   "nav.blog": "Blog",
   "nav.contact": "Contacto",
   "nav.menu": "Menú",
@@ -41,6 +42,7 @@
   "project.noneGiven": "No se indicó ningún proyecto.",
   "project.loadError": "No se pudo cargar la información del proyecto.",
   "footer.rights": "Gonzalo López - Mobile Developer",
+  "footer.top": "Volver arriba",
   "about.p1": "Android/Mobile Developer con +5 años construyendo apps en producción con Kotlin. Me especializo en refactorización de legacy, arquitectura limpia (MVVM/MVP/MVI) y modularización para entregar features mantenibles, testeables y escalables. Actualmente trabajo en Banco Falabella y busco seguir creciendo en equipos multiculturales creando productos de alto impacto.",
   "about.p2": "Fuera del código, soy geek y fan de la ciencia ficción, el anime y el manga. Team gatos (Lilith y Garu) y llevo mi proyecto personal <strong><a href=\"https://www.instagram.com/neko.manga.cix/\" target=\"_blank\">Neko Manga Cix</a></strong>, una tienda/comunidad para amantes del manga.",
   "exp.falabella.role": "Android Developer",
