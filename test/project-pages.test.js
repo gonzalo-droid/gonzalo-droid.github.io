@@ -63,13 +63,13 @@ test('cada proyecto tiene lo mínimo para que su página no salga vacía', () =>
     assert.ok(p.title, 'falta title');
     assert.ok(p.summary, `falta summary en ${p.title}`);
     assert.ok(p.tech.length > 0, `falta tech en ${p.title}`);
-    assert.ok(p.image, `falta image en ${p.title}`);
+    assert.ok(p.images.length > 0, `falta images en ${p.title}`);
   }
 });
 
 test('las imágenes de la galería existen en disco', () => {
   for (const p of projects) {
-    for (const img of [p.image, ...(p.gallery || [])]) {
+    for (const img of p.images.map((i) => i.src)) {
       assert.ok(
         fs.existsSync(path.join(root, img.replace(/^\//, ''))),
         `no existe ${img} (proyecto ${p.title})`

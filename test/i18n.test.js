@@ -69,19 +69,22 @@ test('los enlaces de la navbar están cableados a claves', () => {
   assert.match(navbar, /data-lang-option="en"/);
 });
 
-test('cada proyecto tiene traducción inglesa de resumen y highlights', () => {
+test('cada proyecto tiene traducción inglesa de resumen y caso', () => {
   const translated = en.projects || {};
 
   for (const p of projects) {
     const entry = translated[p.slug];
     assert.ok(entry, `falta la traducción inglesa del proyecto "${p.slug}"`);
     assert.ok(entry.summary, `falta summary en inglés de "${p.slug}"`);
-    assert.strictEqual(
-      (entry.highlights || []).length,
-      p.highlights.length,
-      `"${p.slug}" tiene ${p.highlights.length} highlights en español y ` +
-        `${(entry.highlights || []).length} en inglés`
-    );
+    assert.ok(entry.case, `falta el caso en inglés de "${p.slug}"`);
+    // Mismo número de párrafos por parte: si uno falta, el lector en inglés
+    // vería un caso cojo en vez del respaldo en español.
+    for (const part of ['context', 'problem', 'solution', 'result']) {
+      const esLen = (p.case?.[part] || []).length;
+      const enLen = (entry.case?.[part] || []).length;
+      assert.strictEqual(enLen, esLen, `"${p.slug}" case.${part}: ${esLen} párrafos en español y ${enLen} en inglés`);
+    }
+    assert.ok(!('highlights' in entry), `"${p.slug}" conserva highlights en inglés`);
   }
 });
 

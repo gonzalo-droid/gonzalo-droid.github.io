@@ -14,23 +14,86 @@
       "Cloudinary",
       "Vercel"
     ],
-    "image": "/assets/img/portfolio/web_nekomangacix_home.webp",
-    "gallery": [
-      "/assets/img/portfolio/web_nekomangacix_catalogo.webp",
-      "/assets/img/portfolio/web_nekomangacix_producto.webp"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/web_nekomangacix_home.webp",
+        "fit": "cover"
+      },
+      {
+        "src": "/assets/img/portfolio/web_nekomangacix_catalogo.webp",
+        "fit": "cover"
+      },
+      {
+        "src": "/assets/img/portfolio/web_nekomangacix_producto.webp",
+        "fit": "cover"
+      }
     ],
-    "highlights": [
-      "Catálogo de más de 6.000 títulos con filtros por editorial, tipo, disponibilidad y precio",
-      "Preventas con reserva del 50% y el resto al recibir el producto",
-      "Búsqueda por título, editorial y autor, y ordenación por novedad o precio",
-      "Fichas con SKU, género, editorial y guía de formatos",
-      "Pagos con tarjeta, Yape/Plin, transferencia o efectivo al recoger",
-      "Modo claro y oscuro"
-    ],
+    "case": {
+      "context": [
+        "Neko Manga Cix es una tienda peruana de manga y coleccionables con envíos a todo el país."
+      ],
+      "problem": [
+        "Vender un catálogo de miles de títulos y manejar preventas por redes sociales y mensajes directos era lento y se prestaba a errores."
+      ],
+      "solution": [
+        "Desarrollé un ecommerce que reúne más de 6.000 títulos. Se pueden filtrar por editorial, tipo, disponibilidad y precio, o buscar por título, editorial y autor, y cada ficha muestra el SKU, el género y una guía de formatos.",
+        "Las preventas se reservan pagando el 50% y el resto al recibir el producto, con tarjeta, Yape o Plin, transferencia o efectivo al recoger. La tienda tiene modo claro y oscuro."
+      ]
+    },
     "links": [
       {
         "label": "Web",
         "url": "https://www.nekomangacix.com/"
+      }
+    ]
+  },
+  {
+    "slug": "agrosalas",
+    "title": "Agrosalas Perú",
+    "summary": "Sitio corporativo bilingüe para una agroexportadora peruana de menestras en conserva, con catálogo, eventos y cotización por WhatsApp.",
+    "platforms": [
+      "web"
+    ],
+    "tech": [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Lucide",
+      "Vercel"
+    ],
+    "images": [
+      {
+        "src": "/assets/img/portfolio/web_agrosalas_home.webp",
+        "fit": "cover"
+      },
+      {
+        "src": "/assets/img/portfolio/web_agrosalas_catalogo.webp",
+        "fit": "cover"
+      },
+      {
+        "src": "/assets/img/portfolio/web_agrosalas_eventos.webp",
+        "fit": "cover"
+      }
+    ],
+    "case": {
+      "context": [
+        "Agrosalas Peru es una empresa agroindustrial peruana que exporta menestras en conserva —gandul, pallar y frijoles— a España, Estados Unidos y Panamá."
+      ],
+      "problem": [
+        "No tenía presencia en internet: ni sitio web, ni posicionamiento en Google, ni en redes sociales. Un comprador extranjero no tenía dónde ver sus productos ni cómo pedirle una cotización."
+      ],
+      "solution": [
+        "Desarrollé su sitio web con el catálogo de productos actualizado, en español e inglés, preparado para aparecer en Google y para compartirse bien en redes.",
+        "El catálogo reúne trece productos, con búsqueda y filtro por categoría, y cada producto tiene su propia página. Si alguien llega desde otro país, el sitio le ofrece cambiar de idioma.",
+        "Cada página lleva a pedir una cotización, por formulario o por WhatsApp, y una sección de eventos muestra las ferias donde participa la empresa, como Expoalimentaria y Expo Perú Norte.",
+        "Para que Google lo encuentre, las páginas se entregan ya generadas, con datos estructurados y una imagen propia, en cada idioma, para cuando el enlace se comparte en redes."
+      ]
+    },
+    "client": "Agrosalas Peru S.R.L.",
+    "links": [
+      {
+        "label": "Web",
+        "url": "https://www.agrosalasperu.com/"
       }
     ]
   },
@@ -51,15 +114,28 @@
       "Glance Widget",
       "WorkManager"
     ],
-    "image": "/assets/img/portfolio/app_quote_anime.webp",
-    "shot": "/assets/img/portfolio/shots/quote-anime.webp",
-    "highlights": [
-      "Catálogo de frases organizado por categorías de anime",
-      "Favoritos accesibles sin conexión",
-      "Widget de frase aleatoria en la pantalla de inicio",
-      "Notificaciones diarias a la hora que elija el usuario",
-      "Compartir frases como imagen con diseño propio"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/web_quote_anime.webp",
+        "fit": "cover"
+      },
+      {
+        "src": "/assets/img/portfolio/app_quote_anime.webp",
+        "fit": "contain"
+      }
     ],
+    "case": {
+      "context": [
+        "Quote Anime es una app propia de frases de anime para Android e iOS."
+      ],
+      "problem": [
+        "Los fans guardan frases en capturas sueltas, sin poder ordenarlas, verlas sin conexión ni recibir una nueva cada día."
+      ],
+      "solution": [
+        "Hice una app nativa para cada plataforma con las frases ordenadas por anime. Las favoritas se guardan para leerlas sin conexión, y un widget muestra una frase al azar en la pantalla de inicio.",
+        "Cada día llega una notificación a la hora que elige el usuario, y cualquier frase se puede compartir como imagen con un diseño propio de la app."
+      ]
+    },
     "links": [
       {
         "label": "Play Store",
@@ -90,14 +166,23 @@
       "Room",
       "Firebase"
     ],
-    "image": "/assets/img/portfolio/app_autotest.webp",
-    "shot": "/assets/img/portfolio/shots/autotest.webp",
-    "highlights": [
-      "Simulacros de evaluación realistas",
-      "Descarga y compartición de balotarios en PDF por categoría",
-      "Acceso a las distintas categorías del examen",
-      "Estadísticas de progreso"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_autotest.webp",
+        "fit": "contain"
+      }
     ],
+    "case": {
+      "context": [
+        "AutoTest Licencia es una app para preparar el examen de reglas de manejo de la licencia de conducir en Perú."
+      ],
+      "problem": [
+        "Quien se prepara estudia con balotarios en PDF sueltos y no tiene forma de saber si ya está listo para el examen."
+      ],
+      "solution": [
+        "La app ofrece simulacros parecidos a la evaluación real, separados por categoría de licencia, y estadísticas para ver el avance. Los balotarios de cada categoría se pueden descargar y compartir en PDF."
+      ]
+    },
     "links": [
       {
         "label": "Play Store",
@@ -119,13 +204,23 @@
       "Koin",
       "Ktor"
     ],
-    "image": "/assets/img/portfolio/app_cixcash.webp",
-    "shot": "/assets/img/portfolio/shots/cixcash.webp",
-    "highlights": [
-      "Balance visible por moneda",
-      "Transacciones persistidas en base de datos",
-      "Conversión entre ARS, USD, BTC y ETH"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_cixcash.webp",
+        "fit": "contain"
+      }
     ],
+    "case": {
+      "context": [
+        "CixCash es una app multiplataforma para llevar saldos en divisas y criptomonedas."
+      ],
+      "problem": [
+        "Controlar saldos en varias monedas y cripto obliga a usar varias apps y a calcular las conversiones a mano."
+      ],
+      "solution": [
+        "La construí con Kotlin Multiplatform, así que Android e iOS comparten el mismo código. Muestra el balance de cada moneda, guarda las transacciones en una base de datos local y convierte entre ARS, USD, BTC y ETH."
+      ]
+    },
     "links": [
       {
         "label": "GitHub",
@@ -147,12 +242,23 @@
       "Firebase",
       "MVVM"
     ],
-    "image": "/assets/img/portfolio/app_noteai.webp",
-    "highlights": [
-      "Listado y creación de notas en local",
-      "Grabación de voz asociada a cada nota",
-      "Transcripción automática con OpenAI Whisper"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_noteai.webp",
+        "fit": "contain"
+      }
     ],
+    "case": {
+      "context": [
+        "Note.AI es una app Android de notas de voz con transcripción automática."
+      ],
+      "problem": [
+        "Escribir notas en movimiento es lento, y las notas de voz no se pueden leer de un vistazo ni buscar."
+      ],
+      "solution": [
+        "Cada nota tiene su grabación asociada, y la app la transcribe sola con OpenAI Whisper, así queda también como texto. Las notas se guardan y se listan en el propio teléfono."
+      ]
+    },
     "links": [
       {
         "label": "GitHub",
@@ -180,18 +286,32 @@
       "Laravel",
       "AWS"
     ],
-    "image": "/assets/img/portfolio/app_ulearning.webp",
-    "shot": "/assets/img/portfolio/shots/ulearning.webp",
-    "gallery": [
-      "/assets/img/portfolio/app_ulearning.webp",
-      "/assets/img/portfolio/app_ulearning_ios.webp",
-      "/assets/img/portfolio/web_ulearning.webp"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_ulearning.webp",
+        "fit": "contain"
+      },
+      {
+        "src": "/assets/img/portfolio/app_ulearning_ios.webp",
+        "fit": "contain"
+      },
+      {
+        "src": "/assets/img/portfolio/web_ulearning.webp",
+        "fit": "contain"
+      }
     ],
-    "highlights": [
-      "App Android con MVI, StateFlow/SharedFlow y testing con Mockito",
-      "App iOS en Swift y UIKit, distribuida por TestFlight",
-      "Plataforma web y administrativa sobre AWS EC2 con despliegue continuo"
-    ],
+    "case": {
+      "context": [
+        "U-Learning es una plataforma de cursos online para estudiantes, disponible en Android, iOS y navegador."
+      ],
+      "problem": [
+        "La institución necesitaba llevar sus cursos al celular y al navegador de sus estudiantes, administrados desde un solo lugar."
+      ],
+      "solution": [
+        "La app Android está construida con MVI y StateFlow, con pruebas en Mockito, y la de iOS en Swift con UIKit, distribuida por TestFlight.",
+        "La plataforma web y el panel administrativo corren en AWS EC2, con despliegue continuo."
+      ]
+    },
     "links": []
   },
   {
@@ -212,16 +332,28 @@
       "Vue",
       "MySQL"
     ],
-    "image": "/assets/img/portfolio/app_erp.webp",
-    "gallery": [
-      "/assets/img/portfolio/app_erp.webp",
-      "/assets/img/portfolio/web_erp.webp"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_erp.webp",
+        "fit": "contain"
+      },
+      {
+        "src": "/assets/img/portfolio/web_erp.webp",
+        "fit": "contain"
+      }
     ],
-    "highlights": [
-      "Seguimiento de lotes para asesores de venta en campo",
-      "Contratos, facturación electrónica y ventas en la plataforma web",
-      "Arquitectura por capas con SOLID e inyección de dependencias"
-    ],
+    "case": {
+      "context": [
+        "Admin Lotes es un sistema de gestión para empresas inmobiliarias que venden lotes."
+      ],
+      "problem": [
+        "Los lotes, contratos y ventas se llevaban en hojas de cálculo, y los asesores en campo no conocían el estado actualizado de cada lote."
+      ],
+      "solution": [
+        "Desde una app Android, los asesores siguen el estado de cada lote mientras están en campo. La plataforma web concentra los contratos, la facturación electrónica y las ventas.",
+        "El sistema está organizado por capas, con principios SOLID e inyección de dependencias, para que crezca sin romperse."
+      ]
+    },
     "links": []
   },
   {
@@ -241,15 +373,27 @@
       "JavaScript",
       "MySQL"
     ],
-    "image": "/assets/img/portfolio/app_crm.webp",
-    "gallery": [
-      "/assets/img/portfolio/app_crm.webp",
-      "/assets/img/portfolio/web_crm.webp"
+    "images": [
+      {
+        "src": "/assets/img/portfolio/app_crm.webp",
+        "fit": "contain"
+      },
+      {
+        "src": "/assets/img/portfolio/web_crm.webp",
+        "fit": "contain"
+      }
     ],
-    "highlights": [
-      "Registro de clientes, llamadas, correos y ubicación con servicios de Google",
-      "Seguimiento comercial en pre-venta y post-venta desde la web"
-    ],
+    "case": {
+      "context": [
+        "Solti-CRM es un CRM para el equipo comercial de una empresa."
+      ],
+      "problem": [
+        "Los vendedores no tenían un registro común de clientes, llamadas y visitas, y el seguimiento después de la venta se perdía."
+      ],
+      "solution": [
+        "La app Android registra a cada cliente con sus llamadas, correos y la ubicación de las visitas, usando los servicios de Google. Desde la web, el equipo sigue cada venta antes y después de cerrarla."
+      ]
+    },
     "links": []
   }
 ]

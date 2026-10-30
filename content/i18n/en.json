@@ -44,72 +44,136 @@
   "projects": {
     "nekomangacix": {
       "summary": "Manga and collectibles ecommerce with pre-orders, 50% deposits and shipping across Peru.",
-      "highlights": [
-        "Catalogue of 6,000+ titles filterable by publisher, type, availability and price",
-        "Pre-orders with a 50% deposit and the balance due on arrival",
-        "Search by title, publisher and author, sorted by newest or price",
-        "Product pages with SKU, genre, publisher and a format guide",
-        "Payments by card, Yape/Plin, bank transfer or cash on pickup",
-        "Light and dark mode"
-      ]
+      "case": {
+        "context": [
+          "Neko Manga Cix is a Peruvian manga and collectibles store that ships nationwide."
+        ],
+        "problem": [
+          "Selling a catalogue of thousands of titles and handling pre-orders through social media and direct messages was slow and error-prone."
+        ],
+        "solution": [
+          "I built an ecommerce site with more than 6,000 titles. Shoppers can filter by publisher, type, availability and price, or search by title, publisher and author, and every product page shows the SKU, genre and a format guide.",
+          "Pre-orders are reserved with a 50% deposit and the rest is paid on delivery, by card, Yape or Plin, bank transfer or cash on pickup. The store has light and dark modes."
+        ]
+      }
+    },
+    "agrosalas": {
+      "summary": "Bilingual corporate website for a Peruvian exporter of canned legumes, with a catalogue, events and WhatsApp quotes.",
+      "case": {
+        "context": [
+          "Agrosalas Peru is a Peruvian agro-industrial company that exports canned legumes —pigeon peas, lima beans and beans— to Spain, the United States and Panama."
+        ],
+        "problem": [
+          "It had no online presence: no website, no Google ranking and no social media. A foreign buyer had nowhere to see its products or ask for a quote."
+        ],
+        "solution": [
+          "I built its website with an up-to-date product catalogue, in Spanish and English, ready to show up on Google and to look good when shared on social media.",
+          "The catalogue brings together thirteen products, with search and category filters, and each product has its own page. When someone arrives from another country, the site offers to switch language.",
+          "Every page leads to a quote request, by form or by WhatsApp, and an events section shows the trade fairs the company takes part in, such as Expoalimentaria and Expo Perú Norte.",
+          "So that Google can find it, pages are served pre-generated, with structured data and their own preview image in each language for when the link is shared on social media."
+        ]
+      }
     },
     "quote-anime": {
       "summary": "Anime quotes with a home-screen widget, daily notifications and offline mode.",
-      "highlights": [
-        "Quote catalogue organised by anime category",
-        "Favourites available offline",
-        "Random-quote widget on the home screen",
-        "Daily notifications at the time the user picks",
-        "Share quotes as an image with custom artwork"
-      ]
+      "case": {
+        "context": [
+          "Quote Anime is my own anime quotes app for Android and iOS."
+        ],
+        "problem": [
+          "Fans keep quotes as scattered screenshots, with no way to organise them, read them offline or get a new one every day."
+        ],
+        "solution": [
+          "I built a native app for each platform with quotes organised by anime. Favourites are saved to read offline, and a widget shows a random quote on the home screen.",
+          "A notification arrives every day at the time the user picks, and any quote can be shared as an image with the app’s own design."
+        ]
+      }
     },
     "autotest-licencia": {
       "summary": "Mock exams and question banks for the Peruvian driving licence test.",
-      "highlights": [
-        "Realistic mock exams",
-        "Download and share question banks as PDF by category",
-        "Access to every exam category",
-        "Progress statistics"
-      ]
+      "case": {
+        "context": [
+          "AutoTest Licencia is an app to prepare for the traffic rules exam of the Peruvian driving licence."
+        ],
+        "problem": [
+          "People preparing for it study from scattered PDF question banks and have no way to tell whether they are ready for the exam."
+        ],
+        "solution": [
+          "The app offers mock exams close to the real test, split by licence category, and statistics to track progress. The question banks for each category can be downloaded and shared as PDFs."
+        ]
+      }
     },
     "cixcash": {
       "summary": "Crypto and currency conversion in Kotlin Multiplatform, with transaction tracking.",
-      "highlights": [
-        "Balance shown per currency",
-        "Transactions persisted to a local database",
-        "Conversion between ARS, USD, BTC and ETH"
-      ]
+      "case": {
+        "context": [
+          "CixCash is a cross-platform app to keep track of balances in currencies and cryptocurrencies."
+        ],
+        "problem": [
+          "Tracking balances in several currencies and crypto means juggling several apps and working out conversions by hand."
+        ],
+        "solution": [
+          "I built it with Kotlin Multiplatform, so Android and iOS share the same code. It shows the balance for each currency, stores transactions in a local database and converts between ARS, USD, BTC and ETH."
+        ]
+      }
     },
     "note-ai": {
       "summary": "Voice notes with automatic transcription using OpenAI Whisper.",
-      "highlights": [
-        "Local note listing and creation",
-        "Voice recording attached to each note",
-        "Automatic transcription with OpenAI Whisper"
-      ]
+      "case": {
+        "context": [
+          "Note.AI is an Android voice notes app with automatic transcription."
+        ],
+        "problem": [
+          "Typing notes on the go is slow, and voice notes cannot be skimmed or searched."
+        ],
+        "solution": [
+          "Each note has its recording attached, and the app transcribes it automatically with OpenAI Whisper, so it is also kept as text. Notes are stored and listed on the phone itself."
+        ]
+      }
     },
     "u-learning": {
       "summary": "E-learning platform for online courses, on Android, iOS and the web.",
-      "highlights": [
-        "Android app with MVI, StateFlow/SharedFlow and testing with Mockito",
-        "iOS app in Swift and UIKit, distributed through TestFlight",
-        "Web and admin platform on AWS EC2 with continuous deployment"
-      ]
+      "case": {
+        "context": [
+          "U-Learning is an online course platform for students, available on Android, iOS and the web."
+        ],
+        "problem": [
+          "The institution needed to bring its courses to its students’ phones and browsers, managed from a single place."
+        ],
+        "solution": [
+          "The Android app is built with MVI and StateFlow, tested with Mockito, and the iOS app is written in Swift with UIKit and distributed through TestFlight.",
+          "The web platform and the admin panel run on AWS EC2, with continuous deployment."
+        ]
+      }
     },
     "admin-lotes": {
       "summary": "Multi-company real-estate management, with a field app for sales reps.",
-      "highlights": [
-        "Plot tracking for sales reps in the field",
-        "Contracts, e-invoicing and sales on the web platform",
-        "Layered architecture with SOLID and dependency injection"
-      ]
+      "case": {
+        "context": [
+          "Admin Lotes is a management system for real-estate companies that sell land plots."
+        ],
+        "problem": [
+          "Plots, contracts and sales were kept in spreadsheets, and sales reps in the field did not know the current status of each plot."
+        ],
+        "solution": [
+          "From an Android app, sales reps follow the status of each plot while they are in the field. The web platform brings together contracts, electronic invoicing and sales.",
+          "The system is organised in layers, with SOLID principles and dependency injection, so it can grow without breaking."
+        ]
+      }
     },
     "solti-crm": {
       "summary": "Commercial CRM with customer follow-up before and after the sale.",
-      "highlights": [
-        "Customer, call, email and location logging through Google services",
-        "Pre-sale and post-sale follow-up from the web"
-      ]
+      "case": {
+        "context": [
+          "Solti-CRM is a CRM for a company’s sales team."
+        ],
+        "problem": [
+          "Salespeople had no shared record of customers, calls and visits, and follow-up after the sale got lost."
+        ],
+        "solution": [
+          "The Android app records each customer with their calls, emails and visit locations, using Google services. From the web, the team follows every sale before and after it closes."
+        ]
+      }
     }
   },
   "about.p1": "Android/Mobile Developer with 5+ years building production apps in Kotlin. I specialise in legacy refactoring, clean architecture (MVVM/MVP/MVI) and modularisation, delivering features that stay maintainable, testable and scalable. I currently work at Banco Falabella and I'm looking to keep growing in multicultural teams building high-impact products.",

@@ -14,7 +14,39 @@ const PLATFORMS = ['android', 'ios', 'kmm', 'web'];
 // añade un proyecto. Está fijado para que una pérdida accidental de entradas
 // —al reagrupar o al editar el JSON a mano— falle en vez de pasar inadvertida.
 test('el inventario de proyectos es el esperado', () => {
-  assert.strictEqual(projects.length, 8);
+  assert.strictEqual(projects.length, 9);
+});
+
+test('el orden es el del inicio', () => {
+  assert.deepStrictEqual(projects.map((p) => p.slug), ['nekomangacix', 'agrosalas', 'quote-anime',
+    'autotest-licencia', 'cixcash', 'note-ai', 'u-learning', 'admin-lotes', 'solti-crm']);
+});
+
+test('cada proyecto declara sus imágenes con su encuadre', () => {
+  for (const p of projects) {
+    assert.ok(Array.isArray(p.images) && p.images.length > 0, `${p.slug}: falta images`);
+    for (const img of p.images) {
+      assert.ok(['cover', 'contain'].includes(img.fit), `${p.slug}: fit inválido en ${img.src}`);
+      assert.ok(fs.existsSync(path.join(root, img.src.replace(/^\//, ''))), `no existe ${img.src}`);
+    }
+    assert.ok(!('image' in p) && !('gallery' in p) && !('shot' in p) && !('highlights' in p),
+      `${p.slug}: quedan campos del modelo viejo`);
+  }
+});
+
+test('cada proyecto trae su caso en párrafos', () => {
+  for (const p of projects) {
+    for (const part of ['context', 'problem', 'solution']) {
+      assert.ok(Array.isArray(p.case?.[part]) && p.case[part].length > 0, `${p.slug}: falta case.${part}`);
+    }
+    for (const para of Object.values(p.case).flat()) {
+      assert.ok(!/^\s*[-•*]/.test(para), `${p.slug}: un párrafo parece una viñeta`);
+    }
+  }
+});
+
+test('solo Agrosalas declara cliente por ahora', () => {
+  assert.deepStrictEqual(projects.filter((p) => p.client).map((p) => p.slug), ['agrosalas']);
 });
 
 // Los 11 bloques originales se agruparon por producto: U-Learning, Admin Lotes
@@ -38,15 +70,17 @@ test('cada proyecto tiene los campos obligatorios', () => {
     assert.ok(p.summary, `falta summary en ${p.title}`);
     assert.ok(Array.isArray(p.platforms) && p.platforms.length > 0, `falta platforms en ${p.title}`);
     assert.ok(Array.isArray(p.tech) && p.tech.length > 0, `falta tech en ${p.title}`);
-    assert.ok(p.image, `falta image en ${p.title}`);
   }
 });
 
-test('el resumen de la tarjeta cabe en una línea', () => {
+// La tarjeta corta el resumen a 2 líneas con CSS; 140 caracteres es lo que
+// cabe sin que el corte se coma media frase. El de Agrosalas, fijado en el
+// spec, mide 134.
+test('el resumen de la tarjeta cabe en dos líneas', () => {
   for (const p of projects) {
     assert.ok(
-      p.summary.length <= 120,
-      `el summary de ${p.title} tiene ${p.summary.length} caracteres, máximo 120`
+      p.summary.length <= 140,
+      `el summary de ${p.title} tiene ${p.summary.length} caracteres, máximo 140`
     );
   }
 });
@@ -66,9 +100,7 @@ test('las plataformas son valores conocidos', () => {
 
 test('las imágenes referenciadas existen en disco', () => {
   for (const p of projects) {
-    const referenced = [p.image, ...(p.gallery || [])];
-    if (p.shot) referenced.push(p.shot); // shot es opcional: solo los del hero
-    for (const img of referenced) {
+    for (const img of p.images.map((i) => i.src)) {
       const file = path.join(root, img.replace(/^\//, ''));
       assert.ok(fs.existsSync(file), `no existe la imagen ${img} (proyecto ${p.title})`);
     }

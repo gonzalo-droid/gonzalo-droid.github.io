@@ -142,14 +142,17 @@ test('ninguna página carga Bootstrap Icons', () => {
   }
 });
 
-test('cada proyecto tiene su variante de tarjeta a 600px', () => {
+test('cada imagen de proyecto tiene su variante de tarjeta a 600px', () => {
+  // El carrusel de la tarjeta usa la variante de cada imagen, no solo de la primera.
   for (const p of projects) {
-    const card = p.image.replace('/portfolio/', '/portfolio/cards/').replace(/^\//, '');
-    assert.ok(exists(card), `falta la variante de tarjeta ${card}`);
+    for (const { src } of p.images) {
+      const card = src.replace('/portfolio/', '/portfolio/cards/').replace(/^\//, '');
+      assert.ok(exists(card), `falta la variante de tarjeta ${card}`);
 
-    const full = fs.statSync(path.join(root, p.image.replace(/^\//, ''))).size;
-    const small = fs.statSync(path.join(root, card)).size;
-    assert.ok(small <= full, `la variante de ${p.title} pesa más que la original`);
+      const full = fs.statSync(path.join(root, src.replace(/^\//, ''))).size;
+      const small = fs.statSync(path.join(root, card)).size;
+      assert.ok(small <= full, `la variante de ${src} pesa más que la original`);
+    }
   }
 });
 
