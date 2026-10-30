@@ -238,7 +238,9 @@ only a fallback for slugs that were never built.
    `assets/js/projects.js`; the active filter survives a language change
 3. **Mobile menu:** navbar.js toggles `hidden` + `aria-expanded` and swaps the `list`/`x` SVG icons
 4. **Prerendering:** run `npm run build:pages` after touching templates or content, and commit the output.
-   Running it twice must leave no diff (`project-pages.test.js` checks it)
+   Running it twice — also on another day — must leave no diff (`project-pages.test.js` checks it).
+   Sitemap `lastmod` follows content: `content/lastmod.json` keeps a hash and date per page and the date only
+   moves when that page's HTML changes; articles use their own date from `articles.json`.
 
 ## Gotchas
 

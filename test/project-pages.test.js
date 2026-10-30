@@ -71,6 +71,23 @@ test('la ficha muestra Cliente solo en Agrosalas', () => {
   assert.ok(read('project/agrosalas/index.html').includes('Agrosalas Peru S.R.L.'));
 });
 
+test('correr el build otro día no cambia nada si el contenido no cambió', { timeout: 30000 }, () => {
+  // lastmod debe seguir al contenido, no al reloj: si no, cada npm test en un
+  // día nuevo ensucia sitemap.xml.
+  const hash = () => crypto.createHash('sha256').update(read('sitemap.xml') + read('content/lastmod.json')).digest('hex');
+  execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  const today = hash();
+  execFileSync(process.execPath, ['-r', './test/helpers/fake-date.js', 'scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  assert.strictEqual(hash(), today);
+});
+
+test('el sitemap no pone fechas futuras ni repite la de hoy en páginas sin cambios', () => {
+  const lastmods = [...read('sitemap.xml').matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  for (const d of lastmods) assert.match(d, /^\d{4}-\d{2}-\d{2}$/);
+  const articleDates = new Set(JSON.parse(read('content/articles.json')).map((a) => a.date));
+  assert.ok([...articleDates].every((d) => lastmods.includes(d)), 'cada artículo usa su propia fecha');
+});
+
 test('correr el build dos veces deja los mismos archivos', { timeout: 30000 }, () => {
   const hash = () => crypto.createHash('sha256').update(read('project/agrosalas/index.html') + read('articles/index.html') + read('sitemap.xml')).digest('hex');
   execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });

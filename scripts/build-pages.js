@@ -19,6 +19,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { renderMarkdown, toPlainText, escapeHtml } = require('./lib/markdown');
 
 const ROOT = path.join(__dirname, '..');
@@ -352,20 +353,58 @@ function buildArticlesIndex(articles) {
 
 // ------------------------------------------------------------------ sitemap
 
+/** Fecha de hoy en hora local (no UTC: en Lima la de UTC ya es mañana desde las 19:00). */
+function localToday() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/**
+ * lastmod sigue al contenido, no al reloj. content/lastmod.json guarda, por
+ * página, una huella del HTML servido y la fecha en que cambió por última vez;
+ * si la huella no cambia, la fecha tampoco. Así correr el build otro día no
+ * ensucia sitemap.xml, y lastmod sigue significando algo para Google.
+ */
+function contentLastmod(pages) {
+  const file = 'content/lastmod.json';
+  const known = fs.existsSync(path.join(ROOT, file)) ? readJson(file) : {};
+  const today = localToday();
+  const result = {};
+  const next = {};
+  for (const [loc, htmlFile] of pages) {
+    const hash = crypto.createHash('sha256').update(read(htmlFile)).digest('hex').slice(0, 16);
+    const prev = known[loc];
+    const lastmod = prev && prev.hash === hash ? prev.lastmod : today;
+    next[loc] = { hash, lastmod };
+    result[loc] = lastmod;
+  }
+  const text = JSON.stringify(next, null, 2) + '\n';
+  if (!fs.existsSync(path.join(ROOT, file)) || read(file) !== text) {
+    fs.writeFileSync(path.join(ROOT, file), text);
+  }
+  return result;
+}
+
 function buildSitemap(articles, projects) {
-  const today = new Date().toISOString().slice(0, 10);
   const articleMeta = Object.fromEntries(
     readJson('content/articles.json').map((a) => [generateSlug(a.title), a.date])
   );
+  const lastmod = contentLastmod([
+    [`${SITE}/`, 'index.html'],
+    [`${SITE}/articles/`, 'articles/index.html'],
+    [`${SITE}/experience/`, 'experience/index.html'],
+    ...projects.map((p) => [`${SITE}${p.url}/`, `${p.url.slice(1)}/index.html`]),
+  ]);
 
   const entries = [
-    { loc: `${SITE}/`, lastmod: today, priority: '1.0' },
-    { loc: `${SITE}/articles/`, lastmod: today, priority: '0.8' },
-    { loc: `${SITE}/experience/`, lastmod: today, priority: '0.7' },
-    ...projects.map((p) => ({ loc: `${SITE}${p.url}/`, lastmod: today, priority: '0.8' })),
+    { loc: `${SITE}/`, lastmod: lastmod[`${SITE}/`], priority: '1.0' },
+    { loc: `${SITE}/articles/`, lastmod: lastmod[`${SITE}/articles/`], priority: '0.8' },
+    { loc: `${SITE}/experience/`, lastmod: lastmod[`${SITE}/experience/`], priority: '0.7' },
+    ...projects.map((p) => ({ loc: `${SITE}${p.url}/`, lastmod: lastmod[`${SITE}${p.url}/`], priority: '0.8' })),
+    // Un artículo cambia cuando cambia su fecha en articles.json.
     ...articles.map((a) => ({
       loc: `${SITE}${a.url}/`,
-      lastmod: articleMeta[a.url.replace('/article/', '')] || today,
+      lastmod: articleMeta[a.url.replace('/article/', '')],
       priority: '0.6',
     })),
     { loc: `${SITE}/privacy-policy/`, lastmod: '2025-04-08', priority: '0.2' },
