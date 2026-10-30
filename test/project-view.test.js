@@ -75,3 +75,18 @@ test('caseParagraphs omite partes vacías o ausentes', () => {
   assert.deepStrictEqual(ProjectView.caseParagraphs({ context: ['a'], problem: [], solution: ['b', ''] }), ['a', 'b']);
   assert.deepStrictEqual(ProjectView.caseParagraphs(undefined), []);
 });
+
+test('localizeCase usa el inglés por partes y cae al español donde falta', () => {
+  const es = { context: ['C'], problem: ['P'], solution: ['S1', 'S2'], result: ['R'] };
+  assert.deepStrictEqual(ProjectView.localizeCase(es, undefined), es);
+  assert.deepStrictEqual(
+    ProjectView.localizeCase(es, { context: ['c'], problem: ['p'] }),
+    { context: ['c'], problem: ['p'], solution: ['S1', 'S2'], result: ['R'] }
+  );
+  // Un párrafo vacío en inglés invalida esa parte: mejor el español entero que un hueco.
+  assert.deepStrictEqual(
+    ProjectView.localizeCase(es, { context: ['c'], problem: ['p'], solution: ['s1', ''], result: [] }).solution,
+    ['S1', 'S2']
+  );
+  assert.deepStrictEqual(ProjectView.localizeCase(es, { context: 'no es lista' }).context, ['C']);
+});

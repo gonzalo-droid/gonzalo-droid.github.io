@@ -31,6 +31,23 @@
             .filter((p) => typeof p === 'string' && p.trim() !== '');
     }
 
+    // Caso en el idioma activo, parte por parte: una parte inglesa que falte, no
+    // sea lista o tenga un párrafo vacío cae al español, así el lector nunca ve
+    // un caso cortado.
+    function localizeCase(esCase, enCase) {
+        const base = esCase || {};
+        if (!enCase) return base;
+        const out = {};
+        for (const part of CASE_ORDER) {
+            const en = enCase[part];
+            const valid = Array.isArray(en) && en.length > 0
+                && en.every((p) => typeof p === 'string' && p.trim() !== '');
+            if (valid) out[part] = en;
+            else if (base[part] !== undefined) out[part] = base[part];
+        }
+        return out;
+    }
+
     const row = (label, body) =>
         `<div class="p-row"><p class="p-label">${escapeHtml(label)}</p>${body}</div>`;
 
@@ -84,5 +101,5 @@
             `</nav>`;
     }
 
-    return { render, caseParagraphs, escapeHtml, PLATFORM_LABELS };
+    return { render, caseParagraphs, localizeCase, escapeHtml, PLATFORM_LABELS };
 });

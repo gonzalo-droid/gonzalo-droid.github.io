@@ -98,6 +98,9 @@ test('cada proyecto tiene traducción inglesa de resumen y caso', () => {
       const esLen = (p.case?.[part] || []).length;
       const enLen = (entry.case?.[part] || []).length;
       assert.strictEqual(enLen, esLen, `"${p.slug}" case.${part}: ${esLen} párrafos en español y ${enLen} en inglés`);
+      for (const para of entry.case?.[part] || []) {
+        assert.ok(typeof para === 'string' && para.trim() !== '', `"${p.slug}" case.${part} tiene un párrafo vacío en inglés`);
+      }
     }
     assert.ok(!('highlights' in entry), `"${p.slug}" conserva highlights en inglés`);
   }

@@ -62,7 +62,7 @@ function paint(project, projects) {
     container.innerHTML = ProjectView.render({
         project,
         summary: trProject(project, 'summary', project.summary),
-        caseText: trProject(project, 'case', project.case),
+        caseText: ProjectView.localizeCase(project.case, trProject(project, 'case', undefined)),
         t: tr,
         next: { slug: next.slug, title: next.title },
     });
