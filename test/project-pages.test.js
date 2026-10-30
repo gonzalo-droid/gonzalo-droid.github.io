@@ -88,6 +88,17 @@ test('el sitemap no pone fechas futuras ni repite la de hoy en páginas sin camb
   assert.ok([...articleDates].every((d) => lastmods.includes(d)), 'cada artículo usa su propia fecha');
 });
 
+test('el build no reescribe archivos que no cambian', { timeout: 30000 }, () => {
+  // Los tests corren en paralelo: si el build vaciara y volviera a escribir un
+  // archivo idéntico, otro test podría leerlo a medias.
+  execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  const files = ['project/agrosalas/index.html', 'articles/index.html', 'sitemap.xml',
+    'article/testing-en-android/index.html', 'content/lastmod.json'];
+  const before = files.map((f) => fs.statSync(path.join(root, f)).mtimeMs);
+  execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  assert.deepStrictEqual(files.map((f) => fs.statSync(path.join(root, f)).mtimeMs), before);
+});
+
 test('correr el build dos veces deja los mismos archivos', { timeout: 30000 }, () => {
   const hash = () => crypto.createHash('sha256').update(read('project/agrosalas/index.html') + read('articles/index.html') + read('sitemap.xml')).digest('hex');
   execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });

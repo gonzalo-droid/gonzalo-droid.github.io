@@ -40,6 +40,17 @@ const generateSlug = (title) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
+/**
+ * Escribe solo si el contenido cambió. Los tests corren en paralelo y uno de
+ * ellos ejecuta este build: reescribir un archivo idéntico lo deja vacío un
+ * instante, y otro test podía leerlo a medias.
+ */
+function writeIfChanged(file, content) {
+  const full = path.isAbsolute(file) ? file : path.join(ROOT, file);
+  if (fs.existsSync(full) && fs.readFileSync(full, 'utf8') === content) return;
+  fs.writeFileSync(full, content);
+}
+
 /** Recorta en el último espacio antes del límite, sin partir palabras. */
 function clip(text, max = 155) {
   const t = String(text).trim();
@@ -190,7 +201,7 @@ function buildArticles() {
 
     const dir = path.join(ROOT, 'article', slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    writeIfChanged(path.join(dir, 'index.html'), html);
     written.push({ url: `/article/${slug}`, words: plain.split(/\s+/).length });
   }
   return written;
@@ -269,7 +280,7 @@ function buildProjects() {
 
     const dir = path.join(ROOT, 'project', project.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    writeIfChanged(path.join(dir, 'index.html'), html);
     written.push({ url: `/project/${project.slug}` });
   });
   return written;
@@ -347,7 +358,7 @@ function buildArticlesIndex(articles) {
     }));
   }
 
-  fs.writeFileSync(path.join(ROOT, file), html);
+  writeIfChanged(file, html);
   return meta.length;
 }
 
@@ -379,9 +390,7 @@ function contentLastmod(pages) {
     result[loc] = lastmod;
   }
   const text = JSON.stringify(next, null, 2) + '\n';
-  if (!fs.existsSync(path.join(ROOT, file)) || read(file) !== text) {
-    fs.writeFileSync(path.join(ROOT, file), text);
-  }
+  writeIfChanged(file, text);
   return result;
 }
 
@@ -426,7 +435,7 @@ function buildSitemap(articles, projects) {
       .join('\n') +
     `\n</urlset>\n`;
 
-  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+  writeIfChanged('sitemap.xml', xml);
   return entries.length;
 }
 
