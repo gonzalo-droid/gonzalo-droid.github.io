@@ -19,7 +19,7 @@ const projects = json('content/projects.json');
 // `projects` y `_review` son metadatos de en.json, no cadenas de interfaz.
 const uiKeys = (dict) => Object.keys(dict).filter((k) => k !== 'projects' && k !== '_review');
 
-const PAGES = ['index.html', 'project/index.html', 'experience/index.html'];
+const PAGES = ['index.html', 'project/index.html', 'experience/index.html', 'articles/index.html', 'article/index.html'];
 
 test('los dos diccionarios tienen exactamente las mismas claves', () => {
   const a = uiKeys(es).sort();
@@ -116,6 +116,8 @@ test('ninguna traducción inglesa quedó copiada del español', () => {
     'projects.filter.web',
     'project.stack',        // "Stack"
     'footer.rights',        // nombre propio
+    'blog.eyebrow',         // "BLOG": la etiqueta es la misma palabra en los dos idiomas
+    'article.back',         // "Blog", ídem
     'exp.cv.url',           // un solo CV, el mismo enlace de Drive en los dos idiomas (hasta que existan cv-es/cv-en)
     // Cuatro puestos son literalmente "Android Developer" en ambos idiomas.
     // Se listan uno a uno en vez de exceptuar el patrón `.role`: si mañana

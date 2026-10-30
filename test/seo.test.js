@@ -63,6 +63,15 @@ test('el listado del blog lista los artículos en el HTML', () => {
   }
 });
 
+test('el listado del blog va del más reciente al más antiguo', () => {
+  const html = read('articles/index.html');
+  const list = html.slice(html.indexOf('id="articlesContainer"'), html.indexOf('</ol>'));
+  const shown = [...list.matchAll(/<h2><a href="[^"]+">([^<]+)<\/a><\/h2>/g)].map((m) => m[1]);
+  const expected = [...articles].sort((a, b) => b.date.localeCompare(a.date)).map((a) => a.title);
+  assert.deepStrictEqual(shown, expected);
+  assert.match(html, /<ol class="posts" id="articlesContainer">/);
+});
+
 test('toda página indexable declara canonical, og y twitter', () => {
   const pages = [
     'index.html',
@@ -194,7 +203,7 @@ test('las URLs canónicas llevan barra final, que es lo que sirve GitHub Pages',
 });
 
 test('ningún enlace interno apunta a una URL que redirige', () => {
-  const sources = ['assets/js/projects.js', 'assets/js/articles.js', 'assets/js/home.js'];
+  const sources = ['assets/js/projects.js', 'assets/js/project-view.js', 'assets/js/article.js', 'assets/js/home.js'];
   for (const src of sources) {
     const bad = [...read(src).matchAll(/href="\/(article|project)\/[^"]*[^/"]"/g)];
     assert.deepStrictEqual(

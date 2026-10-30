@@ -47,8 +47,24 @@ function clip(text, max = 155) {
   return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,.;:]$/, '') + '…';
 }
 
+/** "17 de marzo de 2024". La fecha se arma en hora local a partir de sus
+ *  partes: new Date('2024-03-17') es medianoche UTC, y en Lima mostraba el
+ *  día anterior. Misma lógica que formatDate() en assets/js/utils.js. */
+function localDate(iso) {
+  const [y, m, d] = String(iso).split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
 const formatDate = (iso) =>
-  new Date(iso).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+  localDate(iso).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const MESES_CORTOS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+
+/** "26 MAR 2026", para la columna de fechas del listado del blog. */
+function formatShortDate(iso) {
+  const date = localDate(iso);
+  return `${String(date.getDate()).padStart(2, '0')} ${MESES_CORTOS[date.getMonth()]} ${date.getFullYear()}`;
+}
 
 /**
  * Sustituye en la plantilla las metaetiquetas que llevan id, que es como las
@@ -258,39 +274,41 @@ function buildProjects() {
 // ------------------------------------------------------- listado del blog
 
 /**
- * El listado se pinta con JS, así que el crawler solo veía "Cargando…".
- * Aquí se escribe la lista real dentro del contenedor; articles.js la
- * reemplaza con la versión interactiva (filtros por tag) cuando el JS corre.
+ * El listado del blog es estático: se escribe aquí, del más reciente al más
+ * antiguo, dentro de <ol id="articlesContainer">. No hay JS que lo repinte.
  */
 function buildArticlesIndex(articles) {
   const file = 'articles/index.html';
   let html = read(file);
   const meta = readJson('content/articles.json');
+  const byDate = [...meta].sort((a, b) => b.date.localeCompare(a.date));
 
-  const items = meta
+  const items = byDate
     .map((a) => {
       const slug = generateSlug(a.title);
-      return `                <article class="article-item">
-                    <h2><a href="/article/${slug}/">${escapeHtml(a.title)}</a></h2>
-                    <p class="article-item-date">${escapeHtml(formatDate(a.date))}</p>
-                    <p class="article-item-description">${escapeHtml(a.description || '')}</p>
-                    <p class="article-item-tags">${(a.tags || []).map(escapeHtml).join(' · ')}</p>
-                </article>`;
+      const tags = (a.tags || []).map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join('');
+      return `                <li class="post"><time datetime="${escapeHtml(a.date)}">${formatShortDate(a.date)}</time>`
+        + `<div><h2><a href="/article/${slug}/">${escapeHtml(a.title)}</a></h2>`
+        + `<p>${escapeHtml(a.description || '')}</p><div class="chips">${tags}</div></div></li>`;
     })
     .join('\n');
 
+  const before = html;
   html = html.replace(
-    /(<div class="articles-list" id="articlesContainer">)[\s\S]*?(<\/div>\s*<\/div>)/,
+    /(<ol class="posts" id="articlesContainer">)[\s\S]*?(<\/ol>)/,
     `$1\n${items}\n            $2`
   );
+  if (html === before && !before.includes(items)) {
+    throw new Error('No encuentro <ol class="posts" id="articlesContainer"> en articles/index.html');
+  }
 
   const url = `${SITE}/articles/`;
-  html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/i,
-    `<title>Artículos sobre desarrollo Android — ${AUTHOR}</title>`);
+  const pageTitle = `Blog de desarrollo Android y web — ${AUTHOR}`;
+  html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/i, `<title>${pageTitle}</title>`);
 
-  const desc = `${meta.length} artículos sobre Android, Kotlin, Jetpack Compose y `
-    + `arquitectura móvil, escritos por ${AUTHOR}.`;
-  const image = `${SITE}/assets/img/portfolio/shots/quote-anime.webp`;
+  const desc = `${meta.length} artículos sobre Android, Kotlin, Jetpack Compose, `
+    + `arquitectura e IA, escritos por ${AUTHOR}.`;
+  const image = `${SITE}/assets/img/profile.webp`;
 
   html = stripGenerated(html);
   {
@@ -298,12 +316,12 @@ function buildArticlesIndex(articles) {
       `    <link rel="canonical" href="${url}">\n`
       + `    <meta name="description" content="${escapeHtml(desc)}">\n`
       + `    <meta property="og:type" content="website">\n`
-      + `    <meta property="og:title" content="Artículos sobre desarrollo Android — ${AUTHOR}">\n`
+      + `    <meta property="og:title" content="${pageTitle}">\n`
       + `    <meta property="og:description" content="${escapeHtml(desc)}">\n`
       + `    <meta property="og:image" content="${image}">\n`
       + `    <meta property="og:url" content="${url}">\n`
       + `    <meta name="twitter:card" content="summary_large_image">\n`
-      + `    <meta name="twitter:title" content="Artículos sobre desarrollo Android — ${AUTHOR}">\n`
+      + `    <meta name="twitter:title" content="${pageTitle}">\n`
       + `    <meta name="twitter:description" content="${escapeHtml(desc)}">\n`
       + `    <meta name="twitter:image" content="${image}">\n`
       + hreflangFor(url));
@@ -372,14 +390,22 @@ function buildSitemap(articles, projects) {
 
 // --------------------------------------------------------------------- main
 
-const articles = buildArticles();
-const projects = buildProjects();
-const listed = buildArticlesIndex(articles);
-const urls = buildSitemap(articles, projects);
+function main() {
+  const articles = buildArticles();
+  const projects = buildProjects();
+  const listed = buildArticlesIndex(articles);
+  const urls = buildSitemap(articles, projects);
 
-console.log(`\n  ${articles.length} artículos prerenderizados`);
-for (const a of articles) console.log(`    ${a.url}  (${a.words} palabras)`);
-console.log(`\n  ${projects.length} proyectos prerenderizados`);
-for (const p of projects) console.log(`    ${p.url}`);
-console.log(`\n  /articles/ prerenderizado con ${listed} entradas`);
-console.log(`  sitemap.xml regenerado con ${urls} URLs\n`);
+  console.log(`\n  ${articles.length} artículos prerenderizados`);
+  for (const a of articles) console.log(`    ${a.url}  (${a.words} palabras)`);
+  console.log(`\n  ${projects.length} proyectos prerenderizados`);
+  for (const p of projects) console.log(`    ${p.url}`);
+  console.log(`\n  /articles/ prerenderizado con ${listed} entradas`);
+  console.log(`  sitemap.xml regenerado con ${urls} URLs\n`);
+}
+
+// Los tests requieren este archivo para probar sus funciones: solo se
+// regeneran las páginas cuando se ejecuta como script (npm run build:pages).
+if (require.main === module) main();
+
+module.exports = { formatDate, formatShortDate, generateSlug };

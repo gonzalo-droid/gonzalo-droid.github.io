@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artículos sobre desarrollo Android — Gonzalo López</title>
-    <meta name="description" content="Artículos sobre desarrollo móvil, Android, iOS, Kotlin, arquitectura de software y buenas prácticas.">
+    <title>Blog de desarrollo Android y web — Gonzalo López</title>
 
-    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-    <!-- Favicon -->
     <link href="/assets/img/favicon.png" rel="icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/tokens.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
-    <!-- Theme -->
     <script src="/assets/js/theme.js"></script>
 <!-- build:pages -->
     <link rel="canonical" href="https://gonzalo-lozg.me/articles/">
-    <meta name="description" content="7 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
+    <meta name="description" content="7 artículos sobre Android, Kotlin, Jetpack Compose, arquitectura e IA, escritos por Gonzalo López.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Artículos sobre desarrollo Android — Gonzalo López">
-    <meta property="og:description" content="7 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
-    <meta property="og:image" content="https://gonzalo-lozg.me/assets/img/portfolio/shots/quote-anime.webp">
+    <meta property="og:title" content="Blog de desarrollo Android y web — Gonzalo López">
+    <meta property="og:description" content="7 artículos sobre Android, Kotlin, Jetpack Compose, arquitectura e IA, escritos por Gonzalo López.">
+    <meta property="og:image" content="https://gonzalo-lozg.me/assets/img/profile.webp">
     <meta property="og:url" content="https://gonzalo-lozg.me/articles/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Artículos sobre desarrollo Android — Gonzalo López">
-    <meta name="twitter:description" content="7 artículos sobre Android, Kotlin, Jetpack Compose y arquitectura móvil, escritos por Gonzalo López.">
-    <meta name="twitter:image" content="https://gonzalo-lozg.me/assets/img/portfolio/shots/quote-anime.webp">
+    <meta name="twitter:title" content="Blog de desarrollo Android y web — Gonzalo López">
+    <meta name="twitter:description" content="7 artículos sobre Android, Kotlin, Jetpack Compose, arquitectura e IA, escritos por Gonzalo López.">
+    <meta name="twitter:image" content="https://gonzalo-lozg.me/assets/img/profile.webp">
     <link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/articles/?lang=es">
     <link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/articles/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://gonzalo-lozg.me/articles/">
@@ -102,83 +93,33 @@
 <!-- /build:pages -->
 </head>
 <body>
-    <!-- Navbar Container - rendered by component -->
-    <div id="navbar-container" data-transparent="false"></div>
+    <div id="navbar-container"></div>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Blog</h1>
-            <p>Working progress</p>
+    <main class="blog-page">
+        <div class="blog-wrap">
+            <p class="eyebrow" data-i18n="blog.eyebrow">BLOG</p>
+            <h1 data-i18n="blog.title">Notas de desarrollo</h1>
+            <p class="lead" data-i18n="blog.lead">Lo que aprendo construyendo apps: arquitectura, Kotlin, Compose e IA.</p>
+
+            <!-- La lista la escribe scripts/build-pages.js (npm run build:pages), del más
+                 reciente al más antiguo. Los artículos solo existen en español. -->
+            <ol class="posts" id="articlesContainer">
+                <li class="post"><time datetime="2026-03-26">26 MAR 2026</time><div><h2><a href="/article/coroutines-en-android-programacion-asincrona-moderna/">Coroutines en Android: Programación asíncrona moderna</a></h2><p>Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus aplicaciones.</p><div class="chips"><span class="chip">Android</span><span class="chip">Coroutines</span><span class="chip">Kotlin</span><span class="chip">Asíncrono</span></div></div></li>
+                <li class="post"><time datetime="2026-03-26">26 MAR 2026</time><div><h2><a href="/article/inyeccion-de-dependencias-en-android-con-hilt/">Inyección de Dependencias en Android con Hilt</a></h2><p>La inyección de dependencias es una técnica fundamental en el desarrollo de aplicaciones Android modernas. Aprende a implementar DI usando Hilt, la solución oficial de Google.</p><div class="chips"><span class="chip">Android</span><span class="chip">Hilt</span><span class="chip">Arquitectura</span><span class="chip">Kotlin</span><span class="chip">Testing</span></div></div></li>
+                <li class="post"><time datetime="2026-03-26">26 MAR 2026</time><div><h2><a href="/article/jetpack-compose-el-futuro-de-la-ui-en-android/">Jetpack Compose: El futuro de la UI en Android</a></h2><p>Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características principales.</p><div class="chips"><span class="chip">Android</span><span class="chip">Jetpack Compose</span><span class="chip">UI</span><span class="chip">Kotlin</span></div></div></li>
+                <li class="post"><time datetime="2024-03-20">20 MAR 2024</time><div><h2><a href="/article/desarrollo-de-apps-con-kotlin-multiplatform/">Desarrollo de Apps con Kotlin Multiplatform</a></h2><p>Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.</p><div class="chips"><span class="chip">Kotlin</span><span class="chip">KMM</span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Multiplataforma</span></div></div></li>
+                <li class="post"><time datetime="2024-03-19">19 MAR 2024</time><div><h2><a href="/article/integracion-de-ia-en-apps-android/">Integración de IA en Apps Android</a></h2><p>Cómo integrar inteligencia artificial en tus aplicaciones Android usando servicios como OpenAI y modelos de ML.</p><div class="chips"><span class="chip">Android</span><span class="chip">IA</span><span class="chip">OpenAI</span><span class="chip">ML</span><span class="chip">Kotlin</span></div></div></li>
+                <li class="post"><time datetime="2024-03-18">18 MAR 2024</time><div><h2><a href="/article/arquitectura-mvvm-en-android/">Arquitectura MVVM en Android</a></h2><p>Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.</p><div class="chips"><span class="chip">Android</span><span class="chip">MVVM</span><span class="chip">Arquitectura</span><span class="chip">Kotlin</span><span class="chip">ViewModel</span></div></div></li>
+                <li class="post"><time datetime="2024-03-17">17 MAR 2024</time><div><h2><a href="/article/testing-en-android/">Testing en Android</a></h2><p>Guía práctica sobre cómo implementar diferentes tipos de pruebas en aplicaciones Android.</p><div class="chips"><span class="chip">Android</span><span class="chip">Testing</span><span class="chip">JUnit</span><span class="chip">Espresso</span><span class="chip">Mockito</span></div></div></li>
+            </ol>
         </div>
-    </section>
+    </main>
 
-    <!-- Articles Section -->
-    <section class="articles-page">
-        <div class="container">
-            <!-- Filter Tags -->
-            <div class="articles-filter" id="articleFilters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-            </div>
-
-            <!-- Articles Grid -->
-            <div class="articles-list" id="articlesContainer">
-                <article class="article-item">
-                    <h2><a href="/article/testing-en-android/">Testing en Android</a></h2>
-                    <p class="article-item-date">16 de marzo de 2024</p>
-                    <p class="article-item-description">Guía práctica sobre cómo implementar diferentes tipos de pruebas en aplicaciones Android.</p>
-                    <p class="article-item-tags">Android · Testing · JUnit · Espresso · Mockito</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/desarrollo-de-apps-con-kotlin-multiplatform/">Desarrollo de Apps con Kotlin Multiplatform</a></h2>
-                    <p class="article-item-date">19 de marzo de 2024</p>
-                    <p class="article-item-description">Aprende a desarrollar aplicaciones multiplataforma usando Kotlin Multiplatform, compartiendo código entre Android e iOS.</p>
-                    <p class="article-item-tags">Kotlin · KMM · Android · iOS · Multiplataforma</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/integracion-de-ia-en-apps-android/">Integración de IA en Apps Android</a></h2>
-                    <p class="article-item-date">18 de marzo de 2024</p>
-                    <p class="article-item-description">Cómo integrar inteligencia artificial en tus aplicaciones Android usando servicios como OpenAI y modelos de ML.</p>
-                    <p class="article-item-tags">Android · IA · OpenAI · ML · Kotlin</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/arquitectura-mvvm-en-android/">Arquitectura MVVM en Android</a></h2>
-                    <p class="article-item-date">17 de marzo de 2024</p>
-                    <p class="article-item-description">Guía completa sobre la implementación del patrón MVVM en aplicaciones Android modernas.</p>
-                    <p class="article-item-tags">Android · MVVM · Arquitectura · Kotlin · ViewModel</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/coroutines-en-android-programacion-asincrona-moderna/">Coroutines en Android: Programación asíncrona moderna</a></h2>
-                    <p class="article-item-date">25 de marzo de 2026</p>
-                    <p class="article-item-description">Las coroutines de Kotlin son una herramienta poderosa para manejar operaciones asíncronas en Android. Descubre cómo utilizarlas efectivamente en tus aplicaciones.</p>
-                    <p class="article-item-tags">Android · Coroutines · Kotlin · Asíncrono</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/inyeccion-de-dependencias-en-android-con-hilt/">Inyección de Dependencias en Android con Hilt</a></h2>
-                    <p class="article-item-date">25 de marzo de 2026</p>
-                    <p class="article-item-description">La inyección de dependencias es una técnica fundamental en el desarrollo de aplicaciones Android modernas. Aprende a implementar DI usando Hilt, la solución oficial de Google.</p>
-                    <p class="article-item-tags">Android · Hilt · Arquitectura · Kotlin · Testing</p>
-                </article>
-                <article class="article-item">
-                    <h2><a href="/article/jetpack-compose-el-futuro-de-la-ui-en-android/">Jetpack Compose: El futuro de la UI en Android</a></h2>
-                    <p class="article-item-date">25 de marzo de 2026</p>
-                    <p class="article-item-description">Jetpack Compose es el toolkit moderno de UI nativa de Android que simplifica y acelera el desarrollo de interfaces de usuario. Explora sus características principales.</p>
-                    <p class="article-item-tags">Android · Jetpack Compose · UI · Kotlin</p>
-                </article>
-            </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Container - rendered by component -->
     <div id="footer-container"></div>
 
     <script src="/assets/js/icons.js"></script>
     <script src="/assets/js/components/navbar.js"></script>
     <script src="/assets/js/components/footer.js"></script>
-    <script src="/assets/js/utils.js"></script>
     <script src="/assets/js/i18n.js"></script>
-    <script src="/assets/js/articles.js"></script>
 </body>
 </html>

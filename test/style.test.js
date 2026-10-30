@@ -40,3 +40,8 @@ test('las flechas del carrusel solo se esconden donde hay puntero que pasa por e
   const fuera = css.replace(hover[0], '');
   assert.ok(!/\.car-nav[^{]*\{[^}]*opacity: 0[;\s]/.test(fuera), 'la opacidad 0 de las flechas está fuera de (hover: hover)');
 });
+
+test('el título del markdown no se repite bajo la cabecera del artículo', () => {
+  // Cada artículo empieza con "# Título", que ya está en <h1 id="articleTitle">.
+  assert.match(css, /\.article-body > h1:first-child\s*\{\s*display: none;/);
+});

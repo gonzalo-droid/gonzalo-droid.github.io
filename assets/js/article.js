@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Reflect the real path in the address bar (in case we arrived via
     // the 404 redirect or a legacy hash link)
-    history.replaceState(null, '', `/article/${slug}`);
+    // Con barra final: es la URL que sirve GitHub Pages sin redirigir.
+    history.replaceState(null, '', `/article/${slug}/`);
 
     // Load the article
     loadArticle(slug);
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('hashchange', () => {
         const newSlug = getSlugFromHash();
         if (newSlug) {
-            history.replaceState(null, '', `/article/${newSlug}`);
+            history.replaceState(null, '', `/article/${newSlug}/`);
             loadArticle(newSlug);
         }
     });
@@ -81,15 +82,8 @@ function getSlugFromHash() {
  * Load and render article content
  */
 async function loadArticle(slug) {
-    // Show loading state
-    document.getElementById('articleTitle').textContent = 'Cargando...';
-    document.getElementById('articleContent').innerHTML = `
-        <div style="text-align: center; padding: 60px 0;">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Cargando...</span>
-            </div>
-        </div>
-    `;
+    // La página prerenderizada ya trae el artículo: no se borra mientras
+    // carga, para no enseñar "Cargando…" encima de un texto que ya estaba.
 
     try {
         // Load articles list
@@ -147,7 +141,7 @@ const SITE_ORIGIN = 'https://gonzalo-lozg.me';
  */
 function updateSEOTags(article, slug) {
     const pageTitle = `${article.title} - Gonzalo López | Mobile Developer`;
-    const articleUrl = `${SITE_ORIGIN}/article/${slug}`;
+    const articleUrl = `${SITE_ORIGIN}/article/${slug}/`;
     const imageUrl = article.image.startsWith('http')
         ? article.image
         : `${SITE_ORIGIN}/${article.image.replace(/^\//, '')}`;
@@ -208,12 +202,8 @@ function setMetaContent(id, content) {
 function showError(message) {
     document.getElementById('articleTitle').textContent = 'Error';
     document.getElementById('articleContent').innerHTML = `
-        <div class="alert alert-danger" style="background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: #ff6b6b; padding: 20px; border-radius: 8px; text-align: center;">
-            <span class="error-icon">${window.Icons ? Icons.icon("exclamation-circle") : ""}</span>
-            ${message}
-            <br><br>
-            <a href="/articles" style="color: #00d4ff;">Volver a artículos</a>
-        </div>
+        <p class="post-error">${message}</p>
+        <p><a href="/articles/">Volver al blog</a></p>
     `;
 }
 
