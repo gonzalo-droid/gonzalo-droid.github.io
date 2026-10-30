@@ -340,6 +340,7 @@ function buildSitemap(articles, projects) {
   const entries = [
     { loc: `${SITE}/`, lastmod: today, priority: '1.0' },
     { loc: `${SITE}/articles/`, lastmod: today, priority: '0.8' },
+    { loc: `${SITE}/experience/`, lastmod: today, priority: '0.7' },
     ...projects.map((p) => ({ loc: `${SITE}${p.url}/`, lastmod: today, priority: '0.8' })),
     ...articles.map((a) => ({
       loc: `${SITE}${a.url}/`,

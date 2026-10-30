@@ -67,6 +67,7 @@ test('toda página indexable declara canonical, og y twitter', () => {
   const pages = [
     'index.html',
     'articles/index.html',
+    'experience/index.html',
     ...articles.map((a) => `article/${slugify(a.title)}/index.html`),
     ...projects.map((p) => `project/${p.slug}/index.html`),
   ];

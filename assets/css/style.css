@@ -1206,6 +1206,116 @@ p {
 }
 
 /* ==========================================================================
+   15. Experiencia (/experience/)
+   ========================================================================== */
+
+.exp-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 40px 72px;
+}
+
+.exp-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-head h1 {
+  font-size: 56px;
+  margin: 6px 0 14px;
+}
+
+.exp-head .lead {
+  margin: 0;
+}
+
+.exp-about {
+  max-width: 70ch;
+  margin-bottom: 48px;
+}
+
+.exp-about p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.exp-about strong {
+  font-weight: 500;
+}
+
+.tl {
+  margin-left: 4px;
+  border-left: 1px solid var(--border);
+}
+
+.tli {
+  position: relative;
+  max-width: 72ch;
+  padding: 0 0 32px 26px;
+}
+
+.tli:last-child {
+  padding-bottom: 0;
+}
+
+.tli::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+/* El puesto actual lleva el punto relleno. */
+.tli.now::before {
+  background: var(--accent);
+}
+
+.tli .when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.tli h2 {
+  margin: 4px 0 2px;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.tli .co {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.tli p:not(.co) {
+  margin: 10px 0 12px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .exp-wrap { padding: 40px 20px 56px; }
+  .exp-head h1 { font-size: 40px; }
+}
+
+/* ==========================================================================
    Puerta de animación (va al final de la hoja)
    El estado por defecto es visible. Solo se oculta si el JS corrió (clase
    .js, que pone theme.js en <head>) y el visitante no pidió menos movimiento.

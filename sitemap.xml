@@ -16,6 +16,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/articles/?lang=en"/>
   </url>
   <url>
+    <loc>https://gonzalo-lozg.me/experience/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/experience/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/experience/?lang=en"/>
+  </url>
+  <url>
     <loc>https://gonzalo-lozg.me/project/nekomangacix/</loc>
     <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>

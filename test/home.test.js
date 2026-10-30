@@ -69,7 +69,7 @@ test('el inicio carga carousel.js antes que projects.js', () => {
 
 // Las páginas rediseñadas usan Newsreader e IBM Plex. Archivo y JetBrains Mono
 // eran de Mecha, y Bootstrap CSS chocaba con el sistema de tokens.
-const PAGES_SIN_PILA_VIEJA = ['index.html', 'project/index.html'];
+const PAGES_SIN_PILA_VIEJA = ['index.html', 'project/index.html', 'experience/index.html'];
 
 test('ninguna página carga Archivo, JetBrains Mono ni Bootstrap CSS', () => {
   for (const page of PAGES_SIN_PILA_VIEJA) {
