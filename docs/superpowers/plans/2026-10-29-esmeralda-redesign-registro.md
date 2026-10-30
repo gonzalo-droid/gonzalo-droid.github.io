@@ -24,6 +24,10 @@ corrección empezó con un test que fallaba:
    terminar de cargar. Lo subí de menor a importante porque pasaba en cada visita y lo causaba una
    decisión mía de la Tarea 9.
 
+Después, al cerrar, la suite falló una vez de forma intermitente. Lo atribuyo a que un test corre el
+build mientras otros leen las páginas que reescribe, pero no pude reproducirlo en 20 corridas. Aun así
+lo corregí: el build ahora solo escribe los archivos que cambian (test sobre la fecha de modificación).
+
 ## Decisiones que tomé
 
 **Preparación**
