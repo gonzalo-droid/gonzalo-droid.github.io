@@ -123,9 +123,6 @@ async function loadArticle(slug) {
             hljs.highlightBlock(block);
         });
 
-        // Scroll to top
-        window.scrollTo(0, 0);
-
     } catch (error) {
         console.error('Error loading article:', error);
         showError('Error al cargar el artículo. Por favor, intenta de nuevo más tarde.');
@@ -200,10 +197,18 @@ function setMetaContent(id, content) {
  * Show error message
  */
 function showError(message) {
+    // El mensaje puede llevar el slug, que viene de la URL: se pinta como
+    // texto, nunca como HTML (si no, un enlace armado ejecutaría código aquí).
     document.getElementById('articleTitle').textContent = 'Error';
-    document.getElementById('articleContent').innerHTML = `
-        <p class="post-error">${message}</p>
-        <p><a href="/articles/">Volver al blog</a></p>
-    `;
+    const content = document.getElementById('articleContent');
+    const text = document.createElement('p');
+    text.className = 'post-error';
+    text.textContent = message;
+    const back = document.createElement('p');
+    const link = document.createElement('a');
+    link.href = '/articles/';
+    link.textContent = 'Volver al blog';
+    back.appendChild(link);
+    content.replaceChildren(text, back);
 }
 
