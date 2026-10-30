@@ -107,15 +107,11 @@ test('ninguna traducción inglesa quedó copiada del español', () => {
   // Un descuido habitual: copiar el bloque español al archivo inglés y no
   // traducirlo. Se exceptúan las cadenas que son idénticas por diseño.
   const IGUALES_A_PROPOSITO = new Set([
-    'hero.role',            // "Android Developer": el cargo no se traduce
-    'hero.stack',           // lista de tecnologías
     'nav.blog',             // "Blog"
     'projects.filter.android',
     'projects.filter.ios',
     'projects.filter.kmm',
     'projects.filter.web',
-    'project.stack',        // "Stack"
-    'footer.rights',        // nombre propio
     'blog.eyebrow',         // "BLOG": la etiqueta es la misma palabra en los dos idiomas
     'article.back',         // "Blog", ídem
     'exp.cv.url',           // un solo CV, el mismo enlace de Drive en los dos idiomas (hasta que existan cv-es/cv-en)
@@ -166,4 +162,12 @@ test('_review solo nombra claves que existen', () => {
       `_review nombra "${key}", que no existe en en.json`
     );
   }
+});
+
+test('toda clave de es.json se usa en alguna página o script', () => {
+  const fuentes = [...PAGES, 'assets/js/components/navbar.js', 'assets/js/components/footer.js',
+    'assets/js/projects.js', 'assets/js/project.js', 'assets/js/project-view.js', 'assets/js/carousel.js',
+    'assets/js/home.js', 'assets/js/article.js', 'scripts/build-pages.js'].map(read).join('\n');
+  const sinUso = uiKeys(es).filter((k) => !fuentes.includes(`'${k}'`) && !fuentes.includes(`"${k}"`));
+  assert.deepStrictEqual(sinUso, [], `claves sin uso: ${sinUso.join(', ')}`);
 });

@@ -111,8 +111,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         cached = { project, projects };
         // Sin diccionario, ProjectView pintaría las claves un instante.
         if (window.I18n) await window.I18n.whenReady();
-        updateSEO(project);
-        paint(project, projects);
+
+        // La página prerenderizada (aria-busy="false") ya trae este proyecto en
+        // español: repintarla solo haría parpadear la galería mientras la imagen
+        // se vuelve a decodificar. Basta con engancharle el carrusel.
+        const container = document.getElementById('projectDetail');
+        const lang = window.I18n ? window.I18n.current() : 'es';
+        const prerendered = container.getAttribute('aria-busy') === 'false'
+            && container.dataset.slug === project.slug;
+        if (prerendered && lang === 'es') {
+            Carousel.wire(container);
+        } else {
+            updateSEO(project);
+            paint(project, projects);
+        }
 
         // Que la barra de direcciones muestre /project/<slug>/ aunque hayamos
         // llegado por el rebote del 404 de GitHub Pages.

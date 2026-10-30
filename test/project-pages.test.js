@@ -48,6 +48,13 @@ test('la página prerenderizada trae el caso completo en párrafos', () => {
   }
 });
 
+test('la página prerenderizada se marca como lista para que project.js no la repinte', () => {
+  for (const p of projects) {
+    assert.ok(read(`project/${p.slug}/index.html`).includes(`<div id="projectDetail" aria-busy="false" data-slug="${p.slug}">`), p.slug);
+  }
+  assert.ok(read('project/index.html').includes('<div id="projectDetail" aria-busy="true">'), 'la plantilla sigue sin pintar');
+});
+
 test('cada página enlaza al siguiente proyecto, y la última vuelve a la primera', () => {
   projects.forEach((p, i) => {
     const next = projects[(i + 1) % projects.length];

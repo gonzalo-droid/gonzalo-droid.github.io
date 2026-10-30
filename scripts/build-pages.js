@@ -261,7 +261,10 @@ function buildProjects() {
       /(<div id="projectDetail"[^>]*>)[\s\S]*?(<\/div>\s*<\/div>\s*<\/main>)/,
       `$1${body}\n            $2`
     );
-    html = html.replace('<div id="projectDetail" aria-busy="true">', '<div id="projectDetail" aria-busy="false">');
+    // aria-busy="false" + data-slug le dicen a project.js que el contenido ya
+    // está pintado en español y no hace falta repintarlo.
+    html = html.replace('<div id="projectDetail" aria-busy="true">',
+      `<div id="projectDetail" aria-busy="false" data-slug="${project.slug}">`);
 
     const dir = path.join(ROOT, 'project', project.slug);
     fs.mkdirSync(dir, { recursive: true });
