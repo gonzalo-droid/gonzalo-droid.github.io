@@ -249,6 +249,12 @@ p {
    6. Barra de navegación
    ========================================================================== */
 
+/* navbar.js pinta la barra dentro de #navbar-container. Sin display: contents,
+   el sticky quedaría atrapado en ese contenedor y la barra se iría con el scroll. */
+#navbar-container {
+  display: contents;
+}
+
 .site-nav {
   position: sticky;
   top: 0;
@@ -652,7 +658,374 @@ p {
 }
 
 /* ==========================================================================
-   9. Puerta de animación
+   10. Inicio — banner
+   Una columna centrada, sin imágenes ni estadísticas: no deja media
+   pantalla en blanco.
+   ========================================================================== */
+
+.hero {
+  padding: 96px 0 88px;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 860px;
+}
+
+.avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.avail .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.hero h1 {
+  max-width: 16ch;
+  margin: 0 auto 22px;
+}
+
+.pitch {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 52ch;
+  margin: 0 auto 30px;
+}
+
+.pitch strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 64px 0 56px; }
+  .pitch { font-size: 16.5px; }
+}
+
+/* ==========================================================================
+   11. Inicio — proyectos
+   ========================================================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.filter-btn {
+  font-size: 12.5px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.filter-btn.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.filter-btn small {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  opacity: 0.7;
+  margin-left: 2px;
+}
+
+.pj-grid,
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pj-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.pj-card:hover,
+.pj-card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--text) 8%, transparent);
+  transform: translateY(-2px);
+}
+
+/* El carrusel queda por encima del enlace que cubre la tarjeta, para poder
+   deslizarlo y usar sus flechas; sus diapositivas ya enlazan al proyecto. */
+.pj-card .car {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.pj-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 14px 16px 16px;
+}
+
+.pj-plat {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.pj-body h3 {
+  margin: 3px 0 6px;
+}
+
+.pj-link {
+  color: var(--text);
+}
+
+.pj-link:hover {
+  text-decoration: none;
+}
+
+/* Toda la tarjeta es el área de clic del título. */
+.pj-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.pj-sum {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pj-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pj-stores {
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.pj-more {
+  color: var(--accent);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.noscript-list {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   12. Inicio — servicios
+   ========================================================================== */
+
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+
+.svc-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  color: var(--accent);
+}
+
+.svc-card h3 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.svc-card > p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.svc-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  font-size: 13.5px;
+}
+
+.svc-card li {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+}
+
+.svc-card li::before {
+  content: "—";
+  color: var(--accent);
+}
+
+.svc-card .svc-ex {
+  margin: auto 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.svc-ex a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   13. Inicio — contacto (centrado, como el banner)
+   ========================================================================== */
+
+.contact {
+  text-align: center;
+  padding: 80px 0 84px;
+}
+
+.contact .lead {
+  margin: 0 auto 28px;
+}
+
+.reach {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.wa {
+  font-size: 15px;
+  padding: 12px 20px;
+  gap: 9px;
+}
+
+.mail {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.mail a {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 18px;
+  color: var(--text);
+}
+
+.mail button {
+  font-size: 13px;
+  padding: 0 16px;
+  background: var(--bg);
+  border: 0;
+  border-left: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.mail button:hover {
+  background: var(--surface);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.socials a {
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.socials a::after {
+  content: "↗";
+  color: var(--accent);
+  font-size: 12px;
+}
+
+@media (max-width: 980px) {
+  .pj-grid,
+  .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .pj-grid,
+  .svc-grid { grid-template-columns: minmax(0, 1fr); }
+  .contact { padding: 64px 0; }
+  .mail { font-size: 14px; }
+  .mail a { padding: 12px 14px; }
+}
+
+/* ==========================================================================
+   Puerta de animación (va al final de la hoja)
    El estado por defecto es visible. Solo se oculta si el JS corrió (clase
    .js, que pone theme.js en <head>) y el visitante no pidió menos movimiento.
    ========================================================================== */

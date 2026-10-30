@@ -1,4 +1,6 @@
-// Renderiza la grilla de proyectos de la home desde content/projects.json.
+// Pinta la grilla de proyectos del inicio desde content/projects.json.
+// El carrusel de cada tarjeta sale de carousel.js, el mismo módulo que usa la
+// galería de /project/<slug>/.
 
 async function fetchProjects() {
     const response = await fetch('/content/projects.json');
@@ -11,70 +13,71 @@ const tr = (key) => (window.I18n ? window.I18n.t(key) : key);
 const trProject = (project, field, fallback) =>
     (window.I18n ? window.I18n.project(project.slug, field, fallback) : fallback);
 
-// La tarjeta usa una variante de 600px; la original, mucho mayor, se reserva
-// para la galería de /project/<slug>, que sí la muestra en grande.
-const cardImage = (src) => src.replace('/portfolio/', '/portfolio/cards/');
+const PLATFORM_LABELS = { android: 'Android', ios: 'iOS', kmm: 'KMM', web: 'Web' };
+const esc = (value) => Carousel.escapeHtml(value);
 
-const PLATFORM_LABELS = {
-    android: 'Android',
-    ios: 'iOS',
-    kmm: 'KMM',
-    web: 'Web',
-};
-
-// La imagen y el título llevan a /project/<slug>. Los enlaces externos
-// (stores, repositorio) van aparte como chips, para que se distingan del
-// enlace al detalle y de los chips de tecnología, que son informativos.
-function renderProjects(container, projects) {
-    container.innerHTML = projects.map((p) => `
-        <article class="project-card" data-category="${p.platforms.join(',')}">
-            <a class="project-card-image" href="/project/${p.slug}/"
-               aria-label="${tr('projects.detail.aria')} ${p.title}">
-                <img src="${cardImage(p.image)}" alt="${p.title}" loading="lazy" width="600" height="375" decoding="async">
-                <span class="project-card-platform t-label">
-                    ${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}
-                </span>
-            </a>
-            <div class="project-card-content">
-                <h3 class="t-h3"><a href="/project/${p.slug}/">${p.title}</a></h3>
-                <p class="t-small">${trProject(p, 'summary', p.summary)}</p>
-                <div class="project-tech">
-                    ${p.tech.slice(0, 3).map((t) => `<span>${t}</span>`).join('')}
-                </div>
-                ${renderProjectLinks(p)}
-            </div>
-        </article>
-    `).join('');
-}
-
-function renderProjectLinks(project) {
-    const links = project.links || [];
-    if (links.length === 0) return '';
+// Toda la tarjeta lleva al proyecto: el ::after del enlace del título la
+// cubre entera, y el carrusel queda por encima para poder deslizarlo. Sus
+// diapositivas también enlazan al proyecto; sus flechas no.
+function renderCard(p) {
+    const href = `/project/${p.slug}/`;
+    const extra = p.tech.length - 3;
+    const stores = (p.links || []).map((l) => esc(l.label)).join(' · ');
 
     return `
-        <div class="project-card-links">
-            ${links.map((l) => `
-                <a href="${l.url}" target="_blank" rel="noopener"
-                   aria-label="${l.label} — ${project.title}">${l.label}</a>
-            `).join('')}
-        </div>
-    `;
+        <article class="pj-card" data-category="${p.platforms.join(',')}">
+            ${Carousel.html(p.images, {
+                alt: p.title,
+                variant: 'card',
+                href,
+                labels: { prev: tr('carousel.prev'), next: tr('carousel.next'), goto: tr('carousel.goto') },
+            })}
+            <div class="pj-body">
+                <p class="pj-plat">${p.platforms.map((x) => PLATFORM_LABELS[x]).join(' · ')}</p>
+                <h3><a class="pj-link" href="${href}">${esc(p.title)}</a></h3>
+                <p class="pj-sum">${esc(trProject(p, 'summary', p.summary))}</p>
+                <div class="chips">
+                    ${p.tech.slice(0, 3).map((t) => `<span class="chip">${esc(t)}</span>`).join('')}
+                    ${extra > 0 ? `<span class="chip">+${extra}</span>` : ''}
+                </div>
+                <div class="pj-foot">
+                    <span class="pj-stores">${stores}</span>
+                    <span class="pj-more">${esc(tr('projects.more'))} →</span>
+                </div>
+            </div>
+        </article>`;
 }
 
-function initProjectFilters() {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.project-card');
+let activeFilter = 'all';
 
-    buttons.forEach((btn) => {
+function applyFilter(container) {
+    container.querySelectorAll('.pj-card').forEach((card) => {
+        card.hidden = activeFilter !== 'all' && !card.dataset.category.split(',').includes(activeFilter);
+    });
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+        const on = btn.dataset.filter === activeFilter;
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', String(on));
+    });
+}
+
+// El conteo sale de los datos, no del HTML: así no se desfasa al añadir un proyecto.
+function paintCounts(projects) {
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+        const f = btn.dataset.filter;
+        const n = f === 'all' ? projects.length : projects.filter((p) => p.platforms.includes(f)).length;
+        const small = btn.querySelector('small');
+        if (small) small.textContent = n;
+    });
+}
+
+function initProjectFilters(container) {
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+        if (btn.dataset.bound === '1') return;
+        btn.dataset.bound = '1';
         btn.addEventListener('click', () => {
-            buttons.forEach((b) => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-            cards.forEach((card) => {
-                const match = filter === 'all' || card.dataset.category.split(',').includes(filter);
-                card.hidden = !match;
-            });
+            activeFilter = btn.dataset.filter;
+            applyFilter(container);
         });
     });
 }
@@ -85,8 +88,12 @@ async function paint() {
     const container = document.getElementById('projectsGrid');
     if (!container) return;
     if (!cachedProjects) cachedProjects = await fetchProjects();
-    renderProjects(container, cachedProjects);
-    initProjectFilters();
+    container.innerHTML = cachedProjects.map(renderCard).join('');
+    Carousel.wire(container);
+    paintCounts(cachedProjects);
+    initProjectFilters(container);
+    // Al repintar por cambio de idioma se conserva el filtro elegido.
+    applyFilter(container);
 }
 
 // El idioma llega después del primer pintado (i18n hace fetch), así que la
@@ -100,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await paint();
     } catch (err) {
-        container.innerHTML = `<p class="t-small">${tr('projects.error')}</p>`;
+        container.innerHTML = `<p class="t-muted">${esc(tr('projects.error'))}</p>`;
         console.error(err);
     }
 });

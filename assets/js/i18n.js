@@ -69,6 +69,11 @@ const I18n = {
         root.querySelectorAll('[data-i18n-title]').forEach((el) => {
             el.setAttribute('title', this.t(el.dataset.i18nTitle));
         });
+
+        // Enlaces que cambian con el idioma (el mensaje de WhatsApp, el CV).
+        root.querySelectorAll('[data-i18n-href]').forEach((el) => {
+            el.setAttribute('href', this.t(el.dataset.i18nHref));
+        });
     },
 
     /** Enlaces alternativos para buscadores. */

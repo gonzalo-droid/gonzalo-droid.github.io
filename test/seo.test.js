@@ -102,6 +102,19 @@ test('title y description de la home caben en el resultado de búsqueda', () => 
   assert.ok(title.length >= 30, `title de ${title.length} car.: desaprovecha espacio`);
   assert.ok(desc.length <= 160, `description de ${desc.length} car.: se corta en ~155`);
   assert.match(title, /Gonzalo López/, 'el title debería llevar su nombre');
+  assert.match(title, /Desarrollo web, apps e IA/, 'el title le habla al cliente');
+  assert.ok(desc.length <= 155, `description de ${desc.length} car.: máximo 155`);
+});
+
+test('los datos estructurados del inicio presentan los servicios', () => {
+  const nodes = [...read('index.html').matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .flatMap((m) => [].concat(JSON.parse(m[1])));
+  const person = nodes.find((n) => n['@type'] === 'Person');
+  assert.strictEqual(person.jobTitle, 'Desarrollador web y móvil');
+  const service = nodes.find((n) => n['@type'] === 'ProfessionalService');
+  assert.ok(service, 'falta el nodo ProfessionalService');
+  const offered = service.makesOffer.map((o) => o.itemOffered.name);
+  assert.deepStrictEqual(offered, ['Desarrollo web', 'Apps móviles', 'IA en tus flujos']);
 });
 
 test('el sitemap solo declara URLs que existen en el repo', () => {

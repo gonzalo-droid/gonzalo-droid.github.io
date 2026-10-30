@@ -48,7 +48,7 @@ test('todo data-i18n del HTML apunta a una clave que existe', () => {
 
   for (const page of PAGES) {
     const html = read(page);
-    const used = [...html.matchAll(/data-i18n(?:-html|-aria|-title)?="([^"]+)"/g)].map((m) => m[1]);
+    const used = [...html.matchAll(/data-i18n(?:-html|-aria|-title|-href)?="([^"]+)"/g)].map((m) => m[1]);
 
     assert.ok(used.length > 0, `${page} no tiene ningún data-i18n`);
 
