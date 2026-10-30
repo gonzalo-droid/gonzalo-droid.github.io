@@ -1,25 +1,12 @@
-// Página de detalle de proyecto: /project/<slug>
+// Página de proyecto: /project/<slug>/
 // Lee el slug igual que article.js (sessionStorage desde el 404 de GitHub
-// Pages, o el propio path en local) y pinta el proyecto desde projects.json.
+// Pages, o el propio path en local) y pinta el proyecto con ProjectView, el
+// mismo renderizador que usa scripts/build-pages.js al prerenderizar.
 
-const PLATFORM_LABELS = {
-    android: 'Android',
-    ios: 'iOS',
-    kmm: 'KMM',
-    web: 'Web',
-};
-
-const tr = (key, fallback) => (window.I18n ? window.I18n.t(key) : (fallback || key));
+const tr = (key) => (window.I18n ? window.I18n.t(key) : key);
 const trProject = (project, field, fallback) =>
     (window.I18n ? window.I18n.project(project.slug, field, fallback) : fallback);
-
-function escapeHtml(value) {
-    return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-}
+const esc = (value) => ProjectView.escapeHtml(value);
 
 /**
  * Resuelve el slug, en este orden:
@@ -50,95 +37,36 @@ function setMeta(id, attr, value) {
 }
 
 function updateSEO(project) {
-    const url = `https://gonzalo-lozg.me/project/${project.slug}`;
-    const title = `${project.title} - Gonzalo López | Mobile Developer`;
-    const image = `https://gonzalo-lozg.me${project.image}`;
+    const url = `https://gonzalo-lozg.me/project/${project.slug}/`;
+    const title = `${project.title} — Proyecto de Gonzalo López`;
+    const image = `https://gonzalo-lozg.me${project.images[0].src}`;
+    const summary = trProject(project, 'summary', project.summary);
 
     document.title = title;
-    document.getElementById('pageTitle').textContent = title;
-
-    setMeta('metaDescription', 'content', project.summary);
+    setMeta('metaDescription', 'content', summary);
     setMeta('canonicalLink', 'href', url);
     setMeta('ogTitle', 'content', title);
-    setMeta('ogDescription', 'content', project.summary);
+    setMeta('ogDescription', 'content', summary);
     setMeta('ogImage', 'content', image);
     setMeta('ogUrl', 'content', url);
     setMeta('twitterTitle', 'content', title);
-    setMeta('twitterDescription', 'content', project.summary);
+    setMeta('twitterDescription', 'content', summary);
     setMeta('twitterImage', 'content', image);
 }
 
-// Cada bloque se omite si no hay datos, para que un proyecto incompleto no
-// enseñe encabezados vacíos. `decisions` está vacío en todos hoy: es material
-// que solo puede escribir Gonzalo.
-function renderSection(title, body) {
-    if (!body) return '';
-    return `
-        <section class="project-block">
-            <h2 class="project-block-title">${escapeHtml(title)}</h2>
-            ${body}
-        </section>
-    `;
-}
-
-function renderGallery(project) {
-    const images = [...new Set([project.image, ...(project.gallery || [])])];
-    if (images.length === 0) return '';
-
-    return `
-        <div class="project-gallery">
-            ${images.map((src) => `
-                <figure>
-                    <img src="${escapeHtml(src)}" alt="Captura de ${escapeHtml(project.title)}" loading="lazy">
-                </figure>
-            `).join('')}
-        </div>
-    `;
-}
-
-function renderProject(project) {
+function paint(project, projects) {
     const container = document.getElementById('projectDetail');
-    document.getElementById('crumbCurrent').textContent = project.title;
+    const i = projects.findIndex((p) => p.slug === project.slug);
+    const next = projects[(i + 1) % projects.length];
 
-    const platforms = project.platforms.map((p) => PLATFORM_LABELS[p] || p).join(' · ');
-
-    const hl = trProject(project, 'highlights', project.highlights);
-    const highlights = (hl || []).length
-        ? `<ul class="project-list">${hl.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}</ul>`
-        : '';
-
-    const decisions = project.decisions
-        ? `<p class="t-body">${escapeHtml(project.decisions)}</p>`
-        : '';
-
-    const links = (project.links || []).length
-        ? `<div class="project-card-links">${project.links.map((l) => `
-              <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>
-           `).join('')}</div>`
-        : '';
-
-    container.innerHTML = `
-        <header class="project-head">
-            <p class="t-label project-platforms">${escapeHtml(platforms)}</p>
-            <h1 class="t-h1">${escapeHtml(project.title)}</h1>
-            <p class="project-summary">${escapeHtml(trProject(project, 'summary', project.summary))}</p>
-            ${links}
-        </header>
-
-        ${renderGallery(project)}
-
-        ${renderSection(tr('project.includes', 'Qué incluye'), highlights)}
-        ${renderSection(tr('project.decisions', 'Decisiones técnicas'), decisions)}
-
-        <section class="project-block">
-            <h2 class="project-block-title">${escapeHtml(tr('project.stack', 'Stack'))}</h2>
-            <div class="project-tech project-tech-full">
-                ${project.tech.map((t) => `<span>${escapeHtml(t)}</span>`).join('')}
-            </div>
-        </section>
-
-        <a class="project-back" href="/#portfolio">${escapeHtml(tr('project.back', '← Volver a proyectos'))}</a>
-    `;
+    container.innerHTML = ProjectView.render({
+        project,
+        summary: trProject(project, 'summary', project.summary),
+        caseText: trProject(project, 'case', project.case),
+        t: tr,
+        next: { slug: next.slug, title: next.title },
+    });
+    Carousel.wire(container);
     container.setAttribute('aria-busy', 'false');
 }
 
@@ -146,26 +74,27 @@ function showError(message) {
     const container = document.getElementById('projectDetail');
     container.setAttribute('aria-busy', 'false');
     container.innerHTML = `
-        <h1 class="t-h1">${escapeHtml(tr('project.notFound', 'Proyecto no encontrado'))}</h1>
-        <p class="t-body">${escapeHtml(message)}</p>
-        <a class="project-back" href="/#portfolio">${escapeHtml(tr('project.back', '← Volver a proyectos'))}</a>
-    `;
+        <div class="p-head">
+            <a class="p-back" href="/#proyectos">← ${esc(tr('project.back'))}</a>
+            <h1>${esc(tr('project.notFound'))}</h1>
+            <p class="p-sum">${esc(message)}</p>
+        </div>`;
 }
 
-let cachedSlug = null;
+let cached = null;
 
-document.addEventListener('languagechange', async () => {
-    if (!cachedSlug) return;
-    const projects = await fetchProjects();
-    const project = projects.find((p) => p.slug === cachedSlug);
-    if (project) { updateSEO(project); renderProject(project); }
+document.addEventListener('languagechange', () => {
+    if (!cached) return;
+    updateSEO(cached.project);
+    paint(cached.project, cached.projects);
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
     const slug = getSlug();
 
     if (!slug) {
-        showError('No se indicó ningún proyecto.');
+        if (window.I18n) await window.I18n.whenReady();
+        showError(tr('project.noneGiven'));
         return;
     }
 
@@ -174,22 +103,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         const project = projects.find((p) => p.slug === slug);
 
         if (!project) {
-            showError(`No existe un proyecto con el identificador "${slug}".`);
+            if (window.I18n) await window.I18n.whenReady();
+            showError(`${tr('project.notFound')}: "${slug}"`);
             return;
         }
 
-        cachedSlug = project.slug;
+        cached = { project, projects };
+        // Sin diccionario, ProjectView pintaría las claves un instante.
+        if (window.I18n) await window.I18n.whenReady();
         updateSEO(project);
-        renderProject(project);
+        paint(project, projects);
 
-        // Que la barra de direcciones muestre /project/<slug> aunque hayamos
+        // Que la barra de direcciones muestre /project/<slug>/ aunque hayamos
         // llegado por el rebote del 404 de GitHub Pages.
         const path = `/project/${project.slug}/`;
         if (window.location.pathname !== path) {
-            history.replaceState(null, '', path);
+            history.replaceState(null, '', path + window.location.search);
         }
     } catch (err) {
-        showError('No se pudo cargar la información del proyecto.');
+        if (window.I18n) await window.I18n.whenReady();
+        showError(tr('project.loadError'));
         console.error(err);
     }
 });

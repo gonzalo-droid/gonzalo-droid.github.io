@@ -96,15 +96,15 @@ async function paint() {
     applyFilter(container);
 }
 
-// El idioma llega después del primer pintado (i18n hace fetch), así que la
-// grilla se repinta cuando está listo y en cada cambio manual.
-document.addEventListener('languageready', () => paint());
+// Se pinta cuando el diccionario está listo (si no, las etiquetas saldrían
+// como claves un instante) y otra vez en cada cambio de idioma.
 document.addEventListener('languagechange', () => paint());
 
 document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('projectsGrid');
     if (!container) return;
     try {
+        if (window.I18n) await window.I18n.whenReady();
         await paint();
     } catch (err) {
         container.innerHTML = `<p class="t-muted">${esc(tr('projects.error'))}</p>`;

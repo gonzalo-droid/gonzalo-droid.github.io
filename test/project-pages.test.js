@@ -12,6 +12,9 @@ const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
 const projects = JSON.parse(read('content/projects.json'));
+const ProjectView = require('../assets/js/project-view.js');
+const { execFileSync } = require('node:child_process');
+const crypto = require('node:crypto');
 
 test('existe la plantilla de la página de detalle', () => {
   assert.ok(fs.existsSync(path.join(root, 'project', 'index.html')));
@@ -21,7 +24,52 @@ test('la plantilla carga el renderizador y los tokens', () => {
   const html = read('project/index.html');
   assert.match(html, /assets\/js\/project\.js/);
   assert.match(html, /assets\/css\/tokens\.css/);
-  assert.match(html, /id="projectDetail"/);
+  // Un div y no un <article>: la regex del build corta en el cierre del
+  // contenedor, y un <article> anidado la confundiría.
+  assert.match(html, /<div id="projectDetail"/);
+  assert.ok(!html.includes('crumbCurrent'));
+});
+
+test('la plantilla carga carousel.js, project-view.js y project.js, en ese orden', () => {
+  const html = read('project/index.html');
+  const at = ['carousel.js', 'project-view.js', 'project.js'].map((f) => html.indexOf(`/assets/js/${f}"`));
+  for (const i of at) assert.ok(i > -1);
+  assert.deepStrictEqual(at, [...at].sort((x, y) => x - y));
+});
+
+test('la página prerenderizada trae el caso completo en párrafos', () => {
+  for (const p of projects) {
+    const html = read(`project/${p.slug}/index.html`);
+    for (const para of ProjectView.caseParagraphs(p.case)) {
+      assert.ok(html.includes(`<p>${ProjectView.escapeHtml(para)}</p>`), `${p.slug}: falta el párrafo "${para.slice(0, 40)}…"`);
+    }
+    assert.ok(!html.includes('Qué incluye'), `${p.slug}: sigue la lista "Qué incluye"`);
+    assert.match(html, new RegExp(`<title[^>]*>${p.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} — Proyecto de Gonzalo López</title>`));
+  }
+});
+
+test('cada página enlaza al siguiente proyecto, y la última vuelve a la primera', () => {
+  projects.forEach((p, i) => {
+    const next = projects[(i + 1) % projects.length];
+    assert.ok(read(`project/${p.slug}/index.html`).includes(`href="/project/${next.slug}/"`), `${p.slug} no enlaza a ${next.slug}`);
+  });
+  assert.ok(read('project/solti-crm/index.html').includes('href="/project/nekomangacix/"'));
+});
+
+test('la ficha muestra Cliente solo en Agrosalas', () => {
+  for (const p of projects) {
+    const html = read(`project/${p.slug}/index.html`);
+    assert.strictEqual(html.includes('<p class="p-label">Cliente</p>'), p.slug === 'agrosalas', p.slug);
+  }
+  assert.ok(read('project/agrosalas/index.html').includes('Agrosalas Peru S.R.L.'));
+});
+
+test('correr el build dos veces deja los mismos archivos', { timeout: 30000 }, () => {
+  const hash = () => crypto.createHash('sha256').update(read('project/agrosalas/index.html') + read('articles/index.html') + read('sitemap.xml')).digest('hex');
+  execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  const first = hash();
+  execFileSync(process.execPath, ['scripts/build-pages.js'], { cwd: root, stdio: 'ignore' });
+  assert.strictEqual(hash(), first);
 });
 
 test('Express sirve /project/:slug', () => {

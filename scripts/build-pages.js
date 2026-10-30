@@ -181,19 +181,23 @@ function buildArticles() {
 
 // ---------------------------------------------------------------- proyectos
 
-const PLATFORM_LABELS = { android: 'Android', ios: 'iOS', kmm: 'KMM', web: 'Web' };
+// La página se pinta con el mismo módulo que usa project.js en el navegador,
+// así el HTML que indexa Google y el que pinta el JS no se separan.
+const ProjectView = require('../assets/js/project-view.js');
 
 function buildProjects() {
   const template = read('project/index.html');
   const projects = readJson('content/projects.json');
+  const es = readJson('content/i18n/es.json');
+  const t = (key) => (key in es ? es[key] : key);
   const written = [];
 
-  for (const project of projects) {
+  projects.forEach((project, i) => {
     const url = `${SITE}/project/${project.slug}/`;
-    const title = `${project.title} - ${AUTHOR} | Mobile Developer`;
+    const title = `${project.title} — Proyecto de ${AUTHOR}`;
     const description = clip(project.summary);
-    const image = SITE + project.image;
-    const platforms = project.platforms.map((p) => PLATFORM_LABELS[p] || p).join(' · ');
+    const images = project.images.map((img) => SITE + img.src);
+    const next = projects[(i + 1) % projects.length];
 
     let html = template;
     html = setTitle(html, title);
@@ -201,11 +205,11 @@ function buildProjects() {
     html = setMetaById(html, 'canonicalLink', 'href', url);
     html = setMetaById(html, 'ogTitle', 'content', title);
     html = setMetaById(html, 'ogDescription', 'content', description);
-    html = setMetaById(html, 'ogImage', 'content', image);
+    html = setMetaById(html, 'ogImage', 'content', images[0]);
     html = setMetaById(html, 'ogUrl', 'content', url);
     html = setMetaById(html, 'twitterTitle', 'content', title);
     html = setMetaById(html, 'twitterDescription', 'content', description);
-    html = setMetaById(html, 'twitterImage', 'content', image);
+    html = setMetaById(html, 'twitterImage', 'content', images[0]);
 
     html = injectBeforeHeadEnd(html, hreflangFor(url));
     html = injectBeforeHeadEnd(
@@ -215,56 +219,39 @@ function buildProjects() {
         '@type': 'CreativeWork',
         name: project.title,
         description,
-        image: [image, ...(project.gallery || []).map((g) => SITE + g)],
+        image: images,
         url,
         creator: { '@type': 'Person', name: AUTHOR, url: SITE },
+        author: { '@type': 'Person', name: AUTHOR, url: SITE },
+        ...(project.client ? { sourceOrganization: { '@type': 'Organization', name: project.client } } : {}),
         keywords: project.tech.join(', '),
         inLanguage: 'es',
       })
     );
 
-    const highlights = (project.highlights || []).length
-      ? `<h2>Qué incluye</h2>\n<ul>${project.highlights
-          .map((h) => `<li>${escapeHtml(h)}</li>`)
-          .join('')}</ul>`
-      : '';
+    // project.js repinta este contenido con el idioma activo; sin JS, esto es
+    // lo que queda, y es lo que indexa el crawler: el caso completo en párrafos.
+    const body = ProjectView.render({
+      project,
+      summary: project.summary,
+      caseText: project.case,
+      t,
+      next: { slug: next.slug, title: next.title },
+    });
 
-    const links = (project.links || []).length
-      ? `<ul>${project.links
-          .map(
-            (l) =>
-              `<li><a href="${escapeHtml(l.url)}" rel="noopener">${escapeHtml(l.label)}</a></li>`
-          )
-          .join('')}</ul>`
-      : '';
-
-    // project.js sustituye este contenido en cuanto corre; sin JS, esto es lo
-    // que queda, y es lo que indexa el crawler.
-    const prerendered = `
-                <header class="project-head">
-                    <p class="t-label project-platforms">${escapeHtml(platforms)}</p>
-                    <h1 class="t-h1">${escapeHtml(project.title)}</h1>
-                    <p class="project-summary">${escapeHtml(project.summary)}</p>
-                </header>
-                ${highlights}
-                <h2>Stack</h2>
-                <p>${project.tech.map(escapeHtml).join(' · ')}</p>
-                ${links}`;
-
+    // #projectDetail es un div (no un <article>) y su contenido no lleva
+    // </main>: la regex corta en el cierre del contenedor sin confundirse.
     html = html.replace(
-      /(<article id="projectDetail"[^>]*>)[\s\S]*?(<\/article>)/,
-      `$1${prerendered}\n            $2`
+      /(<div id="projectDetail"[^>]*>)[\s\S]*?(<\/div>\s*<\/div>\s*<\/main>)/,
+      `$1${body}\n            $2`
     );
-    html = html.replace(
-      /(<span id="crumbCurrent">)[\s\S]*?(<\/span>)/,
-      `$1${escapeHtml(project.title)}$2`
-    );
+    html = html.replace('<div id="projectDetail" aria-busy="true">', '<div id="projectDetail" aria-busy="false">');
 
     const dir = path.join(ROOT, 'project', project.slug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html);
     written.push({ url: `/project/${project.slug}` });
-  }
+  });
   return written;
 }
 

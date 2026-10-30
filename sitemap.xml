@@ -3,70 +3,77 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gonzalo-lozg.me/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/articles/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/articles/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/articles/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/nekomangacix/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/nekomangacix/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/nekomangacix/?lang=en"/>
   </url>
   <url>
+    <loc>https://gonzalo-lozg.me/project/agrosalas/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/agrosalas/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/agrosalas/?lang=en"/>
+  </url>
+  <url>
     <loc>https://gonzalo-lozg.me/project/quote-anime/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/quote-anime/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/quote-anime/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/autotest-licencia/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/autotest-licencia/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/autotest-licencia/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/cixcash/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/cixcash/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/cixcash/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/note-ai/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/note-ai/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/note-ai/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/u-learning/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/u-learning/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/u-learning/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/admin-lotes/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/admin-lotes/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/admin-lotes/?lang=en"/>
   </url>
   <url>
     <loc>https://gonzalo-lozg.me/project/solti-crm/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://gonzalo-lozg.me/project/solti-crm/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gonzalo-lozg.me/project/solti-crm/?lang=en"/>

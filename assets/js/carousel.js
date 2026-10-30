@@ -77,8 +77,27 @@
             const total = car.querySelectorAll('.car-slide').length;
             if (!track || total < 2) return;
 
-            const current = () => Math.round(track.scrollLeft / (track.clientWidth || 1));
-            const go = (k) => track.scrollTo({ left: k * track.clientWidth });
+            // Índice visible. Mientras un desplazamiento pedido por flecha o
+            // miniatura está en curso, manda el destino y no la posición a medio camino.
+            let target = null;
+            const current = () => (target !== null ? target : Math.round(track.scrollLeft / (track.clientWidth || 1)));
+
+            const mark = (i) => {
+                dots.forEach((d, k) => d.classList.toggle('on', k === i));
+                if (count) count.textContent = `${i + 1}/${total}`;
+                thumbs.forEach((b, k) => {
+                    b.classList.toggle('on', k === i);
+                    if (k === i) b.setAttribute('aria-current', 'true');
+                    else b.removeAttribute('aria-current');
+                });
+            };
+
+            // Los indicadores cambian al instante, sin esperar a que termine el scroll.
+            const go = (k) => {
+                target = k;
+                mark(k);
+                track.scrollTo({ left: k * track.clientWidth });
+            };
 
             let pending = false;
             track.addEventListener('scroll', () => {
@@ -86,16 +105,20 @@
                 pending = true;
                 requestAnimationFrame(() => {
                     pending = false;
-                    const i = Math.max(0, Math.min(total - 1, current()));
-                    dots.forEach((d, k) => d.classList.toggle('on', k === i));
-                    if (count) count.textContent = `${i + 1}/${total}`;
-                    thumbs.forEach((b, k) => {
-                        b.classList.toggle('on', k === i);
-                        if (k === i) b.setAttribute('aria-current', 'true');
-                        else b.removeAttribute('aria-current');
-                    });
+                    const at = Math.round(track.scrollLeft / (track.clientWidth || 1));
+                    if (target !== null && at !== target) return; // aún en camino
+                    target = null;
+                    mark(Math.max(0, Math.min(total - 1, at)));
                 });
             }, { passive: true });
+
+            // Si la persona desliza a mano, su gesto manda sobre el destino pendiente.
+            const release = () => { target = null; };
+            ['pointerdown', 'touchstart', 'wheel'].forEach((type) => track.addEventListener(type, release, { passive: true }));
+            track.addEventListener('scrollend', () => {
+                target = null;
+                mark(Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / (track.clientWidth || 1)))));
+            });
 
             car.querySelectorAll('.car-nav').forEach((btn) => {
                 btn.addEventListener('click', (event) => {

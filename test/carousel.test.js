@@ -72,3 +72,78 @@ test('escapa el alt', () => {
 test('cardSrc apunta a la variante de tarjeta', () => {
   assert.strictEqual(Carousel.cardSrc('/assets/img/portfolio/a.webp'), '/assets/img/portfolio/cards/a.webp');
 });
+
+// ---- comportamiento (Carousel.wire) sobre un DOM mínimo simulado ----
+
+function fakeCarousel(n, { withThumbs = false } = {}) {
+  const on = () => { const listeners = {}; return { listeners, addEventListener: (t, fn) => (listeners[t] = listeners[t] || []).push(fn) }; };
+  const cls = (initial = []) => { const set = new Set(initial); return { set, toggle: (c, v) => (v ? set.add(c) : set.delete(c)), contains: (c) => set.has(c) }; };
+  const track = { ...on(), clientWidth: 100, scrollLeft: 0, scrollTo({ left }) { this.scrollLeft = left; } };
+  const dots = Array.from({ length: n }, (_, k) => ({ classList: cls(k === 0 ? ['on'] : []) }));
+  const count = { textContent: `1/${n}` };
+  const mkBtn = (c) => ({ ...on(), classList: cls([c]), dataset: {} });
+  const prev = mkBtn('car-prev');
+  const next = mkBtn('car-next');
+  const thumbs = withThumbs ? Array.from({ length: n }, (_, k) => ({ ...on(), classList: cls(k === 0 ? ['on'] : []), dataset: { k: String(k) }, setAttribute() {}, removeAttribute() {} })) : [];
+  const car = {
+    dataset: {},
+    querySelector: (sel) => ({ '.car-track': track, '.car-count': count }[sel] || null),
+    querySelectorAll: (sel) => ({ '.car-dots i': dots, '.car-thumbs button': thumbs, '.car-slide': Array(n).fill({}), '.car-nav': [prev, next] }[sel] || []),
+  };
+  const root = { querySelectorAll: () => [car] };
+  const click = (el) => { const ev = { prevented: false, stopped: false, preventDefault() { this.prevented = true; }, stopPropagation() { this.stopped = true; } }; el.listeners.click.forEach((fn) => fn(ev)); return ev; };
+  return { root, car, track, dots, count, prev, next, thumbs, click };
+}
+
+test('la flecha avanza, actualiza el contador al instante y no abre el proyecto', () => {
+  const c = fakeCarousel(3);
+  Carousel.wire(c.root);
+  const ev = c.click(c.next);
+  assert.ok(ev.prevented && ev.stopped, 'la flecha debe frenar el clic para no seguir el enlace de la tarjeta');
+  assert.strictEqual(c.track.scrollLeft, 100);
+  assert.strictEqual(c.count.textContent, '2/3');
+  assert.ok(c.dots[1].classList.contains('on') && !c.dots[0].classList.contains('on'));
+});
+
+test('dos clics seguidos avanzan dos imágenes aunque el scroll siga en curso', () => {
+  const c = fakeCarousel(3);
+  c.track.scrollTo = function () {}; // el scroll suave todavía no se movió
+  Carousel.wire(c.root);
+  c.click(c.next);
+  c.click(c.next);
+  assert.strictEqual(c.count.textContent, '3/3');
+});
+
+test('al final, la flecha siguiente vuelve a la primera', () => {
+  const c = fakeCarousel(2);
+  Carousel.wire(c.root);
+  c.click(c.next);
+  c.click(c.next);
+  assert.strictEqual(c.count.textContent, '1/2');
+  assert.strictEqual(c.track.scrollLeft, 0);
+});
+
+test('una miniatura lleva a su imagen y la marca', () => {
+  const c = fakeCarousel(3, { withThumbs: true });
+  Carousel.wire(c.root);
+  c.thumbs[2].listeners.click[0]();
+  assert.strictEqual(c.track.scrollLeft, 200);
+  assert.ok(c.thumbs[2].classList.contains('on') && !c.thumbs[0].classList.contains('on'));
+});
+
+test('deslizar a mano tras un salto vuelve a seguir la posición real', () => {
+  const c = fakeCarousel(3);
+  Carousel.wire(c.root);
+  c.click(c.next);
+  c.track.listeners.pointerdown[0]();
+  c.track.scrollLeft = 200;
+  c.track.listeners.scrollend[0]();
+  assert.strictEqual(c.count.textContent, '3/3');
+});
+
+test('wire es idempotente', () => {
+  const c = fakeCarousel(3);
+  Carousel.wire(c.root);
+  Carousel.wire(c.root);
+  assert.strictEqual(c.next.listeners.click.length, 1);
+});

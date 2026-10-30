@@ -14,6 +14,16 @@ const I18n = {
 
     strings: {},
 
+    // true cuando init() terminó (con o sin diccionario). Quien pinte texto
+    // traducido espera a esto, para no enseñar las claves un instante.
+    ready: false,
+
+    /** Se resuelve cuando init() terminó; al instante si ya terminó. */
+    whenReady() {
+        if (this.ready) return Promise.resolve();
+        return new Promise((resolve) => document.addEventListener('languageready', resolve, { once: true }));
+    },
+
     // Idioma elegido, o el del navegador si nunca eligió, o español.
     resolve() {
         const stored = localStorage.getItem(this.STORAGE_KEY);
@@ -139,6 +149,7 @@ const I18n = {
         }
 
         this.bindToggle();
+        this.ready = true;
         document.dispatchEvent(new CustomEvent('languageready', { detail: { lang } }));
     },
 };
