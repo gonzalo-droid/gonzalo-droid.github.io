@@ -9,7 +9,7 @@ document.documentElement.classList.add('js');
 /**
  * Theme Manager - Handles dark/light mode switching
  * Features:
- * - System preference detection
+ * - Claro por defecto; oscuro solo si el visitante lo eligió
  * - Local storage persistence
  * - Smooth transitions
  * - Highlight.js theme switching for code blocks
@@ -32,18 +32,15 @@ const ThemeManager = {
     } else {
       this.bindToggle();
     }
-
-    // Listen for system preference changes
-    this.watchSystemPreference();
   },
 
   /**
    * Apply theme immediately (before DOM ready to prevent flash)
    */
   applyInitialTheme() {
-    const savedTheme = localStorage.getItem(this.STORAGE_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDark ? this.DARK : this.LIGHT);
+    // Claro por defecto (decisión de diseño): la preferencia del sistema no
+    // cuenta, solo lo que el visitante eligió con el interruptor.
+    const theme = localStorage.getItem(this.STORAGE_KEY) || this.LIGHT;
 
     document.documentElement.setAttribute('data-theme', theme);
     this.updateHighlightTheme(theme);
@@ -122,18 +119,6 @@ const ThemeManager = {
     }
   },
 
-  /**
-   * Watch for system preference changes
-   */
-  watchSystemPreference() {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-      // Only auto-switch if user hasn't manually set a preference
-      if (!localStorage.getItem(this.STORAGE_KEY)) {
-        this.setTheme(e.matches ? this.DARK : this.LIGHT);
-      }
-    });
-  },
 
   /**
    * Get current theme
@@ -141,15 +126,6 @@ const ThemeManager = {
    */
   getTheme() {
     return document.documentElement.getAttribute('data-theme') || this.LIGHT;
-  },
-
-  /**
-   * Reset to system preference
-   */
-  resetToSystemPreference() {
-    localStorage.removeItem(this.STORAGE_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.setTheme(prefersDark ? this.DARK : this.LIGHT);
   }
 };
 

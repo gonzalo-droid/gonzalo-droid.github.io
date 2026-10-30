@@ -15,7 +15,7 @@ const THEMES = [
 ];
 
 // Tokens que llegan a pintar texto sobre --bg. AA texto normal = 4.5:1.
-const TEXT_ON_BG = ['--text', '--text-muted', '--accent', '--accent-2'];
+const TEXT_ON_BG = ['--text', '--text-muted', '--accent'];
 
 for (const theme of THEMES) {
   test(`tema ${theme.name}: los tokens de texto cumplen AA sobre --bg`, () => {
@@ -31,6 +31,16 @@ for (const theme of THEMES) {
         ratio >= 4.5,
         `${token} (${value}) sobre --bg (${bg}) da ${ratio.toFixed(2)}:1, hace falta 4.5:1`
       );
+    }
+  });
+
+  test(`tema ${theme.name}: los tokens de texto cumplen AA sobre --surface`, () => {
+    const t = parseTokens(css, theme.selector);
+    const surface = t.get('--surface');
+    assert.ok(surface, `${theme.selector} debe definir --surface`);
+    for (const token of TEXT_ON_BG) {
+      const ratio = contrastRatio(t.get(token), surface);
+      assert.ok(ratio >= 4.5, `${token} sobre --surface da ${ratio.toFixed(2)}:1, hace falta 4.5:1`);
     }
   });
 
@@ -50,4 +60,18 @@ test('define la escala de espaciado completa', () => {
   for (let i = 1; i <= 10; i++) {
     assert.ok(t.get(`--sp-${i}`), `falta --sp-${i}`);
   }
+});
+
+test('el sistema tiene un solo acento y la escala de radios', () => {
+  const t = parseTokens(css, ':root');
+  for (const gone of ['--accent-2', '--border-strong', '--cut', '--font-display', '--radius-sm']) {
+    assert.ok(!t.get(gone), `${gone} debería haber desaparecido`);
+  }
+  assert.strictEqual(t.get('--radius-chip'), '3px');
+  assert.strictEqual(t.get('--radius'), '4px');
+  assert.strictEqual(t.get('--radius-card'), '8px');
+  assert.strictEqual(t.get('--radius-pill'), '999px');
+  assert.match(t.get('--font-serif'), /Newsreader/);
+  assert.match(t.get('--font-sans'), /IBM Plex Sans/);
+  assert.match(t.get('--font-mono'), /IBM Plex Mono/);
 });
