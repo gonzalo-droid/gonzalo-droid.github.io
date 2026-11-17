@@ -242,7 +242,7 @@
                 <span class="divider">·</span>
                 <a href="../term/index.html">Ver Términos y Condiciones <i class="bi bi-arrow-right"></i></a>
             </div>
-            <span class="legal-updated"><i class="bi bi-clock-history"></i> Última actualización: 11 de agosto de 2026</span>
+            <span class="legal-updated"><i class="bi bi-clock-history"></i> Última actualización: 16 de noviembre de 2026</span>
         </div>
     </section>
 
@@ -384,6 +384,25 @@
                             iOS), sin sincronización con ningún servidor.
                         </p>
 
+                        <h3>3.9 Aplicación para iPhone (iOS)</h3>
+                        <p>
+                            La versión para iPhone es más limitada en lo que recopila que la de Android:
+                        </p>
+                        <ul>
+                            <li><strong>No usa Firebase</strong>: ni Analytics, ni Crashlytics, ni Realtime Database,
+                                ni inicio de sesión. Las preguntas vienen incluidas dentro de la app.</li>
+                            <li><strong>No tiene compras dentro de la app</strong> en su versión actual.</li>
+                            <li>El único servicio de terceros es <strong>Google AdMob</strong> (banners, intersticiales
+                                y un anuncio con recompensa opcional para descargar el PDF del balotario). Según
+                                la declaración de privacidad del propio SDK de Google, puede recopilar el
+                                identificador de publicidad (IDFA), datos de interacción y de publicidad, la
+                                ubicación aproximada derivada de la dirección IP y datos de diagnóstico.</li>
+                            <li>Antes de cargar anuncios, la app muestra el formulario de consentimiento de Google
+                                cuando aplica y la solicitud de <strong>App Tracking Transparency</strong> de Apple.
+                                Si no das permiso de rastreo, la app no accede al IDFA y AdMob muestra anuncios no
+                                personalizados.</li>
+                        </ul>
+
                         <div class="legal-table-wrapper">
                             <table class="legal-table">
                                 <thead>
@@ -500,7 +519,9 @@
                             Android / IDFA en iOS). Puedes restablecer o limitar este identificador desde los
                             ajustes de privacidad de tu dispositivo (<em>Ajustes → Google → Anuncios</em> en Android,
                             o <em>Ajustes → Privacidad y seguridad → Publicidad de Apple</em> en iOS). No tenemos
-                            acceso directo a los datos que AdMob recopila para personalizar anuncios.
+                            acceso directo a los datos que AdMob recopila para personalizar anuncios. En iPhone,
+                            además, puedes aceptar o rechazar el rastreo cuando la app lo solicita, y cambiar esa
+                            decisión en <em>Ajustes → Privacidad y seguridad → Rastreo</em>.
                         </p>
 
                         <h2>8. Permisos del dispositivo</h2>
